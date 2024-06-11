@@ -1,0 +1,416 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.main{
+    overflow: hidden;
+    width: 100%;
+    background-color: #252525;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    top: 0;
+    font-family: sans-serif;
+}
+
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    list-style:none;
+    cursor: pointer;
+    padding-top: 24px;
+    position: fixed;
+    top: 0;
+}
+
+.navbar a{
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #898989;
+    transition: 0.4s ease;
+}
+
+.navbar a:hover{
+    color: rgb(230, 104, 59);
+}
+
+.info{
+    margin-left: 7%;
+    margin-top: 18%;
+}
+
+.wrapper{
+    display: inline-flex;
+    /* overflow: hidden; */
+    height: 90px;
+    line-height: 90px;
+}
+
+.info h1{
+    font-size: 60px;
+    color: #FFFFFF;
+    font-weight: 400;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.animated-text span{
+    position: relative;
+}
+
+.animated-text span::before{
+    content: "Web Developer";
+    color: rgb(230, 104, 59);
+    animation: words 20s infinite;
+}
+
+.animated-text span::after{
+    content: "";
+    position: absolute;
+    width: calc(100% + 8px);
+    background-color: #252525;
+    height: 100%;
+    border-left: 2px solid #ff7f50;
+    right: -8px;
+    animation: cursor 4.8s infinite, typing 20s steps(14) infinite;
+}
+
+@keyframes cursor{
+    to{
+        border-left: 2px solid #ff7f50;
+    }
+}
+
+@keyframes words{
+    0%,20%{
+        content: "Developer";
+    }
+    21%,40%{
+        content: "Student";
+    }
+    41%,60%{
+        content: "Student";
+    }
+    61%,80%{
+        content: "Developer";
+    }
+    81%,100%{
+        content: "Student";
+    }
+}
+
+@keyframes typing{
+    10%,15%,30%,35%,50%,55%,70%,75%,90%,95%{
+        width: 0;
+    }
+    5%,20%,25%,40%,45%,60%,65%,80%,85%{
+        width: calc(100% + 8px);
+    }
+}
+
+.info h3{
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.info span{
+    color: rgb(230, 104, 59);
+}
+
+.info a{
+    text-decoration:  none;
+    color: #252525;
+    background: rgb(230, 104, 59);
+    margin: 26px 0;
+    padding: 10px 18px;
+    border-radius: 10px;
+    display: inline-block;
+    transition: .4s ease;
+}
+
+.info a:hover{
+    background: rgb(59,174,209);
+}
+
+.icons a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.icons ion-icon{
+    margin-left: 7%;
+    color: #FFFFFF;
+    margin-right: -60px;
+    font-size: 40px;
+    transition: .4s ease;
+    
+}
+
+.icons ion-icon:hover{
+    color: rgb(59,174,209);
+}
+
+.image-author{
+    width: 30%;
+    height: 60%;
+    position: absolute;
+    right: 60px;
+    bottom: 0;
+}
+
+.image-author img{
+    position: absolute;
+    height:155%;
+    left: 40%;
+    bottom: 0;
+    transform: translate(-55%);
+    transition: left 2s ease;
+}
+
+.image-author .author:hover{
+    left: 55%;
+}
+
+/* About */
+
+.aboutme{
+    background-color: #252525;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.aboutleft{
+    color: #FFFFFF;
+    font-size: 20px;
+    height: 500px;
+    width: 40%;
+}
+
+.aboutleft h1{
+    font-family: serif;
+    font-size: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.aboutleft p::first-letter{
+    font-size: 50px;
+}
+
+.aboutleft p{
+    font-family: "Times New Roman", Times, serif;
+    line-height: 1.5;
+    font-size: 18px;
+}
+
+.aboutleft span{
+    color: #ff7f50;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.aboutright img{
+    width: 400px;
+    border-radius: 10px;
+}
+
+
+
+/* Skills  */
+
+.skills{
+    background-color: #252525;
+    height: 100vh;
+}
+
+.skill-heading{
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    font-size: 36px;
+    color: #FFFFFF;
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+.skills h1 span{
+    color: #00AFFF;
+    padding-left: 5px;
+}
+
+.skills-box{
+    display: flex;  
+    gap: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.web-dev img{
+    height: 80px;
+    width: 80px;
+    display: block;
+    margin: 0 auto;
+}
+
+.python-prog img{
+    height: 100px;
+    width: 180px;
+    display: block;
+    margin: 0 auto;
+}
+
+.sql-lang img{
+    height: 100px;
+    width: 160px;
+    display: block;
+    margin: 0 auto;
+    margin-top: -15px;
+}
+
+.skills-para{
+    color: #FFFFFF;
+    font-family: "Times New Roman", Times, serif;
+    line-height: 1.5;
+    font-size: 18px;
+}
+
+.skill-head{
+    text-align: center;
+    padding: 18px 0;
+    font-size: 26px;
+    color: #00AFFF;
+}
+
+.python-prog h2{
+    margin-top: -25px;
+}
+
+.sql-lang h2{
+    margin-top: -5px;
+}
+
+.web-dev{
+    width: 20%;
+    border: solid #00AFFF 5px;
+    padding: 30px;
+    height: 380px;
+    border-radius: 14px;
+}
+
+.python-prog{
+    width: 20%;
+    border: solid #00AFFF 5px;
+    padding: 30px;
+    height: 380px;
+    border-radius: 14px;
+}
+
+.sql-lang{
+    width: 20%;
+    border: solid #00AFFF 5px;
+    padding: 30px;
+    height: 380px;
+    border-radius: 14px;
+}
+
+
+/* Contect Us */
+
+.contect-us{
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    gap: 300px;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+
+.support{
+    align-items: center;
+    justify-content: center;
+}
+
+.support-heading{
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #800080;
+}
+
+.support ul{
+    color: #FFFFFF;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.6vh;
+}
+
+.follow-us{
+    padding-top: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.follow-heading{
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #800080;
+}
+
+.follow-img{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+    padding-top: 30px;
+}
+
+.contect{
+    align-items: center;
+    justify-content: center;
+}
+
+.email img{
+    background-color: #FFFFFF;
+    border-radius: 20px;
+}
+
+.main-email{
+    color: #FFFFFF;
+    display: inline-block;
+    padding-left: 6px;
+    margin-top: 2px;
+    position: absolute;
+}
+
+.contect-heading{
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #800080;
+    padding-bottom: 20px;
+}
