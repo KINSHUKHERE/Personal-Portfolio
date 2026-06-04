@@ -18,15 +18,17 @@ export function Contact() {
     setStatus("loading");
     emailjs
       .send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_id",
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_id",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
           to_email: profile.email,
         },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "public_key"
+        {
+          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        }
       )
       .then(() => {
         setStatus("success");
