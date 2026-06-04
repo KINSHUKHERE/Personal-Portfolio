@@ -21,11 +21,10 @@ export function Contact() {
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          from_name: formData.name,
-          from_email: formData.email,
+          name: formData.name,
+          email: formData.email,
           message: formData.message,
-          to_email: profile.email,
-          reply_to: formData.email,
+          title: "New Message from Portfolio",
         },
         {
           publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
