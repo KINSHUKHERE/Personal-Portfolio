@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Backdrop } from "./components/portfolio/Backdrop";
 import { Contact } from "./components/portfolio/Contact";
 import { Education } from "./components/portfolio/Education";
@@ -13,6 +13,7 @@ import { ScrollProgress } from "./components/portfolio/ScrollProgress";
 import { Skills } from "./components/portfolio/Skills";
 import { SmoothScroll } from "./components/portfolio/SmoothScroll";
 import { About } from "./components/portfolio/About";
+import { ErrorPage } from "./components/portfolio/ErrorPage";
 
 function useDocumentTitle(title) {
   useEffect(() => {
@@ -22,6 +23,61 @@ function useDocumentTitle(title) {
 
 export default function App() {
   useDocumentTitle("Kinshuk Khandelwal - MERN Stack Developer");
+
+  const [isOffline, setIsOffline] = useState(!navigator.onLine);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOffline(false);
+    const handleOffline = () => setIsOffline(true);
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener("popstate", handlePopState);
+
+    const interval = setInterval(() => {
+      if (window.location.pathname !== currentPath) {
+        setCurrentPath(window.location.pathname);
+      }
+    }, 1000);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+      window.removeEventListener("popstate", handlePopState);
+      clearInterval(interval);
+    };
+  }, [currentPath]);
+
+  if (isOffline) {
+    return (
+      <ErrorPage
+        type="offline"
+        onRetry={() => {
+          setIsOffline(!navigator.onLine);
+          if (navigator.onLine) {
+            window.location.reload();
+          }
+        }}
+      />
+    );
+  }
+
+  if (currentPath !== "/") {
+    return (
+      <ErrorPage
+        type="404"
+        onHome={() => {
+          window.history.pushState({}, "", "/");
+          setCurrentPath("/");
+        }}
+      />
+    );
+  }
 
   return (
     <>

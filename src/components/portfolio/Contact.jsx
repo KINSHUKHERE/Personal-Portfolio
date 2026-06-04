@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Section } from "./Section";
 import { profile } from "./data";
-import { Github, Linkedin, Instagram, Mail, Phone } from "lucide-react";
+import { Github, Linkedin, Instagram, Mail, Phone, CalendarDays } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { ViewOnMap } from "./ViewOnMap";
+import { InlineAction } from "./InlineAction";
 
 export function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -102,6 +104,10 @@ export function Contact() {
               </a>
             ))}
           </div>
+
+          <div className="pt-6 flex justify-start">
+            <ViewOnMap address="Jaipur, Rajasthan" />
+          </div>
         </div>
 
         <form
@@ -162,6 +168,22 @@ export function Contact() {
           >
             {status === "loading" ? "Sending..." : "Send Message →"}
           </button>
+
+          {status === "success" && (
+            <div className="mt-6 flex flex-col items-center gap-3 border-t border-border pt-6 animate-fade-in">
+              <p className="font-mono-ui text-[11px] uppercase tracking-wider text-muted-foreground text-center">
+                Want to book a quick chat? Sync my calendar:
+              </p>
+              <InlineAction
+                label="Calendar"
+                icon={<CalendarDays className="size-5" />}
+                actionText="Sync Events"
+                onAction={async () => {
+                  await new Promise((resolve) => setTimeout(resolve, 2500));
+                }}
+              />
+            </div>
+          )}
         </form>
       </div>
     </Section>

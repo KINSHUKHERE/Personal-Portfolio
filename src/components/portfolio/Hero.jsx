@@ -1,9 +1,27 @@
-import { Github, Linkedin, Instagram, Mail, ArrowDown, Download } from "lucide-react";
+import { Github, Linkedin, Instagram, Mail, ArrowDown, Download, Search, Cog } from "lucide-react";
 import { motion } from "framer-motion";
 import { ParticleField } from "./ParticleField";
 import { profile } from "./data";
+import { RunActionButton } from "./RunActionButton";
+
+const resumeSteps = [
+  { id: 1, label: "Locating resume PDF...", icon: Search },
+  { id: 2, label: "Preparing buffer...", icon: Cog },
+  { id: 3, label: "Downloading...", icon: Download },
+];
 
 export function Hero() {
+  const handleResumeDownloadComplete = () => {
+    const downloadUrl = "https://docs.google.com/uc?export=download&id=1XdSATUSsZl44TVMXtewYCuXgmxRVvjuD";
+    const a = document.createElement("a");
+    a.href = downloadUrl;
+    a.download = "Kinshuk_Khandelwal_Resume.pdf";
+    a.target = "_blank";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   return (
     <section id="top" className="relative min-h-screen w-full overflow-hidden">
       <div className="absolute inset-0 opacity-80">
@@ -64,16 +82,13 @@ export function Hero() {
             View Projects
             <span className="transition-transform group-hover:translate-x-0.5">→</span>
           </a>
-          <a
-            href="https://docs.google.com/uc?export=download&id=1XdSATUSsZl44TVMXtewYCuXgmxRVvjuD"
-            download="Kinshuk_Khandelwal_Resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="group inline-flex items-center gap-2 rounded-full border border-cyan-glow/40 bg-surface/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-cyan-glow hover:text-cyan-glow"
-          >
-            <Download className="size-4 transition-transform group-hover:translate-y-0.5" />
-            Download Resume
-          </a>
+          <RunActionButton
+            steps={resumeSteps}
+            idleText="Download Resume"
+            doneText="Downloaded!"
+            onComplete={handleResumeDownloadComplete}
+            idleIcon={Download}
+          />
           <a
             href="#contact"
             className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-cyan-glow/50"

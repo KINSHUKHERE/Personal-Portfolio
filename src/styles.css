@@ -91,10 +91,12 @@
   --sidebar-ring: var(--ring);
 
   --grid-color: color-mix(in oklab, black 4%, transparent);
+  --map-filter: invert(15%) hue-rotate(180deg);
 }
 
 .dark {
   /* Dark Theme Variables */
+  --map-filter: invert(90%) hue-rotate(180deg);
   --background: oklch(0.14 0.012 264);
   --foreground: oklch(0.97 0.005 240);
 
@@ -143,6 +145,7 @@
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   body {
     margin: 0;
