@@ -9,11 +9,13 @@ A sleek, interactive, and fully responsive 3D developer portfolio designed to sh
 ## ✨ Key Features
 
 * **🌀 Interactive 3D Canvas:** Immersive particle systems, starry background fields, and mouse-reactive stage components powered by **Three.js**, **React Three Fiber (R3F)**, and **Drei**.
-* **🌓 Dark & Light Mode:** Seamless transition controls utilizing custom HSL color variables tailored for maximum readability and visual depth in both themes.
-* **📜 Smooth Scrolling:** Native-feeling physics and momentum-based page navigation integrated using **Lenis**.
+* **🌓 Dark & Light Mode:** Seamless transition controls utilizing custom theme variables tailored for maximum readability and visual depth in both themes.
+* **📜 Smooth Scrolling:** Native-feeling physics and momentum-based page navigation integrated using **Lenis** with page layout safety guards to prevent horizontal overflows.
 * **📈 Elegant Animations:** Reveal-on-scroll elements, micro-interactions, counts, and slick card motions using **GSAP** and **Framer Motion**.
 * **💻 Interactive Retro Terminal:** Simulate a classic CLI system displaying short summaries about my profile.
-* **✉️ Direct Contact Form:** Fully integrated with **EmailJS** API for secure and instant message delivery, complete with custom templates and SPF/DMARC routing.
+* **✉️ Direct Contact Form:** Fully integrated with **EmailJS** API for secure and instant message delivery, complete with custom templates.
+* **🕯️ Theme-Aware 404 & Offline State:** Custom-designed error views featuring Swarup Kumar (`uiswarup`)'s swinging lantern SVG animation. Rethemed dynamically to match the site's active color tokens (cyan/violet glow and surfaces), with instant connection drop monitoring and URL routing protection.
+* **🗓️ Interactive Widgets:** Built-in compact overlays like the expandable Google Maps widget (`ViewOnMap`) and the interactive watermelon-ui calendar scheduling drawer (`InlineAction`) shown after form submission.
 
 ---
 
