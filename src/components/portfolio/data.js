@@ -21,7 +21,7 @@ export const profile = {
 export const stats = [
   { label: "CGPA", value: 8.16, decimals: 2, suffix: "" },
   { label: "GitHub repos", value: 10, decimals: 0, suffix: "+" },
-  { label: "DSA problems solved", value: 250, decimals: 0, suffix: "+" },
+  { label: "DSA problems solved", value: 70, decimals: 0, suffix: "+" },
   { label: "Internships", value: 2, decimals: 0, suffix: "" },
 ];
 
@@ -67,8 +67,8 @@ export const featuredProjects = [
     title: "MERN Ecommerce Platform",
     tag: "Full-stack - MERN",
     description:
-      "End-to-end ecommerce app with auth, product catalog, cart and order flow built on MongoDB, Express, React and Node.",
-    stack: ["React", "Node.js", "Express", "MongoDB"],
+      "Full-stack e-commerce platform featuring secure user authentication, product catalog, cart management, and integrated payment gateway services.",
+    stack: ["React.js", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
     github: "https://github.com/KINSHUKHERE/Ecommerce-Website-MERN-",
     live: "",
   },
@@ -76,17 +76,17 @@ export const featuredProjects = [
     title: "Expense Tracker",
     tag: "Full-stack - MongoDB",
     description:
-      "Track income and expenses with category breakdowns, persistent storage in MongoDB and a clean dashboard view.",
-    stack: ["Node.js", "Express", "MongoDB", "EJS"],
+      "A full-stack financial tracker with a dynamic dashboard to manage income and expenses, complete with category breakdowns and persistent storage.",
+    stack: ["React.js", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
     github: "https://github.com/KINSHUKHERE/ExpenseTrackerMongoDB",
     live: "",
   },
   {
     title: "BookHub App",
-    tag: "Full-stack - Web",
+    tag: "Full-stack - Spring Boot",
     description:
-      "Book discovery and management app - browse, search and curate your reading list with a responsive UI.",
-    stack: ["React", "Node.js", "Express"],
+      "A secure book discovery and management web application with backend APIs powered by Spring Boot and a responsive frontend interface.",
+    stack: ["Java Spring Boot", "HTML5", "CSS3"],
     github: "https://github.com/KINSHUKHERE/BookHubApp",
     live: "",
   },
@@ -94,44 +94,44 @@ export const featuredProjects = [
 
 export const secondaryProjects = [
   {
-    title: "Thana-Thaya - Food Ordering",
+    title: "Todo Website",
+    tag: "Frontend - React",
+    description:
+      "A minimal, fast task management app with persistent state handling, allowing users to efficiently add, complete, and filter daily tasks.",
+    stack: ["React.js", "Tailwind CSS"],
+    github: "https://github.com/KINSHUKHERE/Todo-Website",
+    live: "https://todo-website-iota.vercel.app",
+  },
+  {
+    title: "Thana-Thaya (Food Ordering)",
     tag: "Responsive Frontend",
     description:
-      "Responsive food-ordering web app with an interactive menu UI, frontend-backend state validation, cart calculations and a simulated secure payment workflow integrated with Google Forms for order capture.",
+      "A fully responsive, static food-ordering website featuring an interactive menu UI, static cart calculations, and clean layout transitions.",
     stack: ["HTML5", "CSS3", "JavaScript"],
     github: "https://github.com/KINSHUKHERE/Food-website",
     live: "",
   },
   {
-    title: "Tanjore Coffee - Business Site",
+    title: "Tanjore Coffee",
     tag: "Responsive Frontend",
     description:
-      "Brand showcase site for a coffee business - smooth scroll, CSS-driven micro-animations, semantic HTML and a product-forward layout optimized for mobile-first browsing.",
-    stack: ["HTML5", "CSS3", "JavaScript"],
+      "A sleek, brand-forward business landing page optimized for mobile browsing with smooth semantic layouts and CSS-driven animations.",
+    stack: ["HTML5", "CSS3"],
     github: "https://github.com/KINSHUKHERE/Tanjore",
     live: "",
   },
   {
-    title: "Todo Website",
-    tag: "Frontend - React",
+    title: "Employee Performance Matrices",
+    tag: "Data Analysis - PowerBI",
     description:
-      "Minimal, fast todo app with persistent state - deployed live on Vercel. Add, complete and filter tasks.",
-    stack: ["React", "Vite", "Tailwind"],
-    github: "https://github.com/KINSHUKHERE/Todo-Website",
-    live: "https://todo-website-iota.vercel.app",
-  },
-  {
-    title: "Personal Portfolio v1",
-    tag: "Portfolio - Web",
-    description:
-      "First-iteration personal portfolio built with semantic HTML and CSS - mobile-first responsive layout, accessible markup and zero frameworks. Deployed live on Vercel.",
-    stack: ["HTML", "CSS"],
-    github: "https://github.com/KINSHUKHERE/Personal-Portfolio",
-    live: "https://personal-portfolio-ecru-rho.vercel.app",
+      "Interactive business intelligence dashboard designed to analyze and visualize employee performance metrics, tracking productivity KPIs.",
+    stack: ["PowerBI", "Data Analysis"],
+    github: "",
+    live: "",
   },
 ];
 
-export const projects = [...featuredProjects, ...secondaryProjects];
+
 
 export const education = [
   {

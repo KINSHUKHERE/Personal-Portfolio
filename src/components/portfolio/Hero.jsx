@@ -65,8 +65,8 @@ export function Hero() {
             <span className="transition-transform group-hover:translate-x-0.5">→</span>
           </a>
           <a
-            href={profile.resumeUrl}
-            download
+            href="https://docs.google.com/uc?export=download&id=1XdSATUSsZl44TVMXtewYCuXgmxRVvjuD"
+            download="Kinshuk_Khandelwal_Resume.pdf"
             target="_blank"
             rel="noreferrer"
             className="group inline-flex items-center gap-2 rounded-full border border-cyan-glow/40 bg-surface/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-cyan-glow hover:text-cyan-glow"
@@ -91,10 +91,10 @@ export function Hero() {
           <a href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="transition-colors hover:text-cyan-glow">
             <Github className="size-5" />
           </a>
-          <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-cyan-glow">
+          <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-[#0a66c2]">
             <Linkedin className="size-5" />
           </a>
-          <a href={profile.socials.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="transition-colors hover:text-cyan-glow">
+          <a href={profile.socials.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="transition-colors hover:text-[#e1306c]">
             <Instagram className="size-5" />
           </a>
           <a href={profile.socials.mail} aria-label="Email" className="transition-colors hover:text-cyan-glow">
@@ -104,7 +104,7 @@ export function Hero() {
 
         <a
           href="#about"
-          className="font-mono-ui absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground"
+          className="font-mono-ui absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-cyan-glow font-semibold"
         >
           scroll
           <ArrowDown className="size-3 animate-bounce" />

@@ -101,7 +101,7 @@ export function Experience() {
                     <div
                       data-exp-card
                       data-side={right ? "right" : "left"}
-                      className="ml-10 rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur transition-colors hover:border-cyan-glow/50 md:ml-0"
+                      className="ml-10 rounded-2xl border border-border border-t-4 border-t-cyan-glow bg-surface/60 p-6 backdrop-blur transition-colors hover:border-cyan-glow/50 md:ml-0"
                     >
                       <div className="font-mono-ui flex items-center gap-2 text-xs text-cyan-glow">
                         <Briefcase className="size-3.5" />
@@ -125,7 +125,7 @@ export function Experience() {
                           {tech.map((t) => (
                             <li
                               key={t}
-                              className="font-mono-ui rounded-full border border-border bg-surface-hi/80 px-2.5 py-0.5 text-[11px] text-foreground/80"
+                              className="font-mono-ui rounded-full border border-cyan-glow/20 bg-cyan-glow/10 px-2.5 py-0.5 text-[11px] font-semibold text-cyan-glow"
                             >
                               {t}
                             </li>

@@ -1,9 +1,44 @@
+import { useEffect, useState } from "react";
 import { Section } from "./Section";
 import { Terminal } from "./Terminal";
-import { profile, stats } from "./data";
+import { profile, stats as initialStats } from "./data";
 import { CountUp } from "./CountUp";
 
 export function About() {
+  const [repoCount, setRepoCount] = useState(10);
+
+  useEffect(() => {
+    let active = true;
+    async function fetchRepos() {
+      try {
+        const res = await fetch("https://api.github.com/users/KINSHUKHERE/repos?per_page=100");
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          const originalRepos = data.filter((repo) => !repo.fork);
+          if (active) {
+            setRepoCount(originalRepos.length || 10);
+          }
+        }
+      } catch (err) {
+        if (active) {
+          setRepoCount(10);
+        }
+      }
+    }
+    fetchRepos();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const stats = initialStats.map((s) => {
+    if (s.label.toLowerCase() === "github repos") {
+      return { ...s, value: repoCount };
+    }
+    return s;
+  });
+
   return (
     <Section id="about" label="about" title="Building full-stack apps that ship.">
       <div className="grid items-start gap-10 md:grid-cols-2">

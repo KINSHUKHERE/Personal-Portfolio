@@ -1,8 +1,42 @@
+import { useState } from "react";
 import { Section } from "./Section";
 import { profile } from "./data";
 import { Github, Linkedin, Instagram, Mail, Phone } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 export function Contact() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("idle");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStatus("loading");
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_id",
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_id",
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: profile.email,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "public_key"
+      )
+      .then(() => {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      })
+      .catch(() => {
+        setStatus("error");
+      });
+  };
+
   return (
     <Section
       id="contact"
@@ -13,7 +47,7 @@ export function Contact() {
       <div className="grid gap-10 md:grid-cols-2">
         <div className="space-y-4">
           <a
-            href={profile.socials.mail}
+            href={`mailto:${profile.email}`}
             className="group flex items-center justify-between rounded-xl border border-border bg-surface/60 p-5 backdrop-blur transition-colors hover:border-cyan-glow/50"
           >
             <div className="flex items-center gap-4">
@@ -69,22 +103,15 @@ export function Contact() {
         </div>
 
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const f = e.currentTarget;
-            const name = f.elements.namedItem("name").value;
-            const email = f.elements.namedItem("email").value;
-            const msg = f.elements.namedItem("message").value;
-            window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(
-              `Portfolio inquiry - ${name}`,
-            )}&body=${encodeURIComponent(`${msg}\n\nFrom: ${name} <${email}>`)}`;
-          }}
+          onSubmit={handleSubmit}
           className="rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur"
         >
           <label className="font-mono-ui block text-[11px] uppercase tracking-wider text-muted-foreground">
             Name
             <input
               name="name"
+              value={formData.name}
+              onChange={handleChange}
               required
               className="mt-1.5 block w-full rounded-md border border-border bg-background/60 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-cyan-glow/60 focus:outline-none"
               placeholder="Your name"
@@ -95,6 +122,8 @@ export function Contact() {
             <input
               name="email"
               type="email"
+              value={formData.email}
+              onChange={handleChange}
               required
               className="mt-1.5 block w-full rounded-md border border-border bg-background/60 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-cyan-glow/60 focus:outline-none"
               placeholder="you@example.com"
@@ -104,17 +133,32 @@ export function Contact() {
             Message
             <textarea
               name="message"
+              value={formData.message}
+              onChange={handleChange}
               required
               rows={5}
               className="mt-1.5 block w-full resize-none rounded-md border border-border bg-background/60 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-cyan-glow/60 focus:outline-none"
               placeholder="Tell me about your project..."
             />
           </label>
+
+          {status === "success" && (
+            <div className="mt-4 rounded-md border border-emerald-500/20 bg-emerald-500/10 p-3 text-xs text-emerald-400">
+              Message sent successfully!
+            </div>
+          )}
+          {status === "error" && (
+            <div className="mt-4 rounded-md border border-red-500/20 bg-red-500/10 p-3 text-xs text-red-400">
+              Failed to send message. Please try again.
+            </div>
+          )}
+
           <button
             type="submit"
-            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:brightness-110 glow-ring"
+            disabled={status === "loading"}
+            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:brightness-110 glow-ring disabled:opacity-50"
           >
-            Send Message →
+            {status === "loading" ? "Sending..." : "Send Message →"}
           </button>
         </form>
       </div>

@@ -42,7 +42,59 @@
 :root {
   --radius: 0.75rem;
 
-  /* Dark portfolio theme — always */
+  /* Light Theme Variables */
+  --background: #f1f5f9;
+  --foreground: #0f172a;
+
+  --surface: #ffffff;
+  --surface-hi: #cbd5e1;
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  --primary: #0d9488;
+  --primary-foreground: #ffffff;
+  --cyan-glow: #0d9488;
+  --violet-glow: #4f46e5;
+
+  --secondary: #e2e8f0;
+  --secondary-foreground: #0f172a;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #334155;
+
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --border: #cbd5e1;
+  --input: #cbd5e1;
+  --ring: #0d9488;
+
+  --chart-1: #0d9488;
+  --chart-2: #7c3aed;
+  --chart-3: #10b981;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
+
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  --grid-color: color-mix(in oklab, black 4%, transparent);
+}
+
+.dark {
+  /* Dark Theme Variables */
   --background: oklch(0.14 0.012 264);
   --foreground: oklch(0.97 0.005 240);
 
@@ -75,20 +127,7 @@
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.82 0.16 200);
 
-  --chart-1: oklch(0.82 0.16 200);
-  --chart-2: oklch(0.72 0.18 295);
-  --chart-3: oklch(0.65 0.18 160);
-  --chart-4: oklch(0.78 0.16 60);
-  --chart-5: oklch(0.65 0.22 22);
-
-  --sidebar: var(--surface);
-  --sidebar-foreground: var(--foreground);
-  --sidebar-primary: var(--primary);
-  --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: var(--accent);
-  --sidebar-accent-foreground: var(--accent-foreground);
-  --sidebar-border: var(--border);
-  --sidebar-ring: var(--ring);
+  --grid-color: color-mix(in oklab, white 4%, transparent);
 }
 
 @layer base {
@@ -138,8 +177,8 @@
 
 @utility grid-bg {
   background-image:
-    linear-gradient(to right, color-mix(in oklab, white 4%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, white 4%, transparent) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 
