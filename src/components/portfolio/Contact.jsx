@@ -25,6 +25,7 @@ export function Contact() {
           from_email: formData.email,
           message: formData.message,
           to_email: profile.email,
+          reply_to: formData.email,
         },
         {
           publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
