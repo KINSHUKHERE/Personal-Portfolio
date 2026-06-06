@@ -8,14 +8,14 @@ A sleek, interactive, and fully responsive 3D developer portfolio designed to sh
 
 ## ✨ Key Features
 
+* **🎥 Redesigned Hero Background:** Immersive full-screen background video integration with custom brightness settings, responsive gradient masks (desktop left-to-right, mobile top-to-bottom) for maximum legibility, and a slow-floating glassmorphic diagnostic HUD card (`USER: KINSHUK_KHANDELWAL`).
+* **🟢 Smart Autoplay Audio & Controls:** Autoplays video unmuted by default with a graceful fallback to muted autoplay if browser permissions block audio. Features a glassmorphic bottom-right mute/unmute toggle button.
+* **📱 Snappy Mobile Navigation:** Re-engineered mobile hamburger menu GSAP transitions, replacing nested timelines and random stagger values with unified stagger tweens. Tapping opens and renders navigation bubbles in under 0.37s (down from 1.2s).
+* **💬 Recruiter FAQ Section:** A new glassmorphic accordion-style FAQ component positioned just above the contact form, answering 5 key recruitment questions (internship/full-time availability, MERN stack, SQL/NoSQL database skills, remote work, and relocation).
+* **✉️ Upgraded Contact Terminal:** A futuristic message card wrapped in HUD corner brackets, featuring a simulated terminal header, focus-glowing cyber input fields, and custom social link buttons that light up with distinct brand colors (GitHub: white, LinkedIn: blue, Instagram: pink) on hover.
+* **🗺️ Shift-Free Map Modal:** Refactored the inline Google Map widget to open inside a fixed fullscreen backdrop overlay, resolving previous layout shifts and visual stuttering. The map is centered at **Poornima University, Jaipur**.
 * **🌀 Interactive 3D Canvas:** Immersive particle systems, starry background fields, and mouse-reactive stage components powered by **Three.js**, **React Three Fiber (R3F)**, and **Drei**.
-* **🌓 Dark & Light Mode:** Seamless transition controls utilizing custom theme variables tailored for maximum readability and visual depth in both themes.
-* **📜 Smooth Scrolling:** Native-feeling physics and momentum-based page navigation integrated using **Lenis** with page layout safety guards to prevent horizontal overflows.
-* **📈 Elegant Animations:** Reveal-on-scroll elements, micro-interactions, counts, and slick card motions using **GSAP** and **Framer Motion**.
-* **💻 Interactive Retro Terminal:** Simulate a classic CLI system displaying short summaries about my profile.
-* **✉️ Direct Contact Form:** Fully integrated with **EmailJS** API for secure and instant message delivery, complete with custom templates.
-* **🕯️ Theme-Aware 404 & Offline State:** Custom-designed error views featuring Swarup Kumar (`uiswarup`)'s swinging lantern SVG animation. Rethemed dynamically to match the site's active color tokens (cyan/violet glow and surfaces), with instant connection drop monitoring and URL routing protection.
-* **🗓️ Interactive Widgets:** Built-in compact overlays like the expandable Google Maps widget (`ViewOnMap`) and the interactive watermelon-ui calendar scheduling drawer (`InlineAction`) shown after form submission.
+* **🌓 Theme-Aware 404 & Offline State:** Custom-designed error views featuring swinging lantern SVG animations. Rethemed dynamically to match active color tokens (cyan/violet glow and surfaces) with connection drop monitoring.
 
 ---
 
