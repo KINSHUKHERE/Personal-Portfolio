@@ -18,22 +18,13 @@ export function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Try to play unmuted by default
-    video.muted = false;
-    setIsMuted(false);
+    // Start video muted by default on load
+    video.muted = true;
+    setIsMuted(true);
 
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch((error) => {
-        // If unmuted autoplay is blocked, fallback to muted autoplay
-        console.log("Autoplay unmuted blocked by browser, falling back to muted:", error);
-        video.muted = true;
-        setIsMuted(true);
-        video.play().catch((err) => {
-          console.error("Muted autoplay also failed:", err);
-        });
-      });
-    }
+    video.play().catch((error) => {
+      console.error("Muted autoplay failed:", error);
+    });
   }, []);
 
   const handleResumeDownloadComplete = () => {
