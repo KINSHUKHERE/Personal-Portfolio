@@ -12,7 +12,7 @@ export function Terminal() {
 {">"} kinshuk_khandelwal{"\n\n"}
 <span className="text-cyan-glow">$ cat stack.txt</span>{"\n"}
 {">"} react, node, express,{"\n"}
-{">"} mongodb, postgresql,{"\n"}
+{">"} mongodb, mysql,{"\n"}
 {">"} javascript, java, python{"\n\n"}
 <span className="text-cyan-glow">$ echo $DSA</span>{"\n"}
 {">"} 250+ problems solved{"\n\n"}

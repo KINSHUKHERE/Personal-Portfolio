@@ -14,6 +14,7 @@ import { Skills } from "./components/portfolio/Skills";
 import { SmoothScroll } from "./components/portfolio/SmoothScroll";
 import { About } from "./components/portfolio/About";
 import { ErrorPage } from "./components/portfolio/ErrorPage";
+import { Faq } from "./components/portfolio/Faq";
 
 function useDocumentTitle(title) {
   useEffect(() => {
@@ -95,6 +96,7 @@ export default function App() {
         <Skills />
         <Projects />
         <Education />
+        <Faq />
         <Contact />
       </main>
       <Footer />

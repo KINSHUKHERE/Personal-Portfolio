@@ -13,7 +13,7 @@ export const profile = {
     mail: "mailto:herekinshuk@gmail.com",
   },
   summary:
-    "Final-year B.Tech CSE student (CGPA 8.16) at Poornima University, currently a Software Developer Intern at Zentek Infosoft. I ship full-stack web apps with the MERN stack - clean React frontends backed by Node, Express, MongoDB and PostgreSQL services. Targeting backend or full-stack roles where I can write production-ready code from day one.",
+    "Final-year B.Tech CSE student (CGPA 8.16) at Poornima University, currently a Software Developer Intern at Zentek Infosoft. I ship full-stack web apps with the MERN stack - clean React frontends backed by Node, Express, MongoDB and MySQL services. Targeting backend or full-stack roles where I can write production-ready code from day one.",
   tagline:
     "MERN stack developer building production-ready full-stack web applications - from clean React UIs to reliable Node services.",
 };
@@ -42,7 +42,7 @@ export const experience = [
     location: "Jaipur, Rajasthan",
     points: [
       "Developing production-grade REST APIs and full-stack features using the MERN stack.",
-      "Optimizing backend services in PostgreSQL and MongoDB for faster data retrieval and lower query latency.",
+      "Optimizing backend services in MySQL and MongoDB for faster data retrieval and lower query latency.",
       "Shipping responsive, accessible React UIs with reusable typed components and clean state management.",
       "Implementing JWT-based auth, role-based access control and protected dashboard routes.",
       "Collaborating on code reviews, Git workflows and CI deployments alongside senior engineers.",

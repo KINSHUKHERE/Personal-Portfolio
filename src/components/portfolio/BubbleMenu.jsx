@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { Sun, Moon } from 'lucide-react';
 
@@ -41,10 +41,17 @@ const DEFAULT_ITEMS = [
     hoverStyles: { bgColor: '#eab308', textColor: '#ffffff' }
   },
   {
+    label: 'faq',
+    href: '#faq',
+    ariaLabel: 'FAQ',
+    rotation: 6,
+    hoverStyles: { bgColor: '#06b6d4', textColor: '#ffffff' }
+  },
+  {
     label: 'contact',
     href: '#contact',
     ariaLabel: 'Contact',
-    rotation: 8,
+    rotation: -6,
     hoverStyles: { bgColor: '#10b981', textColor: '#ffffff' }
   }
 ];
@@ -59,9 +66,6 @@ export default function BubbleMenu({
   menuContentColor = 'var(--foreground)',
   useFixedPosition = false,
   items,
-  animationEase = 'back.out(1.5)',
-  animationDuration = 0.5,
-  staggerDelay = 0.12,
   theme,
   toggleTheme
 }) {
@@ -94,50 +98,50 @@ export default function BubbleMenu({
     if (isMenuOpen) {
       gsap.set(overlay, { display: 'flex' });
       gsap.killTweensOf([...bubbles, ...labels]);
+      
+      // Snappy initial states for immediate responsiveness
       gsap.set(bubbles, { scale: 0, transformOrigin: '50% 50%' });
-      gsap.set(labels, { y: 24, autoAlpha: 0 });
+      gsap.set(labels, { y: 15, autoAlpha: 0 });
 
-      bubbles.forEach((bubble, i) => {
-        const delay = i * staggerDelay + gsap.utils.random(-0.05, 0.05);
-        const tl = gsap.timeline({ delay });
+      // Run optimized, hardware-accelerated unified stagger tweens
+      gsap.to(bubbles, {
+        scale: 1,
+        duration: 0.22,
+        stagger: 0.03,
+        ease: 'power2.out'
+      });
 
-        tl.to(bubble, {
-          scale: 1,
-          duration: animationDuration,
-          ease: animationEase
-        });
-        if (labels[i]) {
-          tl.to(
-            labels[i],
-            {
-              y: 0,
-              autoAlpha: 1,
-              duration: animationDuration,
-              ease: 'power3.out'
-            },
-            `-=${animationDuration * 0.9}`
-          );
-        }
+      gsap.to(labels, {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.22,
+        stagger: 0.03,
+        ease: 'power2.out'
       });
     } else if (showOverlay) {
       gsap.killTweensOf([...bubbles, ...labels]);
+      
+      // Snappy exit stagger
       gsap.to(labels, {
-        y: 24,
+        y: 15,
         autoAlpha: 0,
-        duration: 0.2,
-        ease: 'power3.in'
+        duration: 0.15,
+        stagger: 0.02,
+        ease: 'power2.in'
       });
+      
       gsap.to(bubbles, {
         scale: 0,
-        duration: 0.2,
-        ease: 'power3.in',
+        duration: 0.15,
+        stagger: 0.02,
+        ease: 'power2.in',
         onComplete: () => {
           gsap.set(overlay, { display: 'none' });
           setShowOverlay(false);
         }
       });
     }
-  }, [isMenuOpen, showOverlay, animationEase, animationDuration, staggerDelay]);
+  }, [isMenuOpen, showOverlay]);
 
   useEffect(() => {
     const handleResize = () => {
