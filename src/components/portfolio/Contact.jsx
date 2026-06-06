@@ -49,7 +49,7 @@ export function Contact() {
       title="Let's build something."
       subtitle="Open to internships, freelance projects, and full-stack roles."
     >
-      <div className="grid gap-10 md:grid-cols-12 items-stretch">
+      <div className="grid grid-cols-12 gap-6 md:gap-10 items-stretch">
         
         {/* Left Column (col-span-5) - Direct Channels */}
         <div className="col-span-12 md:col-span-5 flex flex-col justify-between space-y-6">
@@ -137,7 +137,7 @@ export function Contact() {
         </div>
 
         {/* Right Column (col-span-7) - Cyber Form Card */}
-        <div className="col-span-12 md:col-span-7 relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 backdrop-blur shadow-[0_0_40px_rgba(0,0,0,0.3)]">
+        <div className="col-span-12 md:col-span-7 relative rounded-2xl border border-white/10 bg-white/[0.02] p-4 sm:p-6 md:p-8 backdrop-blur shadow-[0_0_40px_rgba(0,0,0,0.3)]">
           {/* Cyber Corner HUD Brackets */}
           <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-400/40 rounded-tl-lg pointer-events-none" />
           <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-cyan-400/40 rounded-tr-lg pointer-events-none" />
