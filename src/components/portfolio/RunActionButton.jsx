@@ -71,6 +71,7 @@ export function RunActionButton({
 }) {
   const [status, setStatus] = useState("idle");
   const [currentStep, setCurrentStep] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   const startAction = () => {
     setStatus("running");
@@ -98,18 +99,22 @@ export function RunActionButton({
   }, [status, steps.length, onComplete]);
 
   const widths = {
-    idle: 180,
+    idle: isHovered ? 180 : 46,
     running: 260,
-    done: 180,
+    done: isHovered ? 150 : 46,
   };
 
   return (
-    <div className="flex items-center justify-center font-mono-ui">
+    <div 
+      className="flex items-center justify-center font-mono-ui"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <motion.div
-        initial={{ width: 180 }}
+        initial={{ width: 46 }}
         animate={{ width: widths[status] }}
         transition={spring}
-        className={`relative flex h-[46px] items-center justify-between overflow-hidden rounded-full ${
+        className={`relative flex h-[46px] items-center overflow-hidden rounded-full ${
           status === "running"
             ? "border border-dashed border-[#cbd5e1] dark:border-white/20 bg-surface/40 backdrop-blur"
             : "border border-cyan-glow/40 bg-surface/60 hover:border-cyan-glow transition-colors"
@@ -120,18 +125,25 @@ export function RunActionButton({
             <motion.button
               key="idle"
               onClick={startAction}
-              initial={{ opacity: 0, scale: 0.8, filter: "blur(4px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, scale: 0.8, filter: "blur(4px)" }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
               transition={spring}
-              className="flex flex-1 items-center gap-2 rounded-full px-5 py-3 whitespace-nowrap cursor-pointer justify-center text-foreground hover:text-cyan-glow"
+              className="flex w-full h-full items-center justify-start px-3.5 whitespace-nowrap cursor-pointer text-foreground hover:text-cyan-glow"
             >
-              <IdleIcon className="h-4 w-4" />
-
-              <AnimatedText
-                text={idleText}
-                className="text-xs font-semibold"
-              />
+              <IdleIcon className="h-4 w-4 shrink-0" />
+              <motion.span
+                animate={{ 
+                  opacity: isHovered ? 1 : 0,
+                  x: isHovered ? 0 : -10,
+                  width: isHovered ? "auto" : 0,
+                  marginLeft: isHovered ? 8 : 0 
+                }}
+                transition={spring}
+                className="text-xs font-semibold overflow-hidden whitespace-nowrap"
+              >
+                {idleText}
+              </motion.span>
             </motion.button>
           )}
 
@@ -142,7 +154,7 @@ export function RunActionButton({
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               exit={{ opacity: 0, scale: 0.8, filter: "blur(4px)" }}
               transition={spring}
-              className="flex flex-1 items-center justify-between gap-3 px-4 whitespace-nowrap"
+              className="flex flex-1 items-center justify-between gap-3 px-4 whitespace-nowrap w-[260px]"
             >
               <div className="flex items-center gap-2">
                 <AnimatePresence mode="popLayout">
@@ -181,18 +193,25 @@ export function RunActionButton({
             <motion.button
               key="done"
               onClick={reset}
-              initial={{ opacity: 0, scale: 0.8, filter: "blur(4px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, scale: 0.8, filter: "blur(4px)" }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
               transition={spring}
-              className="flex flex-1 items-center gap-2 rounded-full px-5 py-3 whitespace-nowrap cursor-pointer justify-center text-emerald-500"
+              className="flex w-full h-full items-center justify-start px-3.5 whitespace-nowrap cursor-pointer text-emerald-500"
             >
-              <Check className="h-4 w-4 text-emerald-500" />
-
-              <AnimatedText
-                text={doneText}
-                className="text-xs font-bold"
-              />
+              <Check className="h-4 w-4 shrink-0 text-emerald-500" />
+              <motion.span
+                animate={{ 
+                  opacity: isHovered ? 1 : 0,
+                  x: isHovered ? 0 : -10,
+                  width: isHovered ? "auto" : 0,
+                  marginLeft: isHovered ? 8 : 0 
+                }}
+                transition={spring}
+                className="text-xs font-bold overflow-hidden whitespace-nowrap"
+              >
+                {doneText}
+              </motion.span>
             </motion.button>
           )}
         </AnimatePresence>
