@@ -51,13 +51,13 @@ export function Hero() {
       id="top" 
       className="relative w-full min-h-screen overflow-hidden bg-neutral-950 flex items-center justify-center animate-fade-in"
     >
-      {/* Video Layer (z-0) - Configured for clearer display & object-[80%_center] to ensure avatar doesn't get cut off on mobile */}
+      {/* Video Layer (z-0) - Configured for clearer display & object-[85%_center] to center the avatar's face on mobile */}
       <video
         ref={videoRef}
         src="/webvideo.mp4"
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover object-[80%_center] z-0 pointer-events-none"
+        className="absolute inset-0 w-full h-full object-cover object-[85%_center] md:object-right z-0 pointer-events-none"
         style={{ filter: "brightness(0.75) contrast(1.05)" }}
       />
 
@@ -73,8 +73,8 @@ export function Hero() {
       <div className="relative z-20 mx-auto w-full max-w-7xl px-6 py-24 md:py-0">
         <div className="grid grid-cols-12 gap-8 md:gap-12 items-center w-full">
           
-          {/* Left Column (col-span-12 on mobile for large text, md:col-span-7 on desktop) */}
-          <div className="col-span-12 md:col-span-7 flex flex-col justify-center items-start text-left z-20 max-w-md md:max-w-none">
+          {/* Left Column (col-span-12 on mobile with 65% width limit to prevent overlapping the avatar's face) */}
+          <div className="col-span-12 md:col-span-7 flex flex-col justify-center items-start text-left z-20 max-w-[65%] sm:max-w-[60%] md:max-w-none">
             {/* Status Badge */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -94,7 +94,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-4 sm:mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight"
+              className="mt-4 sm:mt-6 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight"
             >
               Kinshuk <span className="text-gradient block sm:inline">Khandelwal</span>
             </motion.h1>
@@ -173,8 +173,8 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right Column (Absolute on mobile to float over avatar, relative col-span-5 on desktop) */}
-          <div className="absolute right-6 bottom-24 z-20 md:relative md:col-span-5 md:right-0 md:bottom-0 flex justify-end items-center mt-0">
+          {/* Right Column (Hidden on mobile to keep space clear, visible on desktop md:col-span-5) */}
+          <div className="hidden md:flex md:col-span-5 md:right-0 md:bottom-0 justify-end items-center mt-0">
             {/* Floating Glassmorphic HUD Card */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -184,7 +184,7 @@ export function Hero() {
                 scale: { duration: 0.8, delay: 0.3 },
                 y: { repeat: Infinity, duration: 6, ease: "easeInOut" }
               }}
-              className="backdrop-blur-sm bg-white/5 border border-white/10 shadow-[0_0_30px_rgba(6,182,212,0.15)] rounded-xl p-3 sm:p-4 font-mono text-[9px] sm:text-xs text-cyan-400 max-w-[150px] sm:max-w-[240px] md:max-w-[280px] w-full relative"
+              className="backdrop-blur-sm bg-white/5 border border-white/10 shadow-[0_0_30px_rgba(6,182,212,0.15)] rounded-xl p-3 sm:p-4 font-mono text-[9px] sm:text-xs text-cyan-400 max-w-[240px] md:max-w-[280px] w-full relative"
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-2 mb-2">
                 <span className="flex items-center gap-1.5 font-bold tracking-wider">
