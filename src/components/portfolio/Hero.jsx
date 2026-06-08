@@ -13,6 +13,19 @@ const resumeSteps = [
 export function Hero() {
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
+  const hasCompletedOnce = useRef(false);
+  const userInteracted = useRef(false);
+
+  // Try unmuting the video
+  const tryUnmute = () => {
+    const video = videoRef.current;
+    if (!video || hasCompletedOnce.current) return;
+
+    if (!video.paused && video.muted) {
+      video.muted = false;
+      setIsMuted(false);
+    }
+  };
 
   useEffect(() => {
     const video = videoRef.current;
@@ -22,10 +35,77 @@ export function Hero() {
     video.muted = true;
     setIsMuted(true);
 
-    video.play().catch((error) => {
-      console.error("Muted autoplay failed:", error);
-    });
+    // Intersection Observer to play only when visible, pause when scrolled away
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch((err) => {
+            console.log("Autoplay play triggered:", err);
+          });
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.05 } // Triggers if at least 5% of the video is visible
+    );
+
+    observer.observe(video);
+
+    // Track user interaction to unmute video safely without browser autoplay blocks
+    const handleInteraction = () => {
+      if (userInteracted.current) return;
+      userInteracted.current = true;
+      tryUnmute();
+      removeListeners();
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener("click", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("keydown", handleInteraction);
+    };
+
+    window.addEventListener("click", handleInteraction, { passive: true });
+    window.addEventListener("touchstart", handleInteraction, { passive: true });
+    window.addEventListener("scroll", handleInteraction, { passive: true });
+    window.addEventListener("keydown", handleInteraction, { passive: true });
+
+    return () => {
+      observer.unobserve(video);
+      observer.disconnect();
+      removeListeners();
+    };
   }, []);
+
+  const handlePlay = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (hasCompletedOnce.current) {
+      video.muted = true;
+      setIsMuted(true);
+    } else if (userInteracted.current) {
+      video.muted = false;
+      setIsMuted(false);
+    } else {
+      video.muted = true;
+      setIsMuted(true);
+    }
+  };
+
+  const handleEnded = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    hasCompletedOnce.current = true;
+    video.muted = true;
+    setIsMuted(true);
+    video.currentTime = 0;
+    video.play().catch((err) => {
+      console.log("Video replay error:", err);
+    });
+  };
 
   const handleResumeDownloadComplete = () => {
     const downloadUrl = "https://docs.google.com/uc?export=download&id=1XdSATUSsZl44TVMXtewYCuXgmxRVvjuD";
@@ -42,8 +122,15 @@ export function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    video.muted = !video.muted;
-    setIsMuted(video.muted);
+    const newMuted = !video.muted;
+    video.muted = newMuted;
+    setIsMuted(newMuted);
+
+    if (!newMuted) {
+      hasCompletedOnce.current = false;
+    } else {
+      hasCompletedOnce.current = true;
+    }
   };
 
   return (
@@ -55,8 +142,9 @@ export function Hero() {
       <video
         ref={videoRef}
         src="/webvideo.mp4"
-        loop
         playsInline
+        onPlay={handlePlay}
+        onEnded={handleEnded}
         className="absolute inset-0 w-full h-full object-cover object-[80%_center] z-0 pointer-events-none"
         style={{ filter: "brightness(0.75) contrast(1.05)" }}
       />
