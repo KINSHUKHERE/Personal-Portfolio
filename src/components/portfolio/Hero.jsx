@@ -31,17 +31,39 @@ export function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Start video muted by default on load
-    video.muted = true;
-    setIsMuted(true);
+    // Start video unmuted by default (first time)
+    if (!hasCompletedOnce.current) {
+      video.muted = false;
+      setIsMuted(false);
+    } else {
+      video.muted = true;
+      setIsMuted(true);
+    }
 
     // Intersection Observer to play only when visible, pause when scrolled away
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          video.play().catch((err) => {
-            console.log("Autoplay play triggered:", err);
-          });
+          if (!hasCompletedOnce.current) {
+            // Try playing unmuted first
+            video.muted = false;
+            setIsMuted(false);
+            video.play().catch((err) => {
+              console.log("Autoplay unmuted failed, playing muted:", err);
+              video.muted = true;
+              setIsMuted(true);
+              video.play().catch((playErr) => {
+                console.log("Autoplay muted failed:", playErr);
+              });
+            });
+          } else {
+            // Completed once, loop muted
+            video.muted = true;
+            setIsMuted(true);
+            video.play().catch((err) => {
+              console.log("Play failed:", err);
+            });
+          }
         } else {
           video.pause();
         }
@@ -88,9 +110,6 @@ export function Hero() {
     } else if (userInteracted.current) {
       video.muted = false;
       setIsMuted(false);
-    } else {
-      video.muted = true;
-      setIsMuted(true);
     }
   };
 
