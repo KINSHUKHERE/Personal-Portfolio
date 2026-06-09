@@ -117,7 +117,7 @@ export function Hero() {
       setIsMuted(false);
 
       // Safe autoplay fallback: if browser blocks unmuted playback and pauses the video,
-      // detect it quickly and fall back to muted playback so it doesn't get stuck.
+      // detect it quickly and fall back to muted autoplay so it doesn't get stuck.
       setTimeout(() => {
         if (video.paused && !hasCompletedOnce.current) {
           console.log("Unmuted autoplay failed on load, falling back to muted autoplay.");
@@ -128,20 +128,30 @@ export function Hero() {
           });
         }
       }, 80);
+
+      // Mute the video after one full cycle seamlessly using browser native loop
+      const muteAfterDuration = (durationSec) => {
+        // Mute 100ms before cycle ends to ensure loop transition is silent
+        const durationMs = Math.max(0, (durationSec * 1000) - 100);
+        setTimeout(() => {
+          if (!hasCompletedOnce.current) {
+            hasCompletedOnce.current = true;
+            video.muted = true;
+            setIsMuted(true);
+          }
+        }, durationMs);
+      };
+
+      if (video.duration) {
+        muteAfterDuration(video.duration);
+      } else {
+        const handleMetadata = () => {
+          muteAfterDuration(video.duration);
+          video.removeEventListener("loadedmetadata", handleMetadata);
+        };
+        video.addEventListener("loadedmetadata", handleMetadata);
+      }
     }
-  };
-
-  const handleEnded = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    hasCompletedOnce.current = true;
-    video.muted = true;
-    setIsMuted(true);
-    video.currentTime = 0;
-    video.play().catch((err) => {
-      console.log("Video replay error:", err);
-    });
   };
 
   const handleResumeDownloadComplete = () => {
@@ -176,16 +186,16 @@ export function Hero() {
       className="dark relative w-full h-[100dvh] md:h-screen overflow-hidden bg-neutral-950 flex items-center justify-center animate-fade-in"
     >
       {/* Video Layer (z-0) - Configured for clearer display & object-[80%_center] to ensure avatar doesn't get cut off on mobile */}
+      {/* Video Layer (z-0) - Uses hardware-accelerated native loop with no expensive CSS filters to prevent lagging */}
       <video
         ref={videoRef}
         src="/webvideo.mp4"
         autoPlay
+        loop
         muted
         playsInline
         onPlay={handlePlay}
-        onEnded={handleEnded}
         className="absolute inset-0 w-full h-full object-cover object-[80%_center] z-0 pointer-events-none"
-        style={{ filter: "brightness(0.75) contrast(1.05)" }}
       />
 
       {/* Gradient Overlay Mask (z-10) - Consistent left-to-right blend to keep background clear on right */}
