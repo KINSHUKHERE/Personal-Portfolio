@@ -111,9 +111,23 @@ export function Hero() {
     if (hasCompletedOnce.current) {
       video.muted = true;
       setIsMuted(true);
-    } else if (userInteracted.current) {
+    } else {
+      // Laptop view unmuted attempt on refresh: try to set unmuted first
       video.muted = false;
       setIsMuted(false);
+
+      // Safe autoplay fallback: if browser blocks unmuted playback and pauses the video,
+      // detect it quickly and fall back to muted playback so it doesn't get stuck.
+      setTimeout(() => {
+        if (video.paused && !hasCompletedOnce.current) {
+          console.log("Unmuted autoplay failed on load, falling back to muted autoplay.");
+          video.muted = true;
+          setIsMuted(true);
+          video.play().catch((err) => {
+            console.log("Muted autoplay fallback failed:", err);
+          });
+        }
+      }, 80);
     }
   };
 
