@@ -194,7 +194,7 @@ export function Hero() {
     <section 
       id="top" 
       className="dark relative w-full h-[100dvh] md:h-screen overflow-hidden bg-neutral-950 flex items-center justify-center animate-fade-in"
-      style={{ transform: "translate3d(0, 0, 0)" }}
+      style={{ transform: "translate3d(0, 0, 0)", contain: "paint" }}
     >
       {/* Video Layer (z-0) - Uses hardware-accelerated native loop and GPU layer promotion to prevent lag */}
       <video
