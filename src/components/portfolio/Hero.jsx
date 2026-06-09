@@ -11,7 +11,6 @@ const resumeSteps = [
 ];
 
 export function Hero() {
-  const [isReady, setIsReady] = useState(false);
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
   const hasCompletedOnce = useRef(false);
@@ -22,43 +21,61 @@ export function Hero() {
     const video = videoRef.current;
     if (!video || hasCompletedOnce.current) return;
 
-    if (video.muted) {
+    if (!video.paused && video.muted) {
       video.muted = false;
       setIsMuted(false);
     }
   };
 
   useEffect(() => {
-    // Delay activation of full video logic to let page mount and settle smoothly
-    const delayTimer = setTimeout(() => {
-      setIsReady(true);
-    }, 600);
-
-    return () => clearTimeout(delayTimer);
-  }, []);
-
-  useEffect(() => {
-    if (!isReady) return;
-
     const video = videoRef.current;
     if (!video) return;
 
-    // Try starting video unmuted by default (first time)
+    // Try starting unmuted first on initial load if it hasn't completed once yet
     if (!hasCompletedOnce.current) {
       video.muted = false;
       setIsMuted(false);
-
-      video.play().catch((err) => {
-        console.log("Play unmuted blocked on load, playing muted:", err);
-        video.muted = true;
-        setIsMuted(true);
-        video.play().catch((playErr) => console.log("Muted play failed:", playErr));
-      });
     } else {
       video.muted = true;
       setIsMuted(true);
-      video.play().catch((err) => console.log("Muted play failed:", err));
     }
+
+    // Intersection Observer to play only when visible, pause when scrolled away
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (video.paused) {
+            if (!hasCompletedOnce.current) {
+              // Try playing unmuted first
+              video.muted = false;
+              setIsMuted(false);
+              video.play().catch((err) => {
+                console.log("Unmuted play failed on intersection, resuming muted:", err);
+                video.muted = true;
+                setIsMuted(true);
+                video.play().catch((playErr) => {
+                  console.log("Muted autoplay fallback failed:", playErr);
+                });
+              });
+            } else {
+              // Completed once, play muted
+              video.muted = true;
+              setIsMuted(true);
+              video.play().catch((err) => {
+                console.log("Muted play failed:", err);
+              });
+            }
+          }
+        } else {
+          if (!video.paused) {
+            video.pause();
+          }
+        }
+      },
+      { threshold: 0.1 } // Increased threshold to avoid minor triggers during scrolling
+    );
+
+    observer.observe(video);
 
     // Track user interaction to unmute video safely without browser autoplay blocks
     const handleInteraction = () => {
@@ -81,9 +98,11 @@ export function Hero() {
     window.addEventListener("keydown", handleInteraction, { passive: true });
 
     return () => {
+      observer.unobserve(video);
+      observer.disconnect();
       removeListeners();
     };
-  }, [isReady]);
+  }, []);
 
   const handlePlay = () => {
     const video = videoRef.current;
@@ -95,9 +114,6 @@ export function Hero() {
     } else if (userInteracted.current) {
       video.muted = false;
       setIsMuted(false);
-    } else {
-      video.muted = true;
-      setIsMuted(true);
     }
 
     // Mute the video after one full cycle seamlessly using browser native loop
@@ -160,6 +176,7 @@ export function Hero() {
       <video
         ref={videoRef}
         src="/webvideo.mp4"
+        autoPlay
         loop
         muted
         playsInline
