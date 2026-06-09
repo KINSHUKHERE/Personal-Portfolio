@@ -184,9 +184,9 @@ export function Hero() {
     <section 
       id="top" 
       className="dark relative w-full h-[100dvh] md:h-screen overflow-hidden bg-neutral-950 flex items-center justify-center animate-fade-in"
+      style={{ transform: "translate3d(0, 0, 0)" }}
     >
-      {/* Video Layer (z-0) - Configured for clearer display & object-[80%_center] to ensure avatar doesn't get cut off on mobile */}
-      {/* Video Layer (z-0) - Uses hardware-accelerated native loop with no expensive CSS filters to prevent lagging */}
+      {/* Video Layer (z-0) - Uses hardware-accelerated native loop and GPU layer promotion to prevent lag */}
       <video
         ref={videoRef}
         src="/webvideo.mp4"
@@ -194,8 +194,13 @@ export function Hero() {
         loop
         muted
         playsInline
+        preload="auto"
         onPlay={handlePlay}
         className="absolute inset-0 w-full h-full object-cover object-[80%_center] z-0 pointer-events-none"
+        style={{
+          transform: "translate3d(0, 0, 0)",
+          willChange: "transform",
+        }}
       />
 
       {/* Gradient Overlay Mask (z-10) - Consistent left-to-right blend to keep background clear on right */}
