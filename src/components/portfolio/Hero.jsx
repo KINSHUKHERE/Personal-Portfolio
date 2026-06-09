@@ -44,31 +44,35 @@ export function Hero() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          if (!hasCompletedOnce.current) {
-            // Try playing unmuted first
-            video.muted = false;
-            setIsMuted(false);
-            video.play().catch((err) => {
-              console.log("Autoplay unmuted failed, playing muted:", err);
+          if (video.paused) {
+            if (!hasCompletedOnce.current) {
+              // Try playing unmuted first
+              video.muted = false;
+              setIsMuted(false);
+              video.play().catch((err) => {
+                console.log("Autoplay unmuted failed, playing muted:", err);
+                video.muted = true;
+                setIsMuted(true);
+                video.play().catch((playErr) => {
+                  console.log("Autoplay muted failed:", playErr);
+                });
+              });
+            } else {
+              // Completed once, loop muted
               video.muted = true;
               setIsMuted(true);
-              video.play().catch((playErr) => {
-                console.log("Autoplay muted failed:", playErr);
+              video.play().catch((err) => {
+                console.log("Play failed:", err);
               });
-            });
-          } else {
-            // Completed once, loop muted
-            video.muted = true;
-            setIsMuted(true);
-            video.play().catch((err) => {
-              console.log("Play failed:", err);
-            });
+            }
           }
         } else {
-          video.pause();
+          if (!video.paused) {
+            video.pause();
+          }
         }
       },
-      { threshold: 0.05 } // Triggers if at least 5% of the video is visible
+      { threshold: 0.1 } // Increased threshold to avoid minor triggers during scrolling
     );
 
     observer.observe(video);
@@ -155,12 +159,14 @@ export function Hero() {
   return (
     <section 
       id="top" 
-      className="relative w-full min-h-screen overflow-hidden bg-neutral-950 flex items-center justify-center animate-fade-in"
+      className="dark relative w-full h-[100dvh] md:h-screen overflow-hidden bg-neutral-950 flex items-center justify-center animate-fade-in"
     >
       {/* Video Layer (z-0) - Configured for clearer display & object-[80%_center] to ensure avatar doesn't get cut off on mobile */}
       <video
         ref={videoRef}
         src="/webvideo.mp4"
+        autoPlay
+        muted
         playsInline
         onPlay={handlePlay}
         onEnded={handleEnded}
@@ -176,8 +182,8 @@ export function Hero() {
       {/* Bottom fade mask to blend video into next section */}
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-neutral-950 to-transparent z-10 pointer-events-none" />
 
-      {/* Content Container (z-20 relative) - Adjusted padding-top on mobile to make the face in the video visible */}
-      <div className="relative z-20 mx-auto w-full max-w-7xl px-6 pt-36 xs:pt-40 pb-20 md:py-0">
+      {/* Content Container (z-20 relative) - Fit exactly within dynamic viewport height on mobile */}
+      <div className="relative z-20 mx-auto w-full max-w-7xl px-6 pt-24 pb-12 md:py-0">
         <div className="grid grid-cols-12 gap-8 md:gap-12 items-center w-full">
           
           {/* Left Column (col-span-12 on mobile, md:col-span-8 on desktop to avoid covering the avatar) */}

@@ -54,18 +54,18 @@ export function Contact() {
         {/* Left Column (col-span-5) - Direct Channels */}
         <div className="col-span-12 md:col-span-5 flex flex-col justify-between space-y-6">
           <div className="space-y-4">
-            <div className="text-xs font-mono uppercase text-cyan-400/80 mb-4 tracking-widest flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <div className="text-xs font-mono uppercase text-cyan-glow dark:text-cyan-400/80 mb-4 tracking-widest flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse" />
               [ Direct Channels ]
             </div>
 
             {/* Email Card */}
             <a
               href={`mailto:${profile.email}`}
-              className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] p-5 backdrop-blur transition-all duration-300 hover:border-cyan-glow/50 hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(6,182,212,0.08)]"
+              className="group flex items-center justify-between rounded-xl border border-border/50 dark:border-white/10 bg-surface/30 dark:bg-white/[0.02] p-5 backdrop-blur transition-all duration-300 hover:border-cyan-glow/50 hover:bg-surface/50 dark:hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(6,182,212,0.08)]"
             >
               <div className="flex items-center gap-4">
-                <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:bg-cyan-500/20 transition-colors">
+                <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 group-hover:bg-cyan-500/20 transition-colors">
                   <Mail className="size-5" />
                 </div>
                 <div>
@@ -73,10 +73,10 @@ export function Contact() {
                     email
                     <span className="inline-block w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
                   </div>
-                  <div className="text-sm text-foreground group-hover:text-cyan-400 transition-colors font-mono">{profile.email}</div>
+                  <div className="text-sm text-foreground group-hover:text-cyan-glow transition-colors font-mono">{profile.email}</div>
                 </div>
               </div>
-              <span className="text-cyan-400 font-mono transition-transform group-hover:translate-x-1 duration-300">
+              <span className="text-cyan-600 dark:text-cyan-400 font-mono transition-transform group-hover:translate-x-1 duration-300">
                 →
               </span>
             </a>
@@ -84,10 +84,10 @@ export function Contact() {
             {/* Phone Card */}
             <a
               href={`tel:${profile.phone.replace(/\s/g, "")}`}
-              className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] p-5 backdrop-blur transition-all duration-300 hover:border-cyan-glow/50 hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(6,182,212,0.08)]"
+              className="group flex items-center justify-between rounded-xl border border-border/50 dark:border-white/10 bg-surface/30 dark:bg-white/[0.02] p-5 backdrop-blur transition-all duration-300 hover:border-cyan-glow/50 hover:bg-surface/50 dark:hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(6,182,212,0.08)]"
             >
               <div className="flex items-center gap-4">
-                <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:bg-cyan-500/20 transition-colors">
+                <div className="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 group-hover:bg-cyan-500/20 transition-colors">
                   <Phone className="size-5" />
                 </div>
                 <div>
@@ -95,10 +95,10 @@ export function Contact() {
                     phone
                     <span className="inline-block w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
                   </div>
-                  <div className="text-sm text-foreground group-hover:text-cyan-400 transition-colors font-mono">{profile.phone}</div>
+                  <div className="text-sm text-foreground group-hover:text-cyan-glow transition-colors font-mono">{profile.phone}</div>
                 </div>
               </div>
-              <span className="text-cyan-400 font-mono transition-transform group-hover:translate-x-1 duration-300">
+              <span className="text-cyan-600 dark:text-cyan-400 font-mono transition-transform group-hover:translate-x-1 duration-300">
                 →
               </span>
             </a>
@@ -106,11 +106,11 @@ export function Contact() {
 
           {/* Social Links Panel */}
           <div className="space-y-4">
-            <div className="text-xs font-mono uppercase text-cyan-400/80 mb-2 tracking-widest flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <div className="text-xs font-mono uppercase text-cyan-glow dark:text-cyan-400/80 mb-2 tracking-widest flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse" />
               [ Networks ]
             </div>
-            <div className="flex gap-4 p-4 rounded-2xl border border-white/10 bg-white/[0.02] max-w-max backdrop-blur-md">
+            <div className="flex gap-4 p-4 rounded-2xl border border-border/50 dark:border-white/10 bg-surface/30 dark:bg-white/[0.02] max-w-max backdrop-blur-md">
               {[
                 { href: profile.socials.github, icon: Github, label: "GitHub", colorClass: "hover:text-white hover:bg-white/5 hover:border-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]" },
                 { href: profile.socials.linkedin, icon: Linkedin, label: "LinkedIn", colorClass: "hover:text-[#0077b5] hover:bg-[#0077b5]/5 hover:border-[#0077b5]/20 hover:shadow-[0_0_15px_rgba(0,119,181,0.15)]" },
@@ -122,7 +122,7 @@ export function Contact() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={label}
-                  className={`rounded-xl border border-white/10 bg-white/5 p-3 text-muted-foreground backdrop-blur transition-all duration-300 ${colorClass}`}
+                  className={`rounded-xl border border-border/50 dark:border-white/10 bg-surface/50 dark:bg-white/5 p-3 text-muted-foreground backdrop-blur transition-all duration-300 ${colorClass}`}
                 >
                   <Icon className="size-5" />
                 </a>
@@ -137,35 +137,35 @@ export function Contact() {
         </div>
 
         {/* Right Column (col-span-7) - Cyber Form Card */}
-        <div className="col-span-12 md:col-span-7 relative rounded-2xl border border-white/10 bg-white/[0.02] p-4 sm:p-6 md:p-8 backdrop-blur shadow-[0_0_40px_rgba(0,0,0,0.3)]">
+        <div className="col-span-12 md:col-span-7 relative rounded-2xl border border-border/50 dark:border-white/10 bg-surface/30 dark:bg-white/[0.02] p-4 sm:p-6 md:p-8 backdrop-blur shadow-[0_0_40px_rgba(0,0,0,0.15)] dark:shadow-[0_0_40px_rgba(0,0,0,0.3)]">
           {/* Cyber Corner HUD Brackets */}
-          <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-400/40 rounded-tl-lg pointer-events-none" />
-          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-cyan-400/40 rounded-tr-lg pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-cyan-400/40 rounded-bl-lg pointer-events-none" />
-          <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-cyan-400/40 rounded-br-lg pointer-events-none" />
+          <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-500/40 dark:border-cyan-400/40 rounded-tl-lg pointer-events-none" />
+          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-cyan-500/40 dark:border-cyan-400/40 rounded-tr-lg pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-cyan-500/40 dark:border-cyan-400/40 rounded-bl-lg pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-cyan-500/40 dark:border-cyan-400/40 rounded-br-lg pointer-events-none" />
 
           {/* Form Header Readout */}
-          <div className="flex items-center border-b border-white/10 pb-4 mb-6 text-[10px] uppercase tracking-widest text-cyan-400/80 font-mono">
+          <div className="flex items-center border-b border-border/50 dark:border-white/10 pb-4 mb-6 text-[10px] uppercase tracking-widest text-cyan-glow dark:text-cyan-400/80 font-mono">
             <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse" />
               Contact Kinshuk Khandelwal
             </span>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            <label className="font-mono block text-[10px] uppercase tracking-wider text-cyan-400/70">
+            <label className="font-mono block text-[10px] uppercase tracking-wider text-cyan-glow/80 dark:text-cyan-400/70">
               Name
               <input
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="mt-1.5 block w-full rounded-xl border border-white/10 bg-neutral-900/60 px-4 py-3 text-xs text-white placeholder:text-muted-foreground/40 focus:border-cyan-400/50 focus:bg-neutral-900/80 focus:shadow-[0_0_15px_rgba(6,182,212,0.1)] focus:outline-none transition-all duration-300 font-mono"
+                className="mt-1.5 block w-full rounded-xl border border-border dark:border-white/10 bg-surface/80 dark:bg-neutral-900/60 px-4 py-3 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-cyan-glow focus:bg-surface dark:focus:bg-neutral-900/80 focus:shadow-[0_0_15px_rgba(6,182,212,0.1)] focus:outline-none transition-all duration-300 font-mono"
                 placeholder="INPUT_YOUR_NAME"
               />
             </label>
 
-            <label className="font-mono block text-[10px] uppercase tracking-wider text-cyan-400/70">
+            <label className="font-mono block text-[10px] uppercase tracking-wider text-cyan-glow/80 dark:text-cyan-400/70">
               Email Address
               <input
                 name="email"
@@ -173,12 +173,12 @@ export function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="mt-1.5 block w-full rounded-xl border border-white/10 bg-neutral-900/60 px-4 py-3 text-xs text-white placeholder:text-muted-foreground/40 focus:border-cyan-400/50 focus:bg-neutral-900/80 focus:shadow-[0_0_15px_rgba(6,182,212,0.1)] focus:outline-none transition-all duration-300 font-mono"
+                className="mt-1.5 block w-full rounded-xl border border-border dark:border-white/10 bg-surface/80 dark:bg-neutral-900/60 px-4 py-3 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-cyan-glow focus:bg-surface dark:focus:bg-neutral-900/80 focus:shadow-[0_0_15px_rgba(6,182,212,0.1)] focus:outline-none transition-all duration-300 font-mono"
                 placeholder="YOU@EXAMPLE.COM"
               />
             </label>
 
-            <label className="font-mono block text-[10px] uppercase tracking-wider text-cyan-400/70">
+            <label className="font-mono block text-[10px] uppercase tracking-wider text-cyan-glow/80 dark:text-cyan-400/70">
               Transmission Content
               <textarea
                 name="message"
@@ -186,7 +186,7 @@ export function Contact() {
                 onChange={handleChange}
                 required
                 rows={5}
-                className="mt-1.5 block w-full resize-none rounded-xl border border-white/10 bg-neutral-900/60 px-4 py-3 text-xs text-white placeholder:text-muted-foreground/40 focus:border-cyan-400/50 focus:bg-neutral-900/80 focus:shadow-[0_0_15px_rgba(6,182,212,0.1)] focus:outline-none transition-all duration-300 font-mono"
+                className="mt-1.5 block w-full resize-none rounded-xl border border-border dark:border-white/10 bg-surface/80 dark:bg-neutral-900/60 px-4 py-3 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-cyan-glow focus:bg-surface dark:focus:bg-neutral-900/80 focus:shadow-[0_0_15px_rgba(6,182,212,0.1)] focus:outline-none transition-all duration-300 font-mono"
                 placeholder="WRITE_YOUR_MESSAGE_HERE..."
               />
             </label>
