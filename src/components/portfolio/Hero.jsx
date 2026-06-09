@@ -16,6 +16,8 @@ export function Hero() {
   const hasCompletedOnce = useRef(false);
   const userInteracted = useRef(false);
 
+  const isCurrentlyIntersecting = useRef(true);
+
   // Try unmuting the video
   const tryUnmute = () => {
     const video = videoRef.current;
@@ -40,33 +42,39 @@ export function Hero() {
       setIsMuted(true);
     }
 
+    const playVideo = () => {
+      if (!hasCompletedOnce.current) {
+        // Try playing unmuted first
+        video.muted = false;
+        setIsMuted(false);
+        video.play().catch((err) => {
+          console.log("Unmuted play failed, resuming muted:", err);
+          video.muted = true;
+          setIsMuted(true);
+          video.play().catch((playErr) => {
+            console.log("Muted autoplay fallback failed:", playErr);
+          });
+        });
+      } else {
+        // Completed once, play muted
+        video.muted = true;
+        setIsMuted(true);
+        video.play().catch((err) => {
+          console.log("Muted play failed:", err);
+        });
+      }
+    };
+
     // Intersection Observer to play only when visible, pause when scrolled away
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          isCurrentlyIntersecting.current = true;
           if (video.paused) {
-            if (!hasCompletedOnce.current) {
-              // Try playing unmuted first
-              video.muted = false;
-              setIsMuted(false);
-              video.play().catch((err) => {
-                console.log("Unmuted play failed on intersection, resuming muted:", err);
-                video.muted = true;
-                setIsMuted(true);
-                video.play().catch((playErr) => {
-                  console.log("Muted autoplay fallback failed:", playErr);
-                });
-              });
-            } else {
-              // Completed once, play muted
-              video.muted = true;
-              setIsMuted(true);
-              video.play().catch((err) => {
-                console.log("Muted play failed:", err);
-              });
-            }
+            playVideo();
           }
         } else {
+          isCurrentlyIntersecting.current = false;
           if (!video.paused) {
             video.pause();
           }
@@ -76,6 +84,21 @@ export function Hero() {
     );
 
     observer.observe(video);
+
+    // Tab visibility change handler: resumes play smoothly when user returns to tab
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        if (isCurrentlyIntersecting.current && video.paused) {
+          playVideo();
+        }
+      } else {
+        if (!video.paused) {
+          video.pause();
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     // Track user interaction to unmute video safely without browser autoplay blocks
     const handleInteraction = () => {
@@ -100,6 +123,7 @@ export function Hero() {
     return () => {
       observer.unobserve(video);
       observer.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       removeListeners();
     };
   }, []);
