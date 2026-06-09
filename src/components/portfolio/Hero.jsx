@@ -31,40 +31,18 @@ export function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Start video unmuted by default (first time)
-    if (!hasCompletedOnce.current) {
-      video.muted = false;
-      setIsMuted(false);
-    } else {
-      video.muted = true;
-      setIsMuted(true);
-    }
+    // Start video muted by default on initial load to prevent browser autoplay blocks & lag
+    video.muted = true;
+    setIsMuted(true);
 
     // Intersection Observer to play only when visible, pause when scrolled away
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           if (video.paused) {
-            if (!hasCompletedOnce.current) {
-              // Try playing unmuted first
-              video.muted = false;
-              setIsMuted(false);
-              video.play().catch((err) => {
-                console.log("Autoplay unmuted failed, playing muted:", err);
-                video.muted = true;
-                setIsMuted(true);
-                video.play().catch((playErr) => {
-                  console.log("Autoplay muted failed:", playErr);
-                });
-              });
-            } else {
-              // Completed once, loop muted
-              video.muted = true;
-              setIsMuted(true);
-              video.play().catch((err) => {
-                console.log("Play failed:", err);
-              });
-            }
+            video.play().catch((err) => {
+              console.log("Autoplay play failed:", err);
+            });
           }
         } else {
           if (!video.paused) {
@@ -111,46 +89,35 @@ export function Hero() {
     if (hasCompletedOnce.current) {
       video.muted = true;
       setIsMuted(true);
-    } else {
-      // Laptop view unmuted attempt on refresh: try to set unmuted first
+    } else if (userInteracted.current) {
       video.muted = false;
       setIsMuted(false);
+    } else {
+      video.muted = true;
+      setIsMuted(true);
+    }
 
-      // Safe autoplay fallback: if browser blocks unmuted playback and pauses the video,
-      // detect it quickly and fall back to muted autoplay so it doesn't get stuck.
+    // Mute the video after one full cycle seamlessly using browser native loop
+    const muteAfterDuration = (durationSec) => {
+      // Mute 100ms before cycle ends to ensure loop transition is silent
+      const durationMs = Math.max(0, (durationSec * 1000) - 100);
       setTimeout(() => {
-        if (video.paused && !hasCompletedOnce.current) {
-          console.log("Unmuted autoplay failed on load, falling back to muted autoplay.");
+        if (!hasCompletedOnce.current) {
+          hasCompletedOnce.current = true;
           video.muted = true;
           setIsMuted(true);
-          video.play().catch((err) => {
-            console.log("Muted autoplay fallback failed:", err);
-          });
         }
-      }, 80);
+      }, durationMs);
+    };
 
-      // Mute the video after one full cycle seamlessly using browser native loop
-      const muteAfterDuration = (durationSec) => {
-        // Mute 100ms before cycle ends to ensure loop transition is silent
-        const durationMs = Math.max(0, (durationSec * 1000) - 100);
-        setTimeout(() => {
-          if (!hasCompletedOnce.current) {
-            hasCompletedOnce.current = true;
-            video.muted = true;
-            setIsMuted(true);
-          }
-        }, durationMs);
-      };
-
-      if (video.duration) {
+    if (video.duration) {
+      muteAfterDuration(video.duration);
+    } else {
+      const handleMetadata = () => {
         muteAfterDuration(video.duration);
-      } else {
-        const handleMetadata = () => {
-          muteAfterDuration(video.duration);
-          video.removeEventListener("loadedmetadata", handleMetadata);
-        };
-        video.addEventListener("loadedmetadata", handleMetadata);
-      }
+        video.removeEventListener("loadedmetadata", handleMetadata);
+      };
+      video.addEventListener("loadedmetadata", handleMetadata);
     }
   };
 
