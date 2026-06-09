@@ -43,46 +43,22 @@ export function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Start video unmuted by default (first time)
+    // Try starting video unmuted by default (first time)
     if (!hasCompletedOnce.current) {
       video.muted = false;
       setIsMuted(false);
+
+      video.play().catch((err) => {
+        console.log("Play unmuted blocked on load, playing muted:", err);
+        video.muted = true;
+        setIsMuted(true);
+        video.play().catch((playErr) => console.log("Muted play failed:", playErr));
+      });
     } else {
       video.muted = true;
       setIsMuted(true);
+      video.play().catch((err) => console.log("Muted play failed:", err));
     }
-
-    // Intersection Observer to play only when visible, pause when scrolled away
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          if (video.paused) {
-            // Attempt unmuted play first if not completed once
-            if (!hasCompletedOnce.current) {
-              video.muted = false;
-              setIsMuted(false);
-              video.play().catch((err) => {
-                console.log("Observer play unmuted blocked, falling back to muted:", err);
-                video.muted = true;
-                setIsMuted(true);
-                video.play().catch((playErr) => console.log("Muted autoplay failed:", playErr));
-              });
-            } else {
-              video.muted = true;
-              setIsMuted(true);
-              video.play().catch((err) => console.log("Muted play failed:", err));
-            }
-          }
-        } else {
-          if (!video.paused) {
-            video.pause();
-          }
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(video);
 
     // Track user interaction to unmute video safely without browser autoplay blocks
     const handleInteraction = () => {
@@ -104,41 +80,8 @@ export function Hero() {
     window.addEventListener("scroll", handleInteraction, { passive: true });
     window.addEventListener("keydown", handleInteraction, { passive: true });
 
-    // Handle Tab switching & Tab coming back into focus
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        const rect = video.getBoundingClientRect();
-        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
-        if (isInViewport && video.paused) {
-          if (!hasCompletedOnce.current) {
-            // Try unmuted play when coming back
-            video.muted = false;
-            setIsMuted(false);
-            video.play().catch(() => {
-              video.muted = true;
-              setIsMuted(true);
-              video.play().catch((err) => console.log("Muted play failed on tab focus:", err));
-            });
-          } else {
-            video.muted = true;
-            setIsMuted(true);
-            video.play().catch((err) => console.log("Muted play failed on tab focus:", err));
-          }
-        }
-      } else {
-        if (!video.paused) {
-          video.pause();
-        }
-      }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
     return () => {
-      observer.unobserve(video);
-      observer.disconnect();
       removeListeners();
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [isReady]);
 
