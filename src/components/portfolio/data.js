@@ -100,7 +100,7 @@ export const secondaryProjects = [
       "A minimal, fast task management app with persistent state handling, allowing users to efficiently add, complete, and filter daily tasks.",
     stack: ["React.js", "Tailwind CSS"],
     github: "https://github.com/KINSHUKHERE/Todo-Website",
-    live: "https://todo-website-iota.vercel.app",
+    live: "https://resplendent-bavarois-6964e1.netlify.app/",
   },
   {
     title: "Thana-Thaya (Food Ordering)",
