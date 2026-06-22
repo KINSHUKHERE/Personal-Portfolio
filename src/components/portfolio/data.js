@@ -64,13 +64,13 @@ export const experience = [
 
 export const featuredProjects = [
   {
-    title: "MERN Ecommerce Platform",
+    title: "Shopora E-Commerce",
     tag: "Full-stack - MERN",
     description:
-      "Full-stack e-commerce platform featuring secure user authentication, product catalog, cart management, and integrated payment gateway services.",
+      "A premium, fully responsive e-commerce platform featuring a custom customer storefront and a glassmorphic admin dashboard for real-time stats, order audits, and inventory CRUD operations.",
     stack: ["React.js", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
-    github: "https://github.com/KINSHUKHERE/Ecommerce-Website-MERN-",
-    live: "",
+    github: "https://github.com/KINSHUKHERE/Ecommerce-Website-MERN",
+    live: "https://ecommerce-website-mern-1-luv9.onrender.com/",
   },
   {
     title: "Expense Tracker",
@@ -94,13 +94,13 @@ export const featuredProjects = [
 
 export const secondaryProjects = [
   {
-    title: "Todo Website",
-    tag: "Frontend - React",
+    title: "Todo List Website",
+    tag: "Responsive Frontend",
     description:
-      "A minimal, fast task management app with persistent state handling, allowing users to efficiently add, complete, and filter daily tasks.",
-    stack: ["React.js", "Tailwind CSS"],
+      "A clean, responsive task management application featuring seamless task creation, deletion, Local Storage persistence, and dark mode toggle support.",
+    stack: ["HTML5", "CSS3", "JavaScript"],
     github: "https://github.com/KINSHUKHERE/Todo-Website",
-    live: "https://resplendent-bavarois-6964e1.netlify.app/",
+    live: "",
   },
   {
     title: "Thana-Thaya (Food Ordering)",
@@ -115,10 +115,10 @@ export const secondaryProjects = [
     title: "Tanjore Coffee",
     tag: "Responsive Frontend",
     description:
-      "A sleek, brand-forward business landing page optimized for mobile browsing with smooth semantic layouts and CSS-driven animations.",
-    stack: ["HTML5", "CSS3"],
+      "A sleek, brand-forward landing page for a coffee brand, optimized for mobile browsing with semantic layouts and custom JavaScript and CSS animations.",
+    stack: ["HTML5", "CSS3", "JavaScript"],
     github: "https://github.com/KINSHUKHERE/Tanjore",
-    live: "",
+    live: "https://resplendent-bavarois-6964e1.netlify.app/",
   },
   {
     title: "Employee Performance Matrices",
