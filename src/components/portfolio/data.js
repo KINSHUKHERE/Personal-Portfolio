@@ -29,8 +29,8 @@ export const skills = [
   { group: "Languages", items: ["Java", "JavaScript", "Python"] },
   { group: "Frontend", items: ["React", "HTML5", "CSS3", "Tailwind"] },
   { group: "Backend", items: ["Node.js", "Express.js", "REST APIs"] },
-  { group: "Databases", items: ["MongoDB", "MySQL"] },
-  { group: "Tools", items: ["Git", "GitHub", "VS Code", "Postman"] },
+  { group: "Databases", items: ["MongoDB", "MySQL", "Supabase"] },
+  { group: "Tools", items: ["Git", "GitHub", "Vercel", "Netlify", "Render", "Postman"] },
   { group: "Foundations", items: ["DSA", "OOPs", "Web Dev"] },
 ];
 

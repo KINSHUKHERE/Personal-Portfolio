@@ -8,7 +8,7 @@ import { experience } from "./data";
 gsap.registerPlugin(ScrollTrigger);
 
 const techMap = {
-  "Zentek Infosoft": ["React", "Node.js", "Express", "MongoDB"],
+  "Zentek Infosoft": ["React", "Node.js", "Express", "MongoDB", "Supabase", "Vercel", "Netlify", "Render"],
   "ShadowFox (Remote)": ["HTML5", "CSS3", "JavaScript", "Responsive"],
 };
 
