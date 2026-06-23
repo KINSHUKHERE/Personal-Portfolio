@@ -13,13 +13,13 @@ export const profile = {
     mail: "mailto:herekinshuk@gmail.com",
   },
   summary:
-    "Final-year B.Tech CSE student (CGPA 8.16) at Poornima University, currently a Software Developer Intern at Zentek Infosoft. I ship full-stack web apps with the MERN stack - clean React frontends backed by Node, Express, MongoDB and MySQL services. Targeting backend or full-stack roles where I can write production-ready code from day one.",
+    "Final-year B.Tech CSE student (CGPA 7.92) at Poornima University, currently a Software Developer Intern at Zentek Infosoft. I ship full-stack web apps with the MERN stack - clean React frontends backed by Node, Express, and MongoDB services. Targeting backend or full-stack roles where I can write production-ready code from day one.",
   tagline:
     "MERN stack developer building production-ready full-stack web applications - from clean React UIs to reliable Node services.",
 };
 
 export const stats = [
-  { label: "CGPA", value: 8.16, decimals: 2, suffix: "" },
+  { label: "CGPA", value: 7.92, decimals: 2, suffix: "" },
   { label: "GitHub repos", value: 10, decimals: 0, suffix: "+" },
   { label: "DSA problems solved", value: 70, decimals: 0, suffix: "+" },
   { label: "Internships", value: 2, decimals: 0, suffix: "" },
@@ -29,7 +29,7 @@ export const skills = [
   { group: "Languages", items: ["Java", "JavaScript", "Python"] },
   { group: "Frontend", items: ["React", "HTML5", "CSS3", "Tailwind"] },
   { group: "Backend", items: ["Node.js", "Express.js", "REST APIs"] },
-  { group: "Databases", items: ["MongoDB", "MySQL", "Supabase"] },
+  { group: "Databases", items: ["MongoDB", "Supabase"] },
   { group: "Tools", items: ["Git", "GitHub", "Vercel", "Netlify", "Render", "Postman"] },
   { group: "Foundations", items: ["DSA", "OOPs", "Web Dev"] },
 ];
@@ -42,7 +42,7 @@ export const experience = [
     location: "Jaipur, Rajasthan",
     points: [
       "Developing production-grade REST APIs and full-stack features using the MERN stack.",
-      "Optimizing backend services in MySQL and MongoDB for faster data retrieval and lower query latency.",
+      "Optimizing backend services in MongoDB for faster data retrieval and lower query latency.",
       "Shipping responsive, accessible React UIs with reusable typed components and clean state management.",
       "Implementing JWT-based auth, role-based access control and protected dashboard routes.",
       "Collaborating on code reviews, Git workflows and CI deployments alongside senior engineers.",
@@ -136,7 +136,7 @@ export const secondaryProjects = [
 export const education = [
   {
     school: "Poornima University",
-    detail: "B.Tech in Computer Science - CGPA 8.16",
+    detail: "B.Tech in Computer Science - CGPA 7.92",
     period: "2023 - 2027",
     place: "Jaipur, Rajasthan",
   },

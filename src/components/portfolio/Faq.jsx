@@ -10,7 +10,7 @@ const faqData = [
   },
   {
     q: "What is your primary technology stack?",
-    a: "My core expertise is the MERN stack (MongoDB, Express.js, React, Node.js) and relational databases like MySQL. I also develop backend APIs in Java and scripts in Python."
+    a: "My core expertise is the MERN stack (MongoDB, Express.js, React, Node.js). I also develop backend APIs in Java and scripts in Python."
   },
   {
     q: "How do you handle remote collaboration and communication?",
@@ -18,7 +18,7 @@ const faqData = [
   },
   {
     q: "Do you have database design and optimization experience?",
-    a: "Yes. I design schemas and write optimized queries for MySQL and MongoDB. I focus on reducing query latency, structuring clean indexing, and designing resilient database models."
+    a: "Yes. I design schemas and write optimized queries for MongoDB. I focus on reducing query latency, structuring clean indexing, and designing resilient database models."
   },
   {
     q: "Are you open to relocating or working in a hybrid setup?",
