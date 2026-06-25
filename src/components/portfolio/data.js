@@ -64,13 +64,13 @@ export const experience = [
 
 export const featuredProjects = [
   {
-    title: "Shopora E-Commerce",
+    title: "YoCart",
     tag: "Full-stack - MERN",
     description:
       "A premium, fully responsive e-commerce platform featuring a custom customer storefront and a glassmorphic admin dashboard for real-time stats, order audits, and inventory CRUD operations.",
     stack: ["React.js", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
     github: "https://github.com/KINSHUKHERE/Ecommerce-Website-MERN",
-    live: "https://ecommerce-website-mern-1-luv9.onrender.com/",
+    live: "https://yocart.onrender.com/",
   },
   {
     title: "Expense Tracker",
