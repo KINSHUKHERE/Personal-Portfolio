@@ -67,9 +67,9 @@ export const featuredProjects = [
     title: "YoCart",
     tag: "Full-stack - MERN",
     description:
-      "A premium, fully responsive e-commerce platform featuring a custom customer storefront and a glassmorphic admin dashboard for real-time stats, order audits, and inventory CRUD operations.",
+      "A premium, responsive MERN stack e-commerce platform with a client-facing storefront and a glassmorphic admin dashboard. Features secure JWT verification, a Google OAuth profile completion wizard, real-time cart synchronization, a 2-page Stripe-style checkout with simulated payment gateways, automated stock inventory management, and an admin audit panel.",
     stack: ["React.js", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
-    github: "https://github.com/KINSHUKHERE/Ecommerce-Website-MERN",
+    github: "https://github.com/KINSHUKHERE/Ecommerce-Website-MERN-",
     live: "https://yocart.onrender.com/",
   },
   {
