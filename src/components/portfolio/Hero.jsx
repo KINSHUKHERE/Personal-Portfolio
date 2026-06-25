@@ -165,11 +165,11 @@ export function Hero() {
   };
 
   const handleResumeDownloadComplete = () => {
-    const downloadUrl = "https://docs.google.com/uc?export=download&id=1XdSATUSsZl44TVMXtewYCuXgmxRVvjuD";
     const a = document.createElement("a");
-    a.href = downloadUrl;
+    a.href = "/Kinshuk_Khandelwal_Resume.pdf";
     a.download = "Kinshuk_Khandelwal_Resume.pdf";
     a.target = "_blank";
+    a.rel = "noopener noreferrer";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
