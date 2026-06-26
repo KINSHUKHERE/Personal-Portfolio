@@ -90,7 +90,7 @@
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
 
-  --grid-color: color-mix(in oklab, black 4%, transparent);
+  --grid-color: color-mix(in oklab, black 6%, transparent);
   --map-filter: invert(15%) hue-rotate(180deg);
 }
 
@@ -219,3 +219,39 @@
     transform: none !important;
   }
 }
+
+@keyframes glow-drift-1 {
+  0%, 100% {
+    transform: translate(-50%, 0) scale(1);
+  }
+  25% {
+    transform: translate(-46%, 4%) scale(1.08);
+  }
+  50% {
+    transform: translate(-54%, -3%) scale(0.95);
+  }
+  75% {
+    transform: translate(-48%, -6%) scale(1.04);
+  }
+}
+
+@keyframes glow-drift-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-6%, 5%) scale(0.92);
+  }
+  66% {
+    transform: translate(4%, -4%) scale(1.06);
+  }
+}
+
+@utility animate-glow-drift-1 {
+  animation: glow-drift-1 25s ease-in-out infinite;
+}
+
+@utility animate-glow-drift-2 {
+  animation: glow-drift-2 20s ease-in-out infinite;
+}
+

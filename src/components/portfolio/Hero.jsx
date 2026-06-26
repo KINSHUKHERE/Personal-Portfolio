@@ -25,7 +25,7 @@ export function Hero() {
   return (
     <section 
       id="top" 
-      className="dark relative w-full h-[100dvh] md:h-screen overflow-hidden bg-neutral-950 flex items-center justify-center animate-fade-in"
+      className="relative w-full h-[100dvh] md:h-screen overflow-hidden bg-background flex items-center justify-center animate-fade-in"
       style={{ transform: "translate3d(0, 0, 0)", contain: "paint" }}
     >
       {/* Particle Background Layer (z-0) - Immersive constellation and interactive 3D wireframe particles */}
@@ -35,132 +35,126 @@ export function Hero() {
 
       {/* Gradient Overlay Mask (z-10) - Consistent left-to-right blend to keep background clear on right */}
       <div 
-        className="absolute inset-0 z-10 bg-gradient-to-r from-neutral-950 via-neutral-950/45 to-transparent pointer-events-none" 
+        className="absolute inset-0 z-10 pointer-events-none" 
+        style={{
+          background: "linear-gradient(90deg, var(--background) 0%, color-mix(in oklab, var(--background) 45%, transparent) 60%, transparent 100%)",
+        }}
       />
 
       {/* Bottom fade mask to blend background into next section */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-neutral-950 to-transparent z-10 pointer-events-none" />
+      <div 
+        className="absolute inset-x-0 bottom-0 h-32 z-10 pointer-events-none" 
+        style={{
+          background: "linear-gradient(0deg, var(--background) 0%, transparent 100%)",
+        }}
+      />
 
-      {/* Content Container (z-20 relative) - Fit exactly within dynamic viewport height on mobile */}
-      <div className="relative z-20 mx-auto w-full max-w-7xl px-6 pt-24 pb-12 md:py-0">
-        <div className="grid grid-cols-12 gap-8 md:gap-12 items-center w-full">
-          
-          {/* Left Column (col-span-12 on mobile, md:col-span-8 on desktop to avoid covering the avatar) */}
-          <div className="col-span-12 md:col-span-8 flex flex-col justify-center items-start text-left z-20 max-w-md md:max-w-xl">
-            {/* Status Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="font-mono-ui inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-muted-foreground backdrop-blur"
-            >
-              <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
-                <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400/70" />
-                <span className="relative inline-flex h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-emerald-400" />
-              </span>
-              Available for opportunities
-            </motion.div>
+      {/* Content Container (z-20 relative) - Center aligned and balanced */}
+      <div className="relative z-20 mx-auto w-full max-w-5xl px-6 flex flex-col items-center justify-center text-center h-full pt-16">
+        
+        {/* Status Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="font-mono-ui inline-flex items-center gap-1.5 rounded-full border border-border bg-surface/50 px-3 py-1 text-xs text-muted-foreground backdrop-blur"
+        >
+          <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
+            <span className="absolute inset-0 animate-ping rounded-full bg-emerald-400/70" />
+            <span className="relative inline-flex h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-emerald-400" />
+          </span>
+          Available for opportunities
+        </motion.div>
 
-            {/* Name Gradient */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-4 sm:mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight"
-            >
-              Kinshuk <span className="text-gradient block sm:inline">Khandelwal</span>
-            </motion.h1>
+        {/* Name Gradient */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="mt-4 sm:mt-6 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground leading-none"
+        >
+          Kinshuk <span className="text-gradient block sm:inline">Khandelwal</span>
+        </motion.h1>
 
-            {/* Profession / Title */}
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-2 sm:mt-3 text-sm sm:text-xl md:text-2xl font-semibold text-cyan-400 tracking-wider font-mono-ui"
-            >
-              {profile.role.toUpperCase()}
-            </motion.h2>
+        {/* Handle */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-2 sm:mt-3 text-xs sm:text-sm font-mono text-muted-foreground/80 tracking-widest"
+        >
+          {profile.handle}
+        </motion.p>
 
-            {/* Tagline / Intro Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-3 sm:mt-4 text-xs sm:text-base text-muted-foreground leading-relaxed"
-            >
-              {profile.tagline}
-            </motion.p>
+        {/* Tagline / Intro Description (Formatted with break) */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-4 sm:mt-6 text-sm sm:text-lg text-muted-foreground/85 leading-relaxed max-w-3xl whitespace-pre-line"
+        >
+          {profile.tagline.replace(" - ", "\n- ")}
+        </motion.p>
 
-            {/* Action Buttons - Horizontal Row with expanding hover effects */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-6 sm:mt-8 flex flex-row items-center gap-3 justify-start w-full"
-            >
-              {/* Download Resume Button (Stateful Hover-Expand) */}
-              <RunActionButton
-                steps={resumeSteps}
-                idleText="Download Resume"
-                doneText="Downloaded!"
-                onComplete={handleResumeDownloadComplete}
-                idleIcon={Download}
-              />
+        {/* Action Buttons - Centered Row */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-6 sm:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full"
+        >
+          {/* View Projects Button */}
+          <a
+            href="#projects"
+            className="flex h-[46px] items-center gap-2 rounded-full bg-cyan-glow hover:brightness-110 px-6 text-sm font-semibold text-primary-foreground transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_0_25px_rgba(6,182,212,0.35)] hover:scale-105"
+          >
+            View Projects <span className="font-light">→</span>
+          </a>
 
-              {/* Get in Touch Button (CSS Group Hover-Expand) */}
-              <a
-                href="#contact"
-                className="group flex h-[46px] items-center gap-0 hover:gap-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 px-3.5 hover:px-5 transition-all duration-300 overflow-hidden max-w-[46px] hover:max-w-[150px] text-white hover:border-cyan-glow/50 shadow-[0_0_15px_rgba(6,182,212,0.1)]"
-              >
-                <Mail className="size-4 shrink-0 text-white" />
-                <span className="text-xs font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                  Get in Touch
-                </span>
-              </a>
+          {/* Download Resume Button (Stateful Hover-Expand) */}
+          <RunActionButton
+            steps={resumeSteps}
+            idleText="Download Resume"
+            doneText="Downloaded!"
+            onComplete={handleResumeDownloadComplete}
+            idleIcon={Download}
+          />
 
-              {/* WhatsApp Button (CSS Group Hover-Expand) */}
-              <a
-                href="https://wa.me/918058442748"
-                target="_blank"
-                rel="noreferrer"
-                className="group flex h-[46px] items-center gap-0 hover:gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 hover:bg-emerald-500/20 px-3.5 hover:px-5 transition-all duration-300 overflow-hidden max-w-[46px] hover:max-w-[150px] text-emerald-400 hover:border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.15)]"
-              >
-                <MessageCircle className="size-4 shrink-0 text-emerald-400" />
-                <span className="text-xs font-semibold text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                  WhatsApp
-                </span>
-              </a>
-            </motion.div>
+          {/* Get in Touch Button */}
+          <a
+            href="#contact"
+            className="flex h-[46px] items-center justify-center rounded-full border border-border bg-surface/50 hover:bg-surface px-6 text-sm font-semibold text-foreground transition-all duration-300 hover:border-cyan-glow hover:scale-105"
+          >
+            Get in Touch
+          </a>
+        </motion.div>
 
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-6 sm:mt-8 flex items-center gap-4 sm:gap-5 text-muted-foreground"
-            >
-              <a href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="transition-colors hover:text-cyan-glow">
-                <Github className="size-4 sm:size-5" />
-              </a>
-              <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-[#0a66c2]">
-                <Linkedin className="size-4 sm:size-5" />
-              </a>
-              <a href={profile.socials.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="transition-colors hover:text-[#e1306c]">
-                <Instagram className="size-4 sm:size-5" />
-              </a>
-              <a href={profile.socials.mail} aria-label="Email" className="transition-colors hover:text-cyan-glow">
-                <Mail className="size-4 sm:size-5" />
-              </a>
-            </motion.div>
-          </div>
-
-        </div>
+        {/* Social Links */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-6 sm:mt-8 flex items-center justify-center gap-6 text-muted-foreground"
+        >
+          <a href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="transition-colors hover:text-foreground">
+            <Github className="size-5" />
+          </a>
+          <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-[#0a66c2]">
+            <Linkedin className="size-5" />
+          </a>
+          <a href={profile.socials.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="transition-colors hover:text-[#e1306c]">
+            <Instagram className="size-5" />
+          </a>
+          <a href={profile.socials.mail} aria-label="Email" className="transition-colors hover:text-foreground">
+            <Mail className="size-5" />
+          </a>
+        </motion.div>
       </div>
 
       {/* Scroll Down Indicator */}
       <a
         href="#about"
-        className="font-mono-ui absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-cyan-400 font-semibold z-20 hover:text-white transition-colors"
+        className="font-mono-ui absolute bottom-6 sm:bottom-8 left-1/2 hidden sm:flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-cyan-400 font-semibold z-20 hover:text-foreground transition-colors"
       >
         scroll
         <ArrowDown className="size-3 animate-bounce" />

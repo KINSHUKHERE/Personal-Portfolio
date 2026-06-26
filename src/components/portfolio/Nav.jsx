@@ -54,7 +54,6 @@ export function Nav() {
       <header
         className={[
           "hidden md:block fixed inset-x-0 top-0 z-50 transition-all duration-300",
-          !scrolled ? "dark" : "",
           scrolled
             ? "backdrop-blur-md bg-background/60 border-b border-border/60"
             : "bg-transparent",

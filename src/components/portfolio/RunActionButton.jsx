@@ -99,9 +99,9 @@ export function RunActionButton({
   }, [status, steps.length, onComplete]);
 
   const widths = {
-    idle: isHovered ? 180 : 46,
+    idle: 185,
     running: 260,
-    done: isHovered ? 150 : 46,
+    done: 160,
   };
 
   return (
@@ -111,7 +111,7 @@ export function RunActionButton({
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div
-        initial={{ width: 46 }}
+        initial={{ width: 185 }}
         animate={{ width: widths[status] }}
         transition={spring}
         className={`relative flex h-[46px] items-center overflow-hidden rounded-full ${
@@ -134,10 +134,10 @@ export function RunActionButton({
               <IdleIcon className="h-4 w-4 shrink-0" />
               <motion.span
                 animate={{ 
-                  opacity: isHovered ? 1 : 0,
-                  x: isHovered ? 0 : -10,
-                  width: isHovered ? "auto" : 0,
-                  marginLeft: isHovered ? 8 : 0 
+                  opacity: 1,
+                  x: 0,
+                  width: "auto",
+                  marginLeft: 8 
                 }}
                 transition={spring}
                 className="text-xs font-semibold overflow-hidden whitespace-nowrap"
@@ -202,10 +202,10 @@ export function RunActionButton({
               <Check className="h-4 w-4 shrink-0 text-emerald-500" />
               <motion.span
                 animate={{ 
-                  opacity: isHovered ? 1 : 0,
-                  x: isHovered ? 0 : -10,
-                  width: isHovered ? "auto" : 0,
-                  marginLeft: isHovered ? 8 : 0 
+                  opacity: 1,
+                  x: 0,
+                  width: "auto",
+                  marginLeft: 8 
                 }}
                 transition={spring}
                 className="text-xs font-bold overflow-hidden whitespace-nowrap"
