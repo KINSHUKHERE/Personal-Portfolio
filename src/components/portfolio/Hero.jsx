@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { Github, Linkedin, Instagram, Mail, ArrowDown, Download, Search, Cog, Volume2, VolumeX, MessageCircle } from "lucide-react";
+import { Github, Linkedin, Instagram, Mail, ArrowDown, Download, Search, Cog, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { profile } from "./data";
 import { RunActionButton } from "./RunActionButton";
+import { ParticleField } from "./ParticleField";
 
 const resumeSteps = [
   { id: 1, label: "Locating resume PDF...", icon: Search },
@@ -11,159 +11,6 @@ const resumeSteps = [
 ];
 
 export function Hero() {
-  const videoRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(true);
-  const hasCompletedOnce = useRef(false);
-  const userInteracted = useRef(false);
-
-  const isCurrentlyIntersecting = useRef(true);
-
-  // Try unmuting the video
-  const tryUnmute = () => {
-    const video = videoRef.current;
-    if (!video || hasCompletedOnce.current) return;
-
-    if (!video.paused && video.muted) {
-      video.muted = false;
-      setIsMuted(false);
-    }
-  };
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Try starting unmuted first on initial load if it hasn't completed once yet
-    if (!hasCompletedOnce.current) {
-      video.muted = false;
-      setIsMuted(false);
-    } else {
-      video.muted = true;
-      setIsMuted(true);
-    }
-
-    const playVideo = () => {
-      if (!hasCompletedOnce.current) {
-        // Try playing unmuted first
-        video.muted = false;
-        setIsMuted(false);
-        video.play().catch((err) => {
-          console.log("Unmuted play failed, resuming muted:", err);
-          video.muted = true;
-          setIsMuted(true);
-          video.play().catch((playErr) => {
-            console.log("Muted autoplay fallback failed:", playErr);
-          });
-        });
-      } else {
-        // Completed once, play muted
-        video.muted = true;
-        setIsMuted(true);
-        video.play().catch((err) => {
-          console.log("Muted play failed:", err);
-        });
-      }
-    };
-
-    // Intersection Observer to play only when visible, pause when scrolled away
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          isCurrentlyIntersecting.current = true;
-          if (video.paused) {
-            playVideo();
-          }
-        } else {
-          isCurrentlyIntersecting.current = false;
-          if (!video.paused) {
-            video.pause();
-          }
-        }
-      },
-      { threshold: 0.1 } // Increased threshold to avoid minor triggers during scrolling
-    );
-
-    observer.observe(video);
-
-    // Tab visibility change handler: resumes play smoothly when user returns to tab
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        if (isCurrentlyIntersecting.current && video.paused) {
-          playVideo();
-        }
-      } else {
-        if (!video.paused) {
-          video.pause();
-        }
-      }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    // Track user interaction to unmute video safely without browser autoplay blocks
-    const handleInteraction = () => {
-      if (userInteracted.current) return;
-      userInteracted.current = true;
-      tryUnmute();
-      removeListeners();
-    };
-
-    const removeListeners = () => {
-      window.removeEventListener("click", handleInteraction);
-      window.removeEventListener("touchstart", handleInteraction);
-      window.removeEventListener("scroll", handleInteraction);
-      window.removeEventListener("keydown", handleInteraction);
-    };
-
-    window.addEventListener("click", handleInteraction, { passive: true });
-    window.addEventListener("touchstart", handleInteraction, { passive: true });
-    window.addEventListener("scroll", handleInteraction, { passive: true });
-    window.addEventListener("keydown", handleInteraction, { passive: true });
-
-    return () => {
-      observer.unobserve(video);
-      observer.disconnect();
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      removeListeners();
-    };
-  }, []);
-
-  const handlePlay = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (hasCompletedOnce.current) {
-      video.muted = true;
-      setIsMuted(true);
-    } else if (userInteracted.current) {
-      video.muted = false;
-      setIsMuted(false);
-    }
-
-    // Mute the video after one full cycle seamlessly using browser native loop
-    const muteAfterDuration = (durationSec) => {
-      // Mute 100ms before cycle ends to ensure loop transition is silent
-      const durationMs = Math.max(0, (durationSec * 1000) - 100);
-      setTimeout(() => {
-        if (!hasCompletedOnce.current) {
-          hasCompletedOnce.current = true;
-          video.muted = true;
-          setIsMuted(true);
-        }
-      }, durationMs);
-    };
-
-    if (video.duration) {
-      muteAfterDuration(video.duration);
-    } else {
-      const handleMetadata = () => {
-        muteAfterDuration(video.duration);
-        video.removeEventListener("loadedmetadata", handleMetadata);
-      };
-      video.addEventListener("loadedmetadata", handleMetadata);
-    }
-  };
-
   const handleResumeDownloadComplete = () => {
     const a = document.createElement("a");
     a.href = "/Kinshuk_Khandelwal_Resume.pdf";
@@ -175,50 +22,23 @@ export function Hero() {
     document.body.removeChild(a);
   };
 
-  const toggleMute = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const newMuted = !video.muted;
-    video.muted = newMuted;
-    setIsMuted(newMuted);
-
-    if (!newMuted) {
-      hasCompletedOnce.current = false;
-    } else {
-      hasCompletedOnce.current = true;
-    }
-  };
-
   return (
     <section 
       id="top" 
       className="dark relative w-full h-[100dvh] md:h-screen overflow-hidden bg-neutral-950 flex items-center justify-center animate-fade-in"
       style={{ transform: "translate3d(0, 0, 0)", contain: "paint" }}
     >
-      {/* Video Layer (z-0) - Uses hardware-accelerated native loop and GPU layer promotion to prevent lag */}
-      <video
-        ref={videoRef}
-        src="/webvideo.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        onPlay={handlePlay}
-        className="absolute inset-0 w-full h-full object-cover object-[80%_center] z-0 pointer-events-none"
-        style={{
-          transform: "translate3d(0, 0, 0)",
-          willChange: "transform",
-        }}
-      />
+      {/* Particle Background Layer (z-0) - Immersive constellation and interactive 3D wireframe particles */}
+      <div className="absolute inset-0 z-0">
+        <ParticleField />
+      </div>
 
       {/* Gradient Overlay Mask (z-10) - Consistent left-to-right blend to keep background clear on right */}
       <div 
-        className="absolute inset-0 z-10 bg-gradient-to-r from-neutral-950 via-neutral-950/45 to-transparent" 
+        className="absolute inset-0 z-10 bg-gradient-to-r from-neutral-950 via-neutral-950/45 to-transparent pointer-events-none" 
       />
 
-      {/* Bottom fade mask to blend video into next section */}
+      {/* Bottom fade mask to blend background into next section */}
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-neutral-950 to-transparent z-10 pointer-events-none" />
 
       {/* Content Container (z-20 relative) - Fit exactly within dynamic viewport height on mobile */}
@@ -345,15 +165,7 @@ export function Hero() {
         scroll
         <ArrowDown className="size-3 animate-bounce" />
       </a>
-
-      {/* Mute / Unmute Button (z-20 relative to overlay) */}
-      <button
-        onClick={toggleMute}
-        aria-label={isMuted ? "Unmute Video" : "Mute Video"}
-        className="absolute bottom-8 right-6 md:right-8 z-20 p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-cyan-400 hover:text-white transition-all backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.15)] duration-300 cursor-pointer"
-      >
-        {isMuted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
-      </button>
     </section>
   );
 }
+
