@@ -292,9 +292,15 @@ function ParallaxGroup({ children }) {
 
 function FloatingOctas() {
   const [isDark, setIsDark] = useState(true);
+  const [isBot, setIsBot] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    
+    // Detect crawler/bot to bypass heavy WebGL rendering
+    const bot = typeof navigator !== "undefined" && /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
+    setIsBot(bot);
+
     setIsDark(document.documentElement.classList.contains("dark"));
     const observer = new MutationObserver(() => {
       setIsDark(document.documentElement.classList.contains("dark"));
@@ -305,6 +311,10 @@ function FloatingOctas() {
     });
     return () => observer.disconnect();
   }, []);
+
+  if (isBot) {
+    return null; // Skip rendering WebGL canvas for search crawlers/bots
+  }
 
   return (
     <Canvas
