@@ -310,7 +310,7 @@ function FloatingOctas() {
     <Canvas
       camera={{ position: [0, 0, 6], fov: 55 }}
       dpr={[1, 1.5]}
-      gl={{ antialias: true, alpha: true }}
+      gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
       style={{ pointerEvents: "auto" }}
     >
       <ambientLight intensity={0.5} />
