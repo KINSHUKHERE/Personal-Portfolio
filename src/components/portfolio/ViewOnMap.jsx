@@ -27,14 +27,8 @@ export function ViewOnMap({
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
-        <div
-          className="absolute inset-0 opacity-20 brightness-110 grayscale transition-opacity dark:opacity-10 dark:brightness-50"
-          style={{
-            backgroundImage: `url(${mapImageUrl})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
+        {/* Sleek CSS-based theme gradient grid pattern overlay */}
+        <div className="absolute inset-0 opacity-15 bg-gradient-to-br from-cyan-glow/30 via-transparent to-violet-glow/30 transition-opacity group-hover:opacity-25" />
 
         <div className="relative z-10 flex items-center space-x-3 px-4 py-2 font-mono-ui text-xs font-semibold text-foreground">
           <Map className="h-4 w-4 text-cyan-glow" />

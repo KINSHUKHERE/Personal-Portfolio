@@ -67,7 +67,9 @@ export function RunActionButton({
   doneText = "Action Done",
   onComplete,
   idleIcon: IdleIcon = Zap,
-  doneIcon: DoneIcon = Check
+  doneIcon: DoneIcon = Check,
+  href,
+  download
 }) {
   const [status, setStatus] = useState("idle");
   const [currentStep, setCurrentStep] = useState(0);
@@ -122,29 +124,59 @@ export function RunActionButton({
       >
         <AnimatePresence mode="popLayout" initial={false}>
           {status === "idle" && (
-            <motion.button
-              key="idle"
-              onClick={startAction}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={spring}
-              className="flex w-full h-full items-center justify-start px-3.5 whitespace-nowrap cursor-pointer text-foreground hover:text-cyan-glow"
-            >
-              <IdleIcon className="h-4 w-4 shrink-0" />
-              <motion.span
-                animate={{ 
-                  opacity: 1,
-                  x: 0,
-                  width: "auto",
-                  marginLeft: 8 
-                }}
+            href ? (
+              <motion.a
+                key="idle"
+                href={href}
+                download={download}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={startAction}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
                 transition={spring}
-                className="text-xs font-semibold overflow-hidden whitespace-nowrap"
+                className="flex w-full h-full items-center justify-start px-3.5 whitespace-nowrap cursor-pointer text-foreground hover:text-cyan-glow"
               >
-                {idleText}
-              </motion.span>
-            </motion.button>
+                <IdleIcon className="h-4 w-4 shrink-0" />
+                <motion.span
+                  animate={{ 
+                    opacity: 1,
+                    x: 0,
+                    width: "auto",
+                    marginLeft: 8 
+                  }}
+                  transition={spring}
+                  className="text-xs font-semibold overflow-hidden whitespace-nowrap"
+                >
+                  {idleText}
+                </motion.span>
+              </motion.a>
+            ) : (
+              <motion.button
+                key="idle"
+                onClick={startAction}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={spring}
+                className="flex w-full h-full items-center justify-start px-3.5 whitespace-nowrap cursor-pointer text-foreground hover:text-cyan-glow"
+              >
+                <IdleIcon className="h-4 w-4 shrink-0" />
+                <motion.span
+                  animate={{ 
+                    opacity: 1,
+                    x: 0,
+                    width: "auto",
+                    marginLeft: 8 
+                  }}
+                  transition={spring}
+                  className="text-xs font-semibold overflow-hidden whitespace-nowrap"
+                >
+                  {idleText}
+                </motion.span>
+              </motion.button>
+            )
           )}
 
           {status === "running" && (

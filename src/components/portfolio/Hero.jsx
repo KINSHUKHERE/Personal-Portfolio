@@ -11,16 +11,6 @@ const resumeSteps = [
 ];
 
 export function Hero() {
-  const handleResumeDownloadComplete = () => {
-    const a = document.createElement("a");
-    a.href = "/Kinshuk_Khandelwal_Resume.pdf";
-    a.download = "Kinshuk_Khandelwal_Resume.pdf";
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
 
   return (
     <section 
@@ -116,7 +106,8 @@ export function Hero() {
             steps={resumeSteps}
             idleText="Download Resume"
             doneText="Downloaded!"
-            onComplete={handleResumeDownloadComplete}
+            href="/Kinshuk_Khandelwal_Resume.pdf"
+            download="Kinshuk_Khandelwal_Resume.pdf"
             idleIcon={Download}
           />
 

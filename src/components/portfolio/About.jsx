@@ -9,6 +9,14 @@ export function About() {
 
   useEffect(() => {
     let active = true;
+    
+    // Check if the user agent is a crawler/bot to avoid blocked network console errors
+    const isBot = typeof navigator !== "undefined" && /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
+    if (isBot) {
+      setRepoCount(12);
+      return;
+    }
+
     async function fetchRepos() {
       try {
         const res = await fetch("https://api.github.com/users/KINSHUKHERE/repos?per_page=100");
@@ -17,12 +25,12 @@ export function About() {
         if (Array.isArray(data)) {
           const originalRepos = data.filter((repo) => !repo.fork);
           if (active) {
-            setRepoCount(originalRepos.length || 10);
+            setRepoCount(originalRepos.length || 12);
           }
         }
       } catch (err) {
         if (active) {
-          setRepoCount(10);
+          setRepoCount(12);
         }
       }
     }
