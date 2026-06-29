@@ -1,51 +1,9 @@
-import { useEffect, useState } from "react";
 import { Section } from "./Section";
 import { Terminal } from "./Terminal";
-import { profile, stats as initialStats } from "./data";
+import { profile, stats } from "./data";
 import { CountUp } from "./CountUp";
 
 export function About() {
-  const [repoCount, setRepoCount] = useState(10);
-
-  useEffect(() => {
-    let active = true;
-    
-    // Check if the user agent is a crawler/bot to avoid blocked network console errors
-    const isBot = typeof navigator !== "undefined" && /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
-    if (isBot) {
-      setRepoCount(12);
-      return;
-    }
-
-    async function fetchRepos() {
-      try {
-        const res = await fetch("https://api.github.com/users/KINSHUKHERE/repos?per_page=100");
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          const originalRepos = data.filter((repo) => !repo.fork);
-          if (active) {
-            setRepoCount(originalRepos.length || 12);
-          }
-        }
-      } catch (err) {
-        if (active) {
-          setRepoCount(12);
-        }
-      }
-    }
-    fetchRepos();
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  const stats = initialStats.map((s) => {
-    if (s.label.toLowerCase() === "github repos") {
-      return { ...s, value: repoCount };
-    }
-    return s;
-  });
 
   return (
     <Section id="about" label="about" title="Building full-stack apps that ship.">
