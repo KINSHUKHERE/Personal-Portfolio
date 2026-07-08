@@ -26,7 +26,7 @@ A high-performance, responsive 3D developer portfolio designed to showcase proje
 * **Centered Hero Content:** availability badge, gradient title, recruiter CTA buttons, and social links aligned in a clean flex layout.
 
 ### 💼 3. Curated Project Showcase
-* **YoCart (MERN Stack):** High-performance e-commerce platform featuring a customer storefront, a dedicated vendor namespace (`/vendor/*`), and a SaaS admin dashboard. Integrates a dynamic festive theme engine (Diwali, Christmas etc. with animated floating stickers), smart swatches, Stripe-style checkout, and Recharts visual analytics.
+* **YoCart (MERN Stack):** Enterprise-ready MERN e-commerce ecosystem featuring a customer storefront, an isolated vendor panel (`/vendor/*`), and a glassmorphic Super Admin dashboard. Powered by a database-driven festive theme engine, smart option swatch validation, Stripe-style checkouts, and Recharts SaaS analytics.
 * **Tanjore Coffee (HTML/CSS/JS):** Beautiful, fully responsive coffee brand landing page with premium assets, smooth hover states, and clean layouts.
 * **Todo Website (Vanilla JS):** A fast, lightweight checklist application for tracking developer tasks.
 
