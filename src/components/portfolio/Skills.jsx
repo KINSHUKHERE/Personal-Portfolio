@@ -9,7 +9,7 @@ export function Skills() {
       title="The toolkit."
       subtitle="Languages, frameworks and tools I reach for daily."
     >
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 sm:auto-rows-fr lg:grid-cols-3">
         {skills.map((s) => (
           <div
             key={s.group}

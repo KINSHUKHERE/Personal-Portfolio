@@ -23,7 +23,7 @@ export function About() {
         <Terminal />
       </div>
 
-      <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div className="mt-16 grid grid-cols-2 auto-rows-fr gap-4 sm:grid-cols-4">
         {stats.map((s) => (
           <div
             key={s.label}

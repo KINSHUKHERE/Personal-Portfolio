@@ -109,7 +109,7 @@ export function Projects() {
       subtitle="A few things I've designed, built and shipped."
     >
       <GroupHeading kicker="featured" title="Full-stack MERN builds" />
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2 md:auto-rows-fr lg:grid-cols-3">
         {featuredProjects.map((p) => (
           <Card key={p.title} p={p} isFeatured={true} />
         ))}
@@ -117,7 +117,7 @@ export function Projects() {
 
       <div className="mt-16">
         <GroupHeading kicker="more" title="Responsive frontends and side projects" />
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 md:auto-rows-fr lg:grid-cols-3">
           {secondaryProjects.map((p) => (
             <Card key={p.title} p={p} isFeatured={false} />
           ))}
