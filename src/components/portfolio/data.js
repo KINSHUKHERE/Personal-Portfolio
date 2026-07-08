@@ -126,7 +126,7 @@ export const secondaryProjects = [
     description:
       "Interactive business intelligence dashboard designed to analyze and visualize employee performance metrics, tracking productivity KPIs.",
     stack: ["PowerBI", "Data Analysis"],
-    github: "",
+    github: "https://github.com/KINSHUKHERE/EmployeePerformanceMatrices-BI-Project",
     live: "",
   },
 ];
