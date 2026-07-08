@@ -106,8 +106,8 @@ export const secondaryProjects = [
     title: "Thana-Thaya (Food Ordering)",
     tag: "Responsive Frontend",
     description:
-      "A fully responsive, static food-ordering website featuring an interactive menu UI, static cart calculations, and clean layout transitions.",
-    stack: ["HTML5", "CSS3", "JavaScript"],
+      "A premium food delivery web application redesign featuring a keyframe-animated floating hero section, an interactive menu listing with quantity managers, active checkout drawers, and persistent cart state synced to localStorage. Calibrated for desktop, tablet, and mobile layouts.",
+    stack: ["HTML5", "Tailwind CSS", "Vanilla JS", "Local Storage"],
     github: "https://github.com/KINSHUKHERE/Food-website",
     live: "",
   },
