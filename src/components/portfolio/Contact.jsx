@@ -161,7 +161,7 @@ export function Contact() {
                 onChange={handleChange}
                 required
                 className="mt-1.5 block w-full rounded-xl border border-border dark:border-white/10 bg-surface/80 dark:bg-neutral-900/60 px-4 py-3 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-cyan-glow focus:bg-surface dark:focus:bg-neutral-900/80 focus:shadow-[0_0_15px_rgba(6,182,212,0.1)] focus:outline-none transition-all duration-300 font-mono"
-                placeholder="INPUT_YOUR_NAME"
+                placeholder="Enter your name"
               />
             </label>
 
@@ -174,7 +174,7 @@ export function Contact() {
                 onChange={handleChange}
                 required
                 className="mt-1.5 block w-full rounded-xl border border-border dark:border-white/10 bg-surface/80 dark:bg-neutral-900/60 px-4 py-3 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-cyan-glow focus:bg-surface dark:focus:bg-neutral-900/80 focus:shadow-[0_0_15px_rgba(6,182,212,0.1)] focus:outline-none transition-all duration-300 font-mono"
-                placeholder="YOU@EXAMPLE.COM"
+                placeholder="Enter your email address"
               />
             </label>
 
@@ -187,7 +187,7 @@ export function Contact() {
                 required
                 rows={5}
                 className="mt-1.5 block w-full resize-none rounded-xl border border-border dark:border-white/10 bg-surface/80 dark:bg-neutral-900/60 px-4 py-3 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-cyan-glow focus:bg-surface dark:focus:bg-neutral-900/80 focus:shadow-[0_0_15px_rgba(6,182,212,0.1)] focus:outline-none transition-all duration-300 font-mono"
-                placeholder="WRITE_YOUR_MESSAGE_HERE..."
+                placeholder="Write your message here..."
               />
             </label>
 
