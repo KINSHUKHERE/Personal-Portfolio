@@ -106,7 +106,7 @@ export function Hero() {
             steps={resumeSteps}
             idleText="Download Resume"
             doneText="Downloaded!"
-            href="/Kinshuk_Khandelwal_Resume.pdf"
+            href="https://raw.githubusercontent.com/KINSHUKHERE/Personal-Portfolio/main/public/Kinshuk_Khandelwal_Resume.pdf"
             download="Kinshuk_Khandelwal_Resume.pdf"
             idleIcon={Download}
           />

@@ -5,7 +5,7 @@ export const profile = {
   location: "Jaipur, Rajasthan",
   email: "herekinshuk@gmail.com",
   phone: "+91 8058442748",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "https://raw.githubusercontent.com/KINSHUKHERE/Personal-Portfolio/main/public/Kinshuk_Khandelwal_Resume.pdf",
   socials: {
     github: "https://github.com/KINSHUKHERE",
     linkedin: "https://www.linkedin.com/in/kinshuk-khandelwal-43024b290/",
