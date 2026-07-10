@@ -41,11 +41,11 @@ export const experience = [
     period: "May 2026 - Present",
     location: "Jaipur, Rajasthan",
     points: [
-      "Developing production-grade REST APIs and full-stack features using the MERN stack.",
-      "Optimizing backend services in MongoDB for faster data retrieval and lower query latency.",
-      "Shipping responsive, accessible React UIs with reusable typed components and clean state management.",
-      "Implementing JWT-based auth, role-based access control and protected dashboard routes.",
-      "Collaborating on code reviews, Git workflows and CI deployments alongside senior engineers.",
+      "Designed and engineered YoCart, a premium MERN stack e-commerce platform with a customer storefront, an isolated vendor panel, and a glassmorphic Super Admin dashboard.",
+      "Developed production-grade backend REST APIs secured via HttpOnly JWT cookies, Google OAuth, and custom role-based authorization middleware.",
+      "Integrated Razorpay payment gateways with HMAC-SHA256 signature verification, and created a database-driven festive theme engine with keyframe-animated floating elements.",
+      "Shipped a real-time SaaS business intelligence analytics dashboard using Recharts, showing sales trends, category metrics, and inventory health.",
+      "Optimized MongoDB data schemas and lookup operations, reducing response latencies and implementing secure data validation.",
     ],
   },
   {
