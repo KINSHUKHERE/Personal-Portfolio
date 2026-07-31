@@ -6,6 +6,7 @@ import emailjs from "@emailjs/browser";
 import { ViewOnMap } from "./ViewOnMap";
 import { InlineAction } from "./InlineAction";
 import { motion } from "framer-motion";
+import { trackEvent, trackOutbound } from "../../lib/analytics";
 
 export function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -19,6 +20,7 @@ export function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus("loading");
+    trackEvent("contact_form_submit");
     emailjs
       .send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -36,9 +38,12 @@ export function Contact() {
       .then(() => {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
+        // Mark this as a conversion in GA4 (Admin > Events > Mark as key event).
+        trackEvent("contact_form_success");
       })
       .catch(() => {
         setStatus("error");
+        trackEvent("contact_form_error");
       });
   };
 
@@ -62,6 +67,7 @@ export function Contact() {
             {/* Email Card */}
             <a
               href={`mailto:${profile.email}`}
+              onClick={() => trackEvent("email_click", { location: "contact" })}
               className="group flex items-center justify-between rounded-xl border border-border/50 dark:border-white/10 bg-surface/30 dark:bg-white/[0.02] p-5 backdrop-blur transition-all duration-300 hover:border-cyan-glow/50 hover:bg-surface/50 dark:hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(6,182,212,0.08)]"
             >
               <div className="flex items-center gap-4">
@@ -84,6 +90,7 @@ export function Contact() {
             {/* Phone Card */}
             <a
               href={`tel:${profile.phone.replace(/\s/g, "")}`}
+              onClick={() => trackEvent("phone_click", { location: "contact" })}
               className="group flex items-center justify-between rounded-xl border border-border/50 dark:border-white/10 bg-surface/30 dark:bg-white/[0.02] p-5 backdrop-blur transition-all duration-300 hover:border-cyan-glow/50 hover:bg-surface/50 dark:hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(6,182,212,0.08)]"
             >
               <div className="flex items-center gap-4">
@@ -119,6 +126,7 @@ export function Contact() {
                 <a
                   key={label}
                   href={href}
+                  onClick={() => trackOutbound(label, href, { location: "contact" })}
                   target="_blank"
                   rel="noreferrer"
                   aria-label={label}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Backdrop } from "./components/portfolio/Backdrop";
 import { Contact } from "./components/portfolio/Contact";
 import { Education } from "./components/portfolio/Education";
@@ -15,6 +15,7 @@ import { SmoothScroll } from "./components/portfolio/SmoothScroll";
 import { About } from "./components/portfolio/About";
 import { ErrorPage } from "./components/portfolio/ErrorPage";
 import { Faq } from "./components/portfolio/Faq";
+import { trackEvent, trackPageview } from "./lib/analytics";
 
 function useDocumentTitle(title) {
   useEffect(() => {
@@ -27,6 +28,19 @@ export default function App() {
 
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  // The initial page_view is sent by initAnalytics(); this only reports the
+  // client-side path changes that follow (e.g. landing on / leaving the 404).
+  const isFirstPath = useRef(true);
+  useEffect(() => {
+    if (isFirstPath.current) {
+      isFirstPath.current = false;
+      if (currentPath !== "/") trackEvent("page_not_found", { page_path: currentPath });
+      return;
+    }
+    trackPageview(currentPath);
+    if (currentPath !== "/") trackEvent("page_not_found", { page_path: currentPath });
+  }, [currentPath]);
 
   useEffect(() => {
     const handleOnline = () => setIsOffline(false);

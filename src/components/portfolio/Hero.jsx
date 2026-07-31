@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { profile } from "./data";
 import { RunActionButton } from "./RunActionButton";
 import { ParticleField } from "./ParticleField";
+import { trackEvent, trackOutbound } from "../../lib/analytics";
+
+const RESUME_URL = profile.resumeUrl;
 
 const resumeSteps = [
   { id: 1, label: "Locating resume PDF...", icon: Search },
@@ -96,6 +99,7 @@ export function Hero() {
           {/* View Projects Button */}
           <a
             href="#projects"
+            onClick={() => trackEvent("cta_click", { cta: "view_projects", location: "hero" })}
             className="flex h-[46px] items-center gap-2 rounded-full bg-cyan-glow hover:brightness-110 px-6 text-sm font-semibold text-primary-foreground transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_0_25px_rgba(6,182,212,0.35)] hover:scale-105"
           >
             View Projects <span className="font-light">→</span>
@@ -106,14 +110,16 @@ export function Hero() {
             steps={resumeSteps}
             idleText="Download Resume"
             doneText="Downloaded!"
-            href="https://raw.githubusercontent.com/KINSHUKHERE/Personal-Portfolio/main/public/Kinshuk_Khandelwal_Resume.pdf"
+            href={RESUME_URL}
             download="Kinshuk_Khandelwal_Resume.pdf"
             idleIcon={Download}
+            onStart={() => trackEvent("resume_download", { location: "hero" })}
           />
 
           {/* Get in Touch Button */}
           <a
             href="#contact"
+            onClick={() => trackEvent("cta_click", { cta: "get_in_touch", location: "hero" })}
             className="flex h-[46px] items-center justify-center rounded-full border border-border bg-surface/50 hover:bg-surface px-6 text-sm font-semibold text-foreground transition-all duration-300 hover:border-cyan-glow hover:scale-105"
           >
             Get in Touch
@@ -127,16 +133,16 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-6 sm:mt-8 flex items-center justify-center gap-6 text-muted-foreground"
         >
-          <a href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="transition-colors hover:text-foreground">
+          <a href={profile.socials.github} onClick={() => trackOutbound("GitHub", profile.socials.github, { location: "hero" })} target="_blank" rel="noreferrer" aria-label="GitHub" className="transition-colors hover:text-foreground">
             <Github className="size-5" />
           </a>
-          <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-[#0a66c2]">
+          <a href={profile.socials.linkedin} onClick={() => trackOutbound("LinkedIn", profile.socials.linkedin, { location: "hero" })} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-[#0a66c2]">
             <Linkedin className="size-5" />
           </a>
-          <a href={profile.socials.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="transition-colors hover:text-[#e1306c]">
+          <a href={profile.socials.instagram} onClick={() => trackOutbound("Instagram", profile.socials.instagram, { location: "hero" })} target="_blank" rel="noreferrer" aria-label="Instagram" className="transition-colors hover:text-[#e1306c]">
             <Instagram className="size-5" />
           </a>
-          <a href={profile.socials.mail} aria-label="Email" className="transition-colors hover:text-foreground">
+          <a href={profile.socials.mail} onClick={() => trackEvent("email_click", { location: "hero" })} aria-label="Email" className="transition-colors hover:text-foreground">
             <Mail className="size-5" />
           </a>
         </motion.div>

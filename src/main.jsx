@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import { initAnalytics } from "./lib/analytics";
 import "./styles.css";
 
 // Suppress known third-party library deprecation warnings in production console
@@ -17,6 +18,8 @@ if (import.meta.env.PROD) {
     originalWarn(...args);
   };
 }
+
+initAnalytics();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>

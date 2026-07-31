@@ -2,6 +2,7 @@ import { Github, ExternalLink } from "lucide-react";
 import { useRef } from "react";
 import { Section } from "./Section";
 import { featuredProjects, secondaryProjects } from "./data";
+import { trackEvent } from "../../lib/analytics";
 
 function TiltCard({ children, isFeatured }) {
   const ref = useRef(null);
@@ -60,6 +61,13 @@ function Card({ p, isFeatured }) {
         {p.github && (
           <a
             href={p.github}
+            onClick={() =>
+              trackEvent("project_link_click", {
+                project: p.title,
+                link_type: "github",
+                featured: isFeatured,
+              })
+            }
             target="_blank"
             rel="noreferrer"
             className={`inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-hi/70 px-3 py-1.5 text-xs text-foreground/90 transition-colors ${hoverClass}`}
@@ -71,6 +79,13 @@ function Card({ p, isFeatured }) {
         {p.live && (
           <a
             href={p.live}
+            onClick={() =>
+              trackEvent("project_link_click", {
+                project: p.title,
+                link_type: "live_demo",
+                featured: isFeatured,
+              })
+            }
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-all hover:brightness-110"

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Github, Linkedin, Mail, Sun, Moon } from "lucide-react";
 import { profile } from "./data";
 import BubbleMenu from "./BubbleMenu";
+import { trackEvent, trackOutbound } from "../../lib/analytics";
 
 const links = [
   { href: "#about", label: "About" },
@@ -88,6 +89,11 @@ export function Nav() {
                 <a
                   key={label}
                   href={href}
+                  onClick={() =>
+                    href.startsWith("http")
+                      ? trackOutbound(label, href, { location: "nav" })
+                      : trackEvent("email_click", { location: "nav" })
+                  }
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noreferrer"
                   aria-label={label}
@@ -98,6 +104,7 @@ export function Nav() {
               ))}
               <a
                 href="#contact"
+                onClick={() => trackEvent("cta_click", { cta: "hire_me", location: "nav" })}
                 className="font-mono-ui ml-1 rounded-full border border-border bg-surface px-4 py-2 text-xs text-foreground transition-colors hover:border-cyan-glow/60 hover:text-cyan-glow"
               >
                 Hire me →

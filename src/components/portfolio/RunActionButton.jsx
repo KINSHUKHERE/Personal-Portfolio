@@ -65,6 +65,7 @@ export function RunActionButton({
   steps,
   idleText = "Run Action",
   doneText = "Action Done",
+  onStart,
   onComplete,
   idleIcon: IdleIcon = Zap,
   doneIcon: DoneIcon = Check,
@@ -76,6 +77,7 @@ export function RunActionButton({
   const [isHovered, setIsHovered] = useState(false);
 
   const startAction = () => {
+    onStart?.();
     setStatus("running");
     setCurrentStep(0);
   };

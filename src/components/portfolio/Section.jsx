@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { trackEvent } from "../../lib/analytics";
 
 export function SectionLabel({ children }) {
   return <div className="font-mono-ui mb-3 text-xs text-cyan-glow/80">// {children}</div>;
@@ -16,6 +17,7 @@ export function Section({ id, label, title, subtitle, children }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.5 }}
+        onViewportEnter={() => trackEvent("section_view", { section_id: id })}
         className="mb-14 text-center"
       >
         <SectionLabel>{label}</SectionLabel>
