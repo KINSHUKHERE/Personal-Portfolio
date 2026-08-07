@@ -15,7 +15,21 @@ import { SmoothScroll } from "./components/portfolio/SmoothScroll";
 import { About } from "./components/portfolio/About";
 import { ErrorPage } from "./components/portfolio/ErrorPage";
 import { Faq } from "./components/portfolio/Faq";
+import { CaseStudyYoCart } from "./components/portfolio/CaseStudyYoCart";
+import { CommandPalette } from "./components/portfolio/CommandPalette";
 import { trackEvent, trackPageview } from "./lib/analytics";
+import { navigate } from "./lib/navigation";
+
+const HOME_TITLE = "Kinshuk Khandelwal - MERN Stack Developer";
+
+// Client-side routes served off index.html (see netlify.toml). Titles live here
+// so a child page can't race the parent's title effect.
+const ROUTES = {
+  "/case-study/yocart": {
+    title: "YoCart Case Study - Kinshuk Khandelwal",
+    render: (goHome) => <CaseStudyYoCart onBack={goHome} />,
+  },
+};
 
 function useDocumentTitle(title) {
   useEffect(() => {
@@ -24,22 +38,25 @@ function useDocumentTitle(title) {
 }
 
 export default function App() {
-  useDocumentTitle("Kinshuk Khandelwal - MERN Stack Developer");
-
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  const route = ROUTES[currentPath.replace(/\/$/, "")] ?? null;
+  useDocumentTitle(route ? route.title : HOME_TITLE);
 
   // The initial page_view is sent by initAnalytics(); this only reports the
   // client-side path changes that follow (e.g. landing on / leaving the 404).
   const isFirstPath = useRef(true);
   useEffect(() => {
+    const isKnown = currentPath === "/" || ROUTES[currentPath.replace(/\/$/, "")];
+
     if (isFirstPath.current) {
       isFirstPath.current = false;
-      if (currentPath !== "/") trackEvent("page_not_found", { page_path: currentPath });
-      return;
+    } else {
+      trackPageview(currentPath);
     }
-    trackPageview(currentPath);
-    if (currentPath !== "/") trackEvent("page_not_found", { page_path: currentPath });
+
+    if (!isKnown) trackEvent("page_not_found", { page_path: currentPath });
   }, [currentPath]);
 
   useEffect(() => {
@@ -82,16 +99,21 @@ export default function App() {
     );
   }
 
-  if (currentPath !== "/") {
+  const goHome = () => navigate("/");
+
+  if (route) {
     return (
-      <ErrorPage
-        type="404"
-        onHome={() => {
-          window.history.pushState({}, "", "/");
-          setCurrentPath("/");
-        }}
-      />
+      <>
+        <Backdrop />
+        <CommandPalette onNavigate={navigate} />
+        {route.render(goHome)}
+        <Footer />
+      </>
     );
+  }
+
+  if (currentPath !== "/") {
+    return <ErrorPage type="404" onHome={goHome} />;
   }
 
   return (
@@ -100,6 +122,7 @@ export default function App() {
       <ScrollProgress />
       <Backdrop />
       <Nav />
+      <CommandPalette onNavigate={navigate} />
       <main className="relative min-h-screen">
         <Hero />
         <PerspectiveStage max={3}>

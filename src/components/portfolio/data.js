@@ -13,7 +13,7 @@ export const profile = {
     mail: "mailto:herekinshuk@gmail.com",
   },
   summary:
-    "Final-year B.Tech CSE student (CGPA 7.92) at Poornima University, currently a Software Developer Intern at Zentek Infosoft. I ship full-stack web apps with the MERN stack - clean React frontends backed by Node, Express, and MongoDB services. Targeting backend or full-stack roles where I can write production-ready code from day one.",
+    "Final-year B.Tech CSE student (CGPA 7.92) at Poornima University, most recently a Software Developer Intern at Zentek Infosoft. I ship full-stack web apps with the MERN stack - clean React frontends backed by Node, Express, and MongoDB services. Targeting backend or full-stack roles where I can write production-ready code from day one.",
   tagline:
     "MERN stack developer building production-ready full-stack web applications - from clean React UIs to reliable Node services.",
 };
@@ -38,7 +38,7 @@ export const experience = [
   {
     role: "Software Developer Intern",
     company: "Zentek Infosoft",
-    period: "May 2026 - Present",
+    period: "May 2026 - Aug 2026",
     location: "Jaipur, Rajasthan",
     points: [
       "Designed and engineered YoCart, a premium MERN stack e-commerce platform with a customer storefront, an isolated vendor panel, and a glassmorphic Super Admin dashboard.",
@@ -66,8 +66,9 @@ export const featuredProjects = [
   {
     title: "YoCart",
     tag: "Full-stack - MERN",
+    caseStudy: "/case-study/yocart",
     description:
-      "A premium, high-performance MERN e-commerce platform with a clean separation between a customer storefront, an isolated vendor namespace (/vendor/*), and a glassmorphic Super Admin dashboard. Features a database-driven festive theme engine (Diwali, Christmas & more with keyframe-animated FloatingStickers), Razorpay payment integration with HMAC verification, real-time admin notification bell (10s polling), and a full SaaS analytics suite via Recharts — area charts, donut charts, bar charts, and top-product leaderboards. Secured end-to-end with HttpOnly JWT cookies, role-based middleware, and Google OAuth.",
+      "A premium MERN e-commerce platform separating a customer storefront, an isolated vendor namespace, and a glassmorphic Super Admin dashboard. Razorpay payments with HMAC verification, a database-driven festive theme engine, real-time admin notifications, and a full Recharts analytics suite.",
     stack: ["React.js", "Node.js", "Express", "MongoDB", "Tailwind CSS", "Recharts", "JWT", "Google OAuth", "Razorpay"],
     github: "https://github.com/KINSHUKHERE/Ecommerce-Website-MERN",
     live: "https://yocart.onrender.com/",
@@ -82,6 +83,18 @@ export const featuredProjects = [
     live: "",
   },
   {
+    title: "Thana-Thaya (Food Ordering)",
+    tag: "Responsive Frontend",
+    description:
+      "A premium food delivery web application redesign featuring a keyframe-animated floating hero section, an interactive menu listing with quantity managers, active checkout drawers, and persistent cart state synced to localStorage. Calibrated for desktop, tablet, and mobile layouts.",
+    stack: ["HTML5", "Tailwind CSS", "Vanilla JS", "Local Storage"],
+    github: "https://github.com/KINSHUKHERE/Food-website",
+    live: "",
+  },
+];
+
+export const secondaryProjects = [
+  {
     title: "BookHub App",
     tag: "Full-stack - Spring Boot",
     description:
@@ -90,9 +103,6 @@ export const featuredProjects = [
     github: "https://github.com/KINSHUKHERE/BookHubApp",
     live: "",
   },
-];
-
-export const secondaryProjects = [
   {
     title: "Todo List Website",
     tag: "Responsive Frontend",
@@ -100,15 +110,6 @@ export const secondaryProjects = [
       "A clean, responsive task management application featuring seamless task creation, deletion, Local Storage persistence, and dark mode toggle support.",
     stack: ["HTML5", "CSS3", "JavaScript"],
     github: "https://github.com/KINSHUKHERE/Todo-Website",
-    live: "",
-  },
-  {
-    title: "Thana-Thaya (Food Ordering)",
-    tag: "Responsive Frontend",
-    description:
-      "A premium food delivery web application redesign featuring a keyframe-animated floating hero section, an interactive menu listing with quantity managers, active checkout drawers, and persistent cart state synced to localStorage. Calibrated for desktop, tablet, and mobile layouts.",
-    stack: ["HTML5", "Tailwind CSS", "Vanilla JS", "Local Storage"],
-    github: "https://github.com/KINSHUKHERE/Food-website",
     live: "",
   },
   {
@@ -121,7 +122,7 @@ export const secondaryProjects = [
     live: "https://resplendent-bavarois-6964e1.netlify.app/",
   },
   {
-    title: "Employee Performance Matrices",
+    title: "Employee Performance Metrics",
     tag: "Data Analysis - PowerBI",
     description:
       "Interactive business intelligence dashboard designed to analyze and visualize employee performance metrics, tracking productivity KPIs.",
@@ -144,7 +145,7 @@ export const education = [
     school: "Delhi Public School",
     detail: "12th CBSE Board - 64%",
     period: "2022 - 2023",
-    place: "Jaipur, Rajasthan",
+    place: "Pali, Rajasthan",
   },
 ];
 

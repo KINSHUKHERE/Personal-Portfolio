@@ -1,8 +1,9 @@
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, BookOpen } from "lucide-react";
 import { useRef } from "react";
 import { Section } from "./Section";
 import { featuredProjects, secondaryProjects } from "./data";
 import { trackEvent } from "../../lib/analytics";
+import { linkHandler } from "../../lib/navigation";
 
 function TiltCard({ children, isFeatured }) {
   const ref = useRef(null);
@@ -25,7 +26,7 @@ function TiltCard({ children, isFeatured }) {
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className={`group relative flex h-full flex-col rounded-2xl border border-border border-t-4 ${borderTopClass} bg-surface/60 p-6 backdrop-blur transition-[transform,border-color,box-shadow] duration-200 will-change-transform hover:border-cyan-glow/50`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border border-t-4 ${borderTopClass} bg-surface/60 backdrop-blur transition-[transform,border-color,box-shadow] duration-200 will-change-transform hover:border-cyan-glow/50`}
       style={{ transformStyle: "preserve-3d" }}
     >
       {children}
@@ -42,6 +43,23 @@ function Card({ p, isFeatured }) {
 
   return (
     <TiltCard isFeatured={isFeatured}>
+      {p.image && (
+        <div className="relative aspect-video w-full overflow-hidden border-b border-border/60">
+          <img
+            src={p.image}
+            alt={`${p.title} preview`}
+            loading="lazy"
+            width={800}
+            height={450}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"
+          />
+        </div>
+      )}
+      <div className="flex flex-1 flex-col p-6">
       <div className={`font-mono-ui flex items-center justify-between text-[11px] uppercase tracking-wider text-${accentClass}/85`}>
         <span>{p.tag}</span>
       </div>
@@ -94,12 +112,45 @@ function Card({ p, isFeatured }) {
             Demo
           </a>
         )}
+        {p.caseStudy && (
+          <a
+            href={p.caseStudy}
+            onClick={(e) => {
+              trackEvent("project_link_click", { project: p.title, link_type: "case_study" });
+              linkHandler(p.caseStudy)(e);
+            }}
+            className="inline-flex items-center gap-1.5 rounded-full border border-cyan-glow/40 bg-cyan-glow/10 px-3 py-1.5 text-xs font-medium text-cyan-glow transition-colors hover:border-cyan-glow hover:bg-cyan-glow/20"
+          >
+            <BookOpen className="size-3.5" />
+            Case study
+          </a>
+        )}
+      </div>
       </div>
       <div
         aria-hidden
         className={`pointer-events-none absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-${accentClass}/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100`}
       />
     </TiltCard>
+  );
+}
+
+/**
+ * Flex-wrap rather than a grid so a trailing incomplete row centres itself
+ * instead of leaving an orphan card hugging the left edge.
+ */
+function ProjectGrid({ items, isFeatured }) {
+  return (
+    <div className="flex flex-wrap justify-center gap-5">
+      {items.map((p) => (
+        <div
+          key={p.title}
+          className="w-full md:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)]"
+        >
+          <Card p={p} isFeatured={isFeatured} />
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -123,20 +174,12 @@ export function Projects() {
       title="Selected work."
       subtitle="A few things I've designed, built and shipped."
     >
-      <GroupHeading kicker="featured" title="Full-stack MERN builds" />
-      <div className="grid gap-5 md:grid-cols-2 md:auto-rows-fr lg:grid-cols-3">
-        {featuredProjects.map((p) => (
-          <Card key={p.title} p={p} isFeatured={true} />
-        ))}
-      </div>
+      <GroupHeading kicker="highlighted" title="The work I'd show you first" />
+      <ProjectGrid items={featuredProjects} isFeatured={true} />
 
       <div className="mt-16">
         <GroupHeading kicker="more" title="Responsive frontends and side projects" />
-        <div className="grid gap-5 md:grid-cols-2 md:auto-rows-fr lg:grid-cols-3">
-          {secondaryProjects.map((p) => (
-            <Card key={p.title} p={p} isFeatured={false} />
-          ))}
-        </div>
+        <ProjectGrid items={secondaryProjects} isFeatured={false} />
       </div>
     </Section>
   );

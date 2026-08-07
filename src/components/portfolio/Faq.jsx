@@ -6,7 +6,7 @@ import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
 const faqData = [
   {
     q: "Are you open to immediate internships or full-time opportunities?",
-    a: "Yes! I am a final-year B.Tech CSE student (graduating in 2027) currently working as a Software Developer Intern at Zentek Infosoft. I am actively looking for full-stack, backend, or frontend developer roles and am ready to join immediately."
+    a: "Yes! I am a final-year B.Tech CSE student (graduating in 2027) who recently completed a Software Developer Internship at Zentek Infosoft. I am immediately available and actively looking for full-stack, backend, or frontend developer roles."
   },
   {
     q: "What is your primary technology stack?",

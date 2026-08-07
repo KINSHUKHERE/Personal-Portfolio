@@ -1,5 +1,7 @@
-import { Github, Linkedin, Instagram, Mail, ArrowDown, Download, Search, Cog, MessageCircle } from "lucide-react";
+import { Github, Linkedin, Instagram, Mail, ArrowDown, Download, Search, Cog, MessageCircle, Eye } from "lucide-react";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { ResumeModal } from "./ResumeModal";
 import { profile } from "./data";
 import { RunActionButton } from "./RunActionButton";
 import { ParticleField } from "./ParticleField";
@@ -14,6 +16,7 @@ const resumeSteps = [
 ];
 
 export function Hero() {
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
     <section 
@@ -125,6 +128,23 @@ export function Hero() {
             Get in Touch
           </a>
         </motion.div>
+
+        {/* Preview beats download: recruiters skim before they commit to a file. */}
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+          onClick={() => {
+            setResumeOpen(true);
+            trackEvent("resume_preview", { location: "hero" });
+          }}
+          className="font-mono-ui mt-4 inline-flex items-center gap-1.5 text-[11px] text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-cyan-glow cursor-pointer"
+        >
+          <Eye className="size-3.5" />
+          or preview it right here
+        </motion.button>
+
+        <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
 
         {/* Social Links */}
         <motion.div
