@@ -6,16 +6,16 @@ const ITEMS = skills.flatMap((s) => s.items);
 function Row({ reverse = false }) {
   return (
     <div
-      className="marquee-track flex shrink-0 items-center gap-10 px-5"
+      className="marquee-track flex shrink-0 items-center gap-8 px-4"
       style={{ animationDirection: reverse ? "reverse" : "normal" }}
     >
       {ITEMS.concat(ITEMS).map((t, i) => (
         <span
           key={`${t}-${i}`}
-          className="font-mono-ui flex items-center gap-3 whitespace-nowrap text-2xl font-medium text-foreground/70 sm:text-3xl"
+          className="font-mono-ui flex items-center gap-2.5 whitespace-nowrap text-lg font-medium text-foreground/70 sm:text-xl"
         >
           {t}
-          <Sparkles className="size-4 text-cyan-glow/70" aria-hidden />
+          <Sparkles className="size-3.5 text-cyan-glow/70" aria-hidden />
         </span>
       ))}
     </div>
@@ -26,7 +26,7 @@ export function Marquee() {
   return (
     <section
       aria-label="Tech stack marquee"
-      className="relative isolate overflow-hidden border-y border-border/60 bg-surface/40 py-8 backdrop-blur"
+      className="relative isolate overflow-hidden border-y border-border/60 bg-surface/40 py-3 sm:py-3.5 backdrop-blur"
     >
       <div
         aria-hidden

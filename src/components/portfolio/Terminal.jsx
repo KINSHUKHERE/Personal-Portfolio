@@ -96,7 +96,10 @@ export function Terminal() {
 
   useEffect(() => {
     const el = scrollRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+      delete el._lenis;
+    }
   }, [lines]);
 
   const run = useCallback(
@@ -186,7 +189,7 @@ export function Terminal() {
 
       <div
         ref={scrollRef}
-        className="h-[320px] overflow-y-auto px-5 py-4 leading-6 text-foreground/90"
+        className="terminal-scroll h-[320px] overflow-y-auto px-5 py-4 leading-6 text-foreground/90"
       >
         {lines.map((l, i) =>
           l.type === "cmd" ? (

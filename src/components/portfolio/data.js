@@ -20,7 +20,7 @@ export const profile = {
 
 export const stats = [
   { label: "CGPA", value: 7.96, decimals: 2, suffix: "" },
-  { label: "GitHub repos", value: 10, decimals: 0, suffix: "+" },
+  { label: "GitHub repos", value: 16, decimals: 0, suffix: "+" },
   { label: "DSA problems solved", value: 70, decimals: 0, suffix: "+" },
   { label: "Internships", value: 2, decimals: 0, suffix: "" },
 ];
