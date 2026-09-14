@@ -13,25 +13,25 @@ export const profile = {
     mail: "mailto:herekinshuk@gmail.com",
   },
   summary:
-    "Final-year B.Tech CSE student (CGPA 7.92) at Poornima University, most recently a Software Developer Intern at Zentek Infosoft. I ship full-stack web apps with the MERN stack - clean React frontends backed by Node, Express, and MongoDB services. Targeting backend or full-stack roles where I can write production-ready code from day one.",
+    "Final-year B.Tech Computer Science student (CGPA 7.96) at Poornima University, most recently a Software Developer Intern at Zentek Infosoft, specializing in backend engineering with Node.js, Express, and MongoDB. Experienced in secure, production-style REST APIs – JWT/OAuth authentication, RBAC, payment integration, and concurrency-safe data handling – on a strong Java and DSA foundation. Immediately available for Backend or Full-Stack Software Engineer roles.",
   tagline:
     "MERN stack developer building production-ready full-stack web applications - from clean React UIs to reliable Node services.",
 };
 
 export const stats = [
-  { label: "CGPA", value: 7.92, decimals: 2, suffix: "" },
+  { label: "CGPA", value: 7.96, decimals: 2, suffix: "" },
   { label: "GitHub repos", value: 10, decimals: 0, suffix: "+" },
   { label: "DSA problems solved", value: 70, decimals: 0, suffix: "+" },
   { label: "Internships", value: 2, decimals: 0, suffix: "" },
 ];
 
 export const skills = [
-  { group: "Languages", items: ["Java", "JavaScript", "Python"] },
-  { group: "Frontend", items: ["React", "HTML5", "CSS3", "Tailwind"] },
-  { group: "Backend", items: ["Node.js", "Express.js", "REST APIs"] },
-  { group: "Databases", items: ["MongoDB", "Supabase"] },
-  { group: "Tools", items: ["Git", "GitHub", "Vercel", "Netlify", "Render", "Postman"] },
-  { group: "Foundations", items: ["DSA", "OOPs", "Web Dev"] },
+  { group: "Languages", items: ["Java", "JavaScript", "Python", "SQL"] },
+  { group: "Backend", items: ["Node.js", "Express.js", "REST APIs", "API Development", "JWT & Google OAuth", "RBAC", "Rate Limiting", "Razorpay Payments"] },
+  { group: "Databases", items: ["MongoDB (Mongoose)", "MySQL", "Schema Design", "Indexing", "Aggregation"] },
+  { group: "Frontend", items: ["React.js", "Tailwind CSS", "HTML5", "CSS3"] },
+  { group: "Tools & Platforms", items: ["Git", "GitHub", "Postman", "Cloudinary", "Render", "Vercel", "Netlify"] },
+  { group: "CS Fundamentals", items: ["Data Structures & Algorithms", "OOP", "DBMS", "API Security", "Concurrency Control"] },
 ];
 
 export const experience = [
@@ -137,7 +137,7 @@ export const secondaryProjects = [
 export const education = [
   {
     school: "Poornima University",
-    detail: "B.Tech in Computer Science - CGPA 7.92",
+    detail: "B.Tech in Computer Science - CGPA 7.96",
     period: "2023 - 2027",
     place: "Jaipur, Rajasthan",
   },
