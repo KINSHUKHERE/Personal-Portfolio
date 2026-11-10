@@ -11,11 +11,11 @@ export function TopPill({ className = "" }) {
 
   return (
     <div className={`relative z-40 flex flex-col items-center select-none ${className}`}>
-      {/* Reference Dimensions: 344px wide, 65px tall, 24px border radius, 19px horizontal padding */}
-      <div className="w-[clamp(260px,22vw,344px)] h-[clamp(52px,4vw,65px)] px-[19px] bg-[#111111] text-[#ffffff] rounded-[24px] shadow-[0_10px_35px_rgba(0,0,0,0.18)] flex items-center justify-between border border-black/10 transition-transform duration-300 hover:scale-[1.01]">
+      {/* Mobile: wider navbar pill; Desktop: clamp(260px, 22vw, 344px) */}
+      <div className="w-[calc(100vw-32px)] max-w-[390px] sm:w-[clamp(260px,22vw,344px)] h-[54px] sm:h-[clamp(52px,4vw,65px)] px-5 sm:px-[19px] bg-[#111111] text-[#ffffff] rounded-[24px] shadow-[0_10px_35px_rgba(0,0,0,0.18)] flex items-center justify-between border border-black/10 transition-transform duration-300 hover:scale-[1.01]">
         <a
           href="#top"
-          className="font-['Archivo',sans-serif] text-[clamp(18px,1.35vw,23.5px)] font-bold tracking-tight text-[#ffffff] hover:opacity-90 transition-opacity"
+          className="font-['Archivo',sans-serif] text-[19px] sm:text-[clamp(18px,1.35vw,23.5px)] font-bold tracking-tight text-[#ffffff] hover:opacity-90 transition-opacity"
         >
           Kinshuk
         </a>
@@ -26,7 +26,7 @@ export function TopPill({ className = "" }) {
           onClick={() => setMenuOpen((prev) => !prev)}
           aria-label="Open quick menu"
           aria-expanded={menuOpen}
-          className="w-[clamp(40px,3vw,48px)] h-[clamp(38px,2.9vw,46px)] rounded-[12px] bg-[#F5F3EE] text-[#111111] flex items-center justify-center transition-all cursor-pointer shadow-sm active:scale-95 hover:opacity-95"
+          className="w-[42px] sm:w-[clamp(40px,3vw,48px)] h-[40px] sm:h-[clamp(38px,2.9vw,46px)] rounded-[12px] bg-[#F5F3EE] text-[#111111] flex items-center justify-center transition-all cursor-pointer shadow-sm active:scale-95 hover:opacity-95"
         >
           <span className="flex items-center gap-[3px] text-[13px] leading-none font-bold text-[#111111]">
             <span>•</span>
@@ -43,7 +43,7 @@ export function TopPill({ className = "" }) {
             className="fixed inset-0 z-30 bg-black/10 backdrop-blur-[1px]"
             onClick={() => setMenuOpen(false)}
           />
-          <div className="absolute top-[72px] z-40 w-[clamp(260px,22vw,344px)] rounded-[20px] bg-[#111111] text-[#F5F3EE] border border-white/10 p-3 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+          <div className="absolute top-[66px] sm:top-[72px] z-40 w-[calc(100vw-32px)] max-w-[390px] sm:w-[clamp(260px,22vw,344px)] rounded-[20px] bg-[#111111] text-[#F5F3EE] border border-white/10 p-3 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
             <div className="px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider text-[#767676]">
               Navigation
             </div>

@@ -6,7 +6,16 @@ import { trackEvent } from "../../lib/analytics";
 
 export function Hero() {
   const [resumeOpen, setResumeOpen] = useState(false);
+  const [mobileFlipped, setMobileFlipped] = useState(false);
   const sectionRef = useRef(null);
+
+  // Automatically flip from black & white image to color image after 1 second on mobile
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMobileFlipped(true);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Dynamic layout & animation metrics to ensure pixel-perfect landing at Get Started button
   const [metrics, setMetrics] = useState(() => {
@@ -116,7 +125,7 @@ export function Hero() {
     <section
       id="top"
       ref={sectionRef}
-      className="relative z-20 w-full h-[100dvh] min-h-[640px] overflow-x-clip overflow-y-visible bg-[#F4F1ED] text-[#111111] font-['Archivo',sans-serif] flex flex-col justify-between select-none"
+      className="relative z-20 w-full min-h-[100dvh] sm:h-[100dvh] sm:min-h-[640px] overflow-x-clip overflow-y-visible bg-[#F4F1ED] text-[#111111] font-['Archivo',sans-serif] flex flex-col justify-between select-none"
     >
       {/* Subtle paper grain texture */}
       <div
@@ -127,90 +136,138 @@ export function Hero() {
         }}
       />
 
-      {/* Top spacer to ensure clear clearance below the top navbar */}
-      <div className="w-full pt-20 md:pt-24" />
+      {/* =========================================================================
+          DESKTOP HERO STAGE (sm:flex) - Preserves 100% of the original desktop design
+          ========================================================================= */}
+      <div className="hidden sm:flex flex-col justify-between w-full h-full flex-1">
+        {/* Top spacer to ensure clear clearance below the top navbar */}
+        <div className="w-full pt-20 md:pt-24" />
 
-      {/* Main Center Stage: SOFTWARE ENGINEER + Star + Lightning Bolt */}
-      <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center my-auto px-4 sm:px-8">
-        <div className="relative flex flex-col items-center justify-center w-full max-w-[1440px] mx-auto">
-          
-          {/* Row 1: SOFTWARE with Star placed comfortably in the left margin */}
-          <div className="relative inline-flex items-center justify-center">
-            {/* 3D Metallic Star */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                y: [-3, 3, -3],
-                rotate: [-8, -12, -8],
-              }}
-              transition={{
-                opacity: { duration: 0.6, delay: 0.15 },
-                scale: { duration: 0.6, delay: 0.15 },
-                y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-                rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-              }}
-              className="absolute -left-16 sm:-left-22 md:-left-26 lg:-left-32 -top-4 sm:-top-6 md:-top-8 w-[70px] sm:w-[90px] md:w-[105px] lg:w-[115px] h-[70px] sm:h-[90px] md:h-[105px] lg:h-[115px] z-30 pointer-events-none"
-            >
-              <MetallicStar />
-            </motion.div>
+        {/* Main Center Stage: SOFTWARE ENGINEER + Star + Lightning Bolt */}
+        <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center my-auto px-4 sm:px-8">
+          <div className="relative flex flex-col items-center justify-center w-full max-w-[1440px] mx-auto">
+            {/* Row 1: SOFTWARE with Star placed comfortably in the left margin */}
+            <div className="relative inline-flex items-center justify-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  y: [-3, 3, -3],
+                  rotate: [-8, -12, -8],
+                }}
+                transition={{
+                  opacity: { duration: 0.6, delay: 0.15 },
+                  scale: { duration: 0.6, delay: 0.15 },
+                  y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                  rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                }}
+                className="absolute -left-16 sm:-left-22 md:-left-26 lg:-left-32 -top-4 sm:-top-6 md:-top-8 w-[70px] sm:w-[90px] md:w-[105px] lg:w-[115px] h-[70px] sm:h-[90px] md:h-[105px] lg:h-[115px] z-30 pointer-events-none"
+              >
+                <MetallicStar />
+              </motion.div>
 
-            {/* Line 1 Text: SOFTWARE */}
-            <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(66px,11.8vw,196px)] font-black uppercase text-[#111111] leading-[0.88] tracking-[-0.045em] m-0 select-none text-center"
-              style={{ fontWeight: 950 }}
-            >
-              SOFTWARE
-            </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[clamp(66px,11.8vw,196px)] font-black uppercase text-[#111111] leading-[0.88] tracking-[-0.045em] m-0 select-none text-center"
+                style={{ fontWeight: 950 }}
+              >
+                SOFTWARE
+              </motion.h1>
+            </div>
+
+            {/* Row 2: ENGINEER with Lightning Bolt in the right margin */}
+            <div className="relative inline-flex items-center justify-center">
+              <motion.h1
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[clamp(66px,11.8vw,196px)] font-black uppercase text-[#111111] leading-[0.88] tracking-[-0.045em] m-0 select-none text-center"
+                style={{ fontWeight: 950 }}
+              >
+                ENGINEER
+              </motion.h1>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  y: [3, -3, 3],
+                  rotate: [10, 14, 10],
+                }}
+                transition={{
+                  opacity: { duration: 0.6, delay: 0.2 },
+                  scale: { duration: 0.6, delay: 0.2 },
+                  y: { duration: 4.5, repeat: Infinity, ease: "easeInOut" },
+                  rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                }}
+                className="absolute -right-14 sm:-right-18 md:-right-22 lg:-right-28 top-6 sm:top-8 md:top-10 w-[50px] sm:w-[65px] md:w-[75px] lg:w-[85px] h-[80px] sm:h-[105px] md:h-[120px] lg:h-[135px] z-30 pointer-events-none"
+              >
+                <MetallicLightning />
+              </motion.div>
+            </div>
           </div>
-
-          {/* Row 2: ENGINEER with Lightning Bolt in the right margin */}
-          <div className="relative inline-flex items-center justify-center">
-            {/* Line 2 Text: ENGINEER */}
-            <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(66px,11.8vw,196px)] font-black uppercase text-[#111111] leading-[0.88] tracking-[-0.045em] m-0 select-none text-center"
-              style={{ fontWeight: 950 }}
-            >
-              ENGINEER
-            </motion.h1>
-
-            {/* 3D Metallic Lightning Bolt */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                y: [3, -3, 3],
-                rotate: [10, 14, 10],
-              }}
-              transition={{
-                opacity: { duration: 0.6, delay: 0.2 },
-                scale: { duration: 0.6, delay: 0.2 },
-                y: { duration: 4.5, repeat: Infinity, ease: "easeInOut" },
-                rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-              }}
-              className="absolute -right-14 sm:-right-18 md:-right-22 lg:-right-28 top-6 sm:top-8 md:top-10 w-[50px] sm:w-[65px] md:w-[75px] lg:w-[85px] h-[80px] sm:h-[105px] md:h-[120px] lg:h-[135px] z-30 pointer-events-none"
-            >
-              <MetallicLightning />
-            </motion.div>
-          </div>
-
         </div>
+
+        {/* Desktop Footer Bar: ©2026, Tagline, Action Buttons */}
+        <footer className="relative z-30 pb-[20px] px-6 sm:px-10 lg:px-14 flex items-end justify-between w-full pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="ml-2 sm:ml-6 md:ml-12 lg:ml-20 text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-normal tracking-tight text-[#111111] leading-none select-none pointer-events-auto"
+          >
+            ©2026
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="flex items-end gap-3 sm:gap-4 pointer-events-auto"
+          >
+            <span className="hidden md:inline-block text-[#767676] text-xs sm:text-sm font-semibold tracking-wider font-mono uppercase mb-2 select-none">
+              /CREATING SINCE 2023
+            </span>
+
+            <div className="flex flex-col items-end gap-1.5 sm:gap-2">
+              <a
+                href="#projects"
+                onClick={() => trackEvent("cta_click", { cta: "view_projects", location: "hero" })}
+                className="px-4 py-2 sm:px-5 sm:py-2 rounded-xl bg-[#000000] text-[#ffffff] text-xs sm:text-sm font-semibold shadow-md hover:bg-neutral-800 transition-all hover:scale-[1.02] active:scale-95 text-center min-w-[125px] sm:min-w-[140px]"
+              >
+                View Projects
+              </a>
+
+              <a
+                href="#contact"
+                onClick={() => trackEvent("cta_click", { cta: "contact", location: "hero" })}
+                className="px-4 py-2 sm:px-5 sm:py-2 rounded-xl bg-[#000000] text-[#ffffff] text-xs sm:text-sm font-semibold shadow-md hover:bg-neutral-800 transition-all hover:scale-[1.02] active:scale-95 text-center min-w-[125px] sm:min-w-[140px]"
+              >
+                Get in Touch
+              </a>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setResumeOpen(true);
+                  trackEvent("resume_preview", { location: "hero" });
+                }}
+                className="px-4 py-2 sm:px-5 sm:py-2 rounded-xl bg-[#ffffff] text-[#000000] border border-black/10 text-xs sm:text-sm font-bold shadow-sm hover:bg-neutral-100 transition-all hover:scale-[1.02] active:scale-95 text-center min-w-[125px] sm:min-w-[140px] cursor-pointer"
+              >
+                Resume ↗
+              </button>
+            </div>
+          </motion.div>
+        </footer>
       </div>
 
-      {/* Centered Portrait Card:
-          - Increased width & height
-          - Bottom gap increased by 40% (now ~20px, bottom-[17px] sm:bottom-[20px])
-          - Curved from all 4 corners: rounded-[20px] sm:rounded-[22px]
-          - Overlaps the bottom of SOFTWARE ENGINEER
-      */}
+      {/* =========================================================================
+          DESKTOP 3D FLIPPING CARD (sm:block) - Only active on desktop/tablet screens
+          ========================================================================= */}
       <motion.div
         style={{
           y,
@@ -218,7 +275,7 @@ export function Hero() {
           height,
           perspective: 1400,
         }}
-        className="absolute bottom-[17px] sm:bottom-[20px] left-1/2 -translate-x-1/2 z-30 pointer-events-auto select-none"
+        className="hidden sm:block absolute bottom-[20px] left-1/2 -translate-x-1/2 z-30 pointer-events-auto select-none"
       >
         <motion.div
           style={{
@@ -266,65 +323,96 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Bottom Footer Bar:
-          - ©2026 on the bottom left
-          - /CREATING SINCE 2023 and stacked action buttons on the bottom right
-          - Bottom gap precisely aligned with the person portrait card (20px)
-      */}
-      <footer className="relative z-30 pb-[17px] sm:pb-[20px] px-6 sm:px-10 lg:px-14 flex items-end justify-between w-full pointer-events-none">
-        {/* Bottom Left: ©2026 */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="ml-2 sm:ml-6 md:ml-12 lg:ml-20 text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-normal tracking-tight text-[#111111] leading-none select-none pointer-events-auto"
-        >
-          ©2026
-        </motion.div>
-
-        {/* Bottom Right: Tagline + Stacked Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="flex items-end gap-3 sm:gap-4 pointer-events-auto"
-        >
-          {/* Metadata / Tagline */}
-          <span className="hidden md:inline-block text-[#767676] text-xs sm:text-sm font-semibold tracking-wider font-mono uppercase mb-2 select-none">
-            /CREATING SINCE 2023
-          </span>
-
-          {/* Stacked Action Buttons */}
-          <div className="flex flex-col items-end gap-1.5 sm:gap-2">
-            <a
-              href="#projects"
-              onClick={() => trackEvent("cta_click", { cta: "view_projects", location: "hero" })}
-              className="px-4 py-2 sm:px-5 sm:py-2 rounded-xl bg-[#000000] text-[#ffffff] text-xs sm:text-sm font-semibold shadow-md hover:bg-neutral-800 transition-all hover:scale-[1.02] active:scale-95 text-center min-w-[125px] sm:min-w-[140px]"
+      {/* =========================================================================
+          MOBILE HERO VIEW (sm:hidden) - Clean vertical flow, no overlap, static photo
+          ========================================================================= */}
+      <div className="flex sm:hidden flex-col justify-between items-center w-full min-h-[100dvh] pt-24 pb-6 px-5 z-10">
+        {/* Center Content: Decreased Title size + Static Photo directly underneath */}
+        <div className="flex flex-col items-center justify-center my-auto w-full gap-5">
+          {/* Decreased Title Size */}
+          <div className="flex flex-col items-center justify-center text-center">
+            <h1
+              className="text-[36px] xs:text-[42px] font-black uppercase text-[#111111] leading-[0.92] tracking-[-0.04em] m-0 select-none"
+              style={{ fontWeight: 950 }}
             >
-              View Projects
-            </a>
-
-            <a
-              href="#contact"
-              onClick={() => trackEvent("cta_click", { cta: "contact", location: "hero" })}
-              className="px-4 py-2 sm:px-5 sm:py-2 rounded-xl bg-[#000000] text-[#ffffff] text-xs sm:text-sm font-semibold shadow-md hover:bg-neutral-800 transition-all hover:scale-[1.02] active:scale-95 text-center min-w-[125px] sm:min-w-[140px]"
+              SOFTWARE
+            </h1>
+            <h1
+              className="text-[36px] xs:text-[42px] font-black uppercase text-[#111111] leading-[0.92] tracking-[-0.04em] m-0 select-none"
+              style={{ fontWeight: 950 }}
             >
-              Get in Touch
-            </a>
-
-            <button
-              type="button"
-              onClick={() => {
-                setResumeOpen(true);
-                trackEvent("resume_preview", { location: "hero" });
-              }}
-              className="px-4 py-2 sm:px-5 sm:py-2 rounded-xl bg-[#ffffff] text-[#000000] border border-black/10 text-xs sm:text-sm font-bold shadow-sm hover:bg-neutral-100 transition-all hover:scale-[1.02] active:scale-95 text-center min-w-[125px] sm:min-w-[140px] cursor-pointer"
-            >
-              Resume ↗
-            </button>
+              ENGINEER
+            </h1>
           </div>
-        </motion.div>
-      </footer>
+
+          {/* Mobile Photo Card: Shows B&W initially, automatically 3D-flips to Color Red after 2s */}
+          <div
+            className="w-[185px] xs:w-[205px] aspect-[3/4] max-h-[275px] select-none cursor-pointer"
+            style={{ perspective: 1000 }}
+            onClick={() => setMobileFlipped((prev) => !prev)}
+            title="Tap to flip photo"
+          >
+            <motion.div
+              animate={{ rotateY: mobileFlipped ? 180 : 0 }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="relative w-full h-full"
+            >
+              {/* FRONT FACE (0°): Black & White Portrait */}
+              <div
+                className="absolute inset-0 w-full h-full rounded-[22px] overflow-hidden bg-black border border-black/15 shadow-[0_12px_28px_rgba(0,0,0,0.16)]"
+                style={{
+                  backfaceVisibility: "hidden",
+                  WebkitBackfaceVisibility: "hidden",
+                  transform: "rotateY(0deg)",
+                }}
+              >
+                <img
+                  src="/images/hero-portrait-bw.webp"
+                  alt="Kinshuk Khandelwal - Software Engineer"
+                  className="w-full h-full object-cover object-center filter contrast-[1.08]"
+                  loading="eager"
+                />
+              </div>
+
+              {/* BACK FACE (180°): Color Red Studio Portrait */}
+              <div
+                className="absolute inset-0 w-full h-full rounded-[22px] overflow-hidden bg-[#111111] border border-black/10 shadow-[0_12px_28px_rgba(0,0,0,0.16)]"
+                style={{
+                  backfaceVisibility: "hidden",
+                  WebkitBackfaceVisibility: "hidden",
+                  transform: "rotateY(180deg)",
+                }}
+              >
+                <img
+                  src="/images/about-portrait-red.webp"
+                  alt="Kinshuk Khandelwal - Red Studio Portrait"
+                  className="w-full h-full object-cover object-center"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 rounded-[22px] ring-1 ring-inset ring-black/10 pointer-events-none" />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Mobile Footer: ©2026 only on left, Resume button only on right */}
+        <div className="w-full flex items-center justify-between pt-2 pb-1 select-none pointer-events-auto">
+          <span className="text-2xl xs:text-3xl font-normal tracking-tight text-[#111111] leading-none">
+            ©2026
+          </span>
+          <button
+            type="button"
+            onClick={() => {
+              setResumeOpen(true);
+              trackEvent("resume_preview", { location: "hero_mobile" });
+            }}
+            className="px-5 py-2.5 rounded-xl bg-[#ffffff] text-[#000000] border border-black/15 text-xs xs:text-sm font-bold shadow-sm hover:bg-neutral-100 transition-all active:scale-95 text-center cursor-pointer"
+          >
+            Resume ↗
+          </button>
+        </div>
+      </div>
 
       {/* Resume Modal */}
       <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />

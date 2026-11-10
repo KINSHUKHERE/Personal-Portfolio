@@ -43,8 +43,8 @@ export function About() {
           </p>
         </motion.div>
 
-        {/* Center Column: Invisible Placeholder reserving the exact footprint for 2nd image */}
-        <div className="shrink-0 flex flex-col justify-end items-center self-stretch invisible pointer-events-none" aria-hidden="true">
+        {/* Center Column: Invisible Placeholder reserving the exact footprint for 2nd image (Desktop only) */}
+        <div className="hidden sm:flex shrink-0 flex-col justify-end items-center self-stretch invisible pointer-events-none" aria-hidden="true">
           <div
             id="about-card-target"
             className="relative w-[clamp(280px,28vw,440px)] aspect-[4/5]"
@@ -86,7 +86,7 @@ export function About() {
 
       </div>
 
-      {/* 4 Key Metrics Bar */}
+      {/* 4 Key Metrics Bar - Single row on all devices */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -94,43 +94,43 @@ export function About() {
         transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 w-full max-w-[1480px] mx-auto mt-12 sm:mt-16 lg:mt-20 pt-8 sm:pt-10 border-t border-black/10"
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
+        <div className="grid grid-cols-4 gap-2 xs:gap-4 sm:gap-8 lg:gap-12">
           {/* Stat 1: CGPA */}
           <div className="flex flex-col">
-            <span className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
+            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
               7.96
             </span>
-            <span className="text-xs sm:text-sm font-mono uppercase text-[#767676] mt-2 tracking-wider font-semibold">
+            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight">
               CGPA
             </span>
           </div>
 
           {/* Stat 2: GitHub repos */}
           <div className="flex flex-col">
-            <span className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
+            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
               16+
             </span>
-            <span className="text-xs sm:text-sm font-mono uppercase text-[#767676] mt-2 tracking-wider font-semibold">
+            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight">
               GitHub Repos
             </span>
           </div>
 
           {/* Stat 3: DSA problems solved */}
           <div className="flex flex-col">
-            <span className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
+            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
               70+
             </span>
-            <span className="text-xs sm:text-sm font-mono uppercase text-[#767676] mt-2 tracking-wider font-semibold">
-              DSA Problems Solved
+            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight">
+              DSA Solved
             </span>
           </div>
 
           {/* Stat 4: Internships */}
           <div className="flex flex-col">
-            <span className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
+            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
               2
             </span>
-            <span className="text-xs sm:text-sm font-mono uppercase text-[#767676] mt-2 tracking-wider font-semibold">
+            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight">
               Internships
             </span>
           </div>
