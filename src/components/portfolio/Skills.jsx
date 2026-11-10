@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Section } from "./Section";
 import { skills } from "./data";
 
@@ -7,29 +8,34 @@ export function Skills() {
       id="skills"
       label="skills"
       title="The toolkit."
-      subtitle="Languages, frameworks and tools I reach for daily."
+      subtitle="Languages, frameworks, and developer tools I build with daily."
     >
-      <div className="grid gap-4 sm:grid-cols-2 sm:auto-rows-fr lg:grid-cols-3">
-        {skills.map((s) => (
-          <div
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {skills.map((s, index) => (
+          <motion.div
             key={s.group}
-            className="group relative overflow-hidden rounded-xl border border-border bg-surface/50 p-5 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-cyan-glow/40"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className="group relative flex flex-col justify-between overflow-hidden rounded-[24px] border border-black/10 bg-[#ffffff] p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
           >
-            <div className="font-mono-ui mb-3 text-[11px] uppercase tracking-wider text-cyan-glow/80">
-              {s.group}
+            <div>
+              <div className="font-mono mb-4 text-[11px] font-bold uppercase tracking-wider text-[#767676]">
+                // {s.group}
+              </div>
+              <ul className="flex flex-wrap gap-2">
+                {s.items.map((it) => (
+                  <li
+                    key={it}
+                    className="rounded-xl border border-black/10 bg-[#F4F1ED] px-3 py-1.5 text-xs font-semibold text-[#111111] hover:bg-[#111111] hover:text-[#ffffff] transition-colors cursor-default select-none"
+                  >
+                    {it}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="flex flex-wrap gap-2">
-              {s.items.map((it) => (
-                <li
-                  key={it}
-                  className="rounded-md border border-border bg-surface-hi/70 px-2.5 py-1 text-xs text-foreground/90"
-                >
-                  {it}
-                </li>
-              ))}
-            </ul>
-            <div className="pointer-events-none absolute -right-10 -top-10 size-32 rounded-full bg-cyan-glow/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
-          </div>
+          </motion.div>
         ))}
       </div>
     </Section>

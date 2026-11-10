@@ -10,7 +10,7 @@ const faqData = [
   },
   {
     q: "What is your primary technology stack?",
-    a: "My core expertise is the MERN stack (MongoDB, Express.js, React, Node.js). I also develop backend APIs in Java and scripts in Python."
+    a: "My core expertise is the MERN stack (MongoDB, Express.js, React, Node.js). I also develop high-performance REST APIs in Java and automation scripts in Python."
   },
   {
     q: "How do you handle remote collaboration and communication?",
@@ -44,24 +44,31 @@ export function Faq() {
         {faqData.map((item, index) => {
           const isOpen = activeIndex === index;
           return (
-            <div
+            <motion.div
               key={index}
-              className={`rounded-2xl border border-border/60 dark:border-white/10 bg-surface/50 dark:bg-white/[0.01] backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-cyan-glow/30 ${
-                isOpen ? "border-cyan-glow/50 bg-surface/80 dark:bg-white/[0.03] shadow-[0_0_20px_rgba(6,182,212,0.08)]" : ""
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.06 }}
+              className={`rounded-[22px] border bg-[#ffffff] overflow-hidden transition-all duration-300 shadow-sm ${
+                isOpen
+                  ? "border-black/30 shadow-md ring-1 ring-black/10"
+                  : "border-black/10 hover:border-black/25"
               }`}
             >
               <button
+                type="button"
                 onClick={() => toggleIndex(index)}
-                className="w-full flex items-center justify-between p-5 text-left font-mono-ui text-sm sm:text-base font-medium text-foreground transition-colors hover:text-cyan-glow dark:hover:text-cyan-400 cursor-pointer"
+                className="w-full flex items-center justify-between p-5 sm:p-6 text-left font-['Archivo',sans-serif] text-sm sm:text-base font-bold text-[#111111] hover:text-black cursor-pointer transition-colors"
               >
-                <div className="flex items-center gap-3">
-                  <HelpCircle className="size-4 shrink-0 text-cyan-500 dark:text-cyan-400" />
+                <div className="flex items-center gap-3.5 pr-2">
+                  <HelpCircle className="size-4 shrink-0 text-[#111111]" />
                   <span>{item.q}</span>
                 </div>
                 {isOpen ? (
-                  <ChevronUp className="size-4 text-cyan-500 dark:text-cyan-400 shrink-0 ml-3" />
+                  <ChevronUp className="size-4 text-[#111111] shrink-0 ml-2" />
                 ) : (
-                  <ChevronDown className="size-4 text-muted-foreground shrink-0 ml-3" />
+                  <ChevronDown className="size-4 text-[#767676] shrink-0 ml-2" />
                 )}
               </button>
               <AnimatePresence initial={false}>
@@ -72,13 +79,13 @@ export function Faq() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.25, ease: "easeInOut" }}
                   >
-                    <div className="px-5 pb-5 pt-1 border-t border-border/40 dark:border-white/5 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-black/5 text-xs sm:text-sm text-[#555555] leading-relaxed">
                       {item.a}
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           );
         })}
       </div>

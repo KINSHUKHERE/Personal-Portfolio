@@ -5,6 +5,10 @@ import { Hero } from "./components/portfolio/Hero";
 import { Projects } from "./components/portfolio/Projects";
 import { SmoothScroll } from "./components/portfolio/SmoothScroll";
 import { About } from "./components/portfolio/About";
+import { Experience } from "./components/portfolio/Experience";
+import { Skills } from "./components/portfolio/Skills";
+import { Education } from "./components/portfolio/Education";
+import { Faq } from "./components/portfolio/Faq";
 import { TopPill } from "./components/portfolio/TopPill";
 import { ErrorPage } from "./components/portfolio/ErrorPage";
 import { CaseStudyYoCart } from "./components/portfolio/CaseStudyYoCart";
@@ -123,7 +127,11 @@ export default function App() {
       <main className="relative min-h-screen bg-[#F4F1ED] text-[#111111] font-['Archivo',sans-serif]">
         <Hero />
         <About />
+        <Experience />
+        <Skills />
         <Projects />
+        <Education />
+        <Faq />
         <Contact />
       </main>
       <Footer />

@@ -63,11 +63,39 @@ export function TopPill({ className = "" }) {
                 About
               </a>
               <a
+                href="#experience"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-semibold hover:bg-white/10 transition-colors"
+              >
+                Experience
+              </a>
+              <a
+                href="#skills"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-semibold hover:bg-white/10 transition-colors"
+              >
+                Skills
+              </a>
+              <a
                 href="#projects"
                 onClick={() => setMenuOpen(false)}
                 className="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-semibold hover:bg-white/10 transition-colors"
               >
                 Projects
+              </a>
+              <a
+                href="#education"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-semibold hover:bg-white/10 transition-colors"
+              >
+                Education
+              </a>
+              <a
+                href="#faq"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-semibold hover:bg-white/10 transition-colors"
+              >
+                FAQ
               </a>
               <a
                 href="#contact"

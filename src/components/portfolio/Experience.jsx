@@ -76,10 +76,11 @@ export function Experience() {
       subtitle="From open-source contributions to real production internships."
     >
       <div ref={wrapRef} className="relative mx-auto max-w-5xl">
-        <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-border/60 md:left-1/2 md:-translate-x-1/2">
+        {/* Animated Vertical Line */}
+        <div className="pointer-events-none absolute left-4 top-0 h-full w-px bg-black/10 md:left-1/2 md:-translate-x-1/2">
           <div
             ref={lineRef}
-            className="h-full w-full origin-top bg-gradient-to-b from-cyan-glow via-violet-glow to-cyan-glow/0"
+            className="h-full w-full origin-top bg-gradient-to-b from-[#111111] via-neutral-700 to-[#111111]/10"
           />
         </div>
 
@@ -89,11 +90,12 @@ export function Experience() {
             const tech = techMap[e.company] || [];
             return (
               <li key={e.role + e.company} className="relative">
+                {/* Timeline Dot */}
                 <span
                   data-exp-dot
-                  className="absolute left-4 top-6 z-10 grid size-3.5 -translate-x-1/2 place-items-center rounded-full border border-cyan-glow/60 bg-background md:left-1/2"
+                  className="absolute left-4 top-6 z-10 grid size-3.5 -translate-x-1/2 place-items-center rounded-full border border-black/20 bg-[#F4F1ED] md:left-1/2"
                 >
-                  <span className="size-1.5 rounded-full bg-cyan-glow shadow-[0_0_12px_2px_var(--cyan-glow)]" />
+                  <span className="size-1.5 rounded-full bg-[#111111] shadow-[0_0_8px_rgba(0,0,0,0.3)]" />
                 </span>
 
                 <div className="grid md:grid-cols-2 md:gap-12">
@@ -101,20 +103,20 @@ export function Experience() {
                     <div
                       data-exp-card
                       data-side={right ? "right" : "left"}
-                      className="ml-10 rounded-2xl border border-border border-t-4 border-t-cyan-glow bg-surface/60 p-6 backdrop-blur transition-colors hover:border-cyan-glow/50 md:ml-0"
+                      className="ml-10 rounded-[24px] border border-black/10 bg-[#ffffff] p-6 sm:p-7 shadow-sm hover:shadow-md transition-all hover:border-black/20 md:ml-0 text-[#111111]"
                     >
-                      <div className="font-mono-ui flex items-center gap-2 text-xs text-cyan-glow">
-                        <Briefcase className="size-3.5" />
+                      <div className="font-mono flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#767676]">
+                        <Briefcase className="size-3.5 text-[#111111]" />
                         <span>{e.period}</span>
                       </div>
-                      <h3 className="mt-3 text-xl font-semibold text-foreground">{e.company}</h3>
-                      <p className="text-sm text-muted-foreground">{e.role}</p>
-                      <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                      <h3 className="mt-3 text-xl font-bold text-[#111111]">{e.company}</h3>
+                      <p className="text-sm font-semibold text-[#767676]">{e.role}</p>
+                      <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[#444444]">
                         {e.points.map((pt) => (
-                          <li key={pt} className="flex gap-2">
+                          <li key={pt} className="flex gap-2.5 items-start">
                             <span
                               aria-hidden
-                              className="mt-2 size-1.5 shrink-0 rounded-full bg-cyan-glow/80 shadow-[0_0_8px_var(--cyan-glow)]"
+                              className="mt-2 size-1.5 shrink-0 rounded-full bg-[#111111]"
                             />
                             <span>{pt}</span>
                           </li>
@@ -125,7 +127,7 @@ export function Experience() {
                           {tech.map((t) => (
                             <li
                               key={t}
-                              className="font-mono-ui rounded-full border border-cyan-glow/20 bg-cyan-glow/10 px-2.5 py-0.5 text-[11px] font-semibold text-cyan-glow"
+                              className="font-mono rounded-full border border-black/10 bg-black/5 px-2.5 py-0.5 text-[11px] font-semibold text-[#111111]"
                             >
                               {t}
                             </li>
