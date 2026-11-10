@@ -1,11 +1,11 @@
-import { Github, ExternalLink, BookOpen } from "lucide-react";
+import { Github, ExternalLink, BookOpen, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 import { Section } from "./Section";
 import { featuredProjects, secondaryProjects } from "./data";
 import { trackEvent } from "../../lib/analytics";
 import { linkHandler } from "../../lib/navigation";
 
-function TiltCard({ children, isFeatured }) {
+function TiltCard({ children }) {
   const ref = useRef(null);
   const onMove = (e) => {
     const el = ref.current;
@@ -13,38 +13,40 @@ function TiltCard({ children, isFeatured }) {
     const r = el.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width - 0.5;
     const y = (e.clientY - r.top) / r.height - 0.5;
-    el.style.transform = `perspective(900px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(
-      x * 8
+    el.style.transform = `perspective(900px) rotateX(${(-y * 4).toFixed(2)}deg) rotateY(${(
+      x * 6
     ).toFixed(2)}deg) translateY(-2px)`;
   };
   const onLeave = () => {
     if (ref.current) ref.current.style.transform = "";
   };
-  const borderTopClass = isFeatured ? "border-t-cyan-glow" : "border-t-violet-glow";
+
   return (
     <div
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border border-t-4 ${borderTopClass} bg-surface/60 backdrop-blur transition-[transform,border-color,box-shadow] duration-200 will-change-transform hover:border-cyan-glow/50`}
+      className="group relative flex h-full flex-col overflow-hidden rounded-[28px] sm:rounded-[32px] bg-[#111113] text-[#F4F1ED] border border-black/10 transition-[transform,box-shadow] duration-200 will-change-transform shadow-[0_12px_36px_rgba(0,0,0,0.18)] hover:shadow-[0_20px_48px_rgba(0,0,0,0.28)]"
       style={{ transformStyle: "preserve-3d" }}
     >
+      {/* Subtle fine noise overlay on dark card matching reference */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20 mix-blend-overlay z-10"
+        style={{
+          backgroundImage: "url('/images/noise.png')",
+          backgroundRepeat: "repeat",
+        }}
+      />
       {children}
     </div>
   );
 }
 
 function Card({ p, isFeatured }) {
-  const accentClass = isFeatured ? "cyan-glow" : "violet-glow";
-  const badgeClass = isFeatured
-    ? "border-cyan-glow/20 bg-cyan-glow/10 text-cyan-glow"
-    : "border-violet-glow/20 bg-violet-glow/10 text-violet-glow";
-  const hoverClass = isFeatured ? "hover:border-cyan-glow/60 hover:text-cyan-glow" : "hover:border-violet-glow/60 hover:text-violet-glow";
-
   return (
-    <TiltCard isFeatured={isFeatured}>
+    <TiltCard>
       {p.image && (
-        <div className="relative aspect-video w-full overflow-hidden border-b border-border/60">
+        <div className="relative aspect-video w-full overflow-hidden border-b border-white/10">
           <img
             src={p.image}
             alt={`${p.title} preview`}
@@ -53,99 +55,102 @@ function Card({ p, isFeatured }) {
             height={450}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent"
-          />
         </div>
       )}
-      <div className="flex flex-1 flex-col p-6">
-      <div className={`font-mono-ui flex items-center justify-between text-[11px] uppercase tracking-wider text-${accentClass}/85`}>
-        <span>{p.tag}</span>
+      <div className="relative z-20 flex flex-1 flex-col p-7 sm:p-8 justify-between">
+        <div>
+          {/* Top tag in muted light uppercase */}
+          <div className="font-mono flex items-center justify-between text-[11px] uppercase tracking-wider text-[#a1a1aa] mb-3">
+            <span>{p.tag}</span>
+          </div>
+
+          {/* Project Title in pure bold white Archivo */}
+          <h3 className="text-2xl sm:text-[26px] font-bold leading-snug text-[#ffffff] tracking-[-0.02em]">
+            {p.title}
+          </h3>
+
+          {/* Description matching the testimonial card paragraph style */}
+          <p className="mt-3.5 text-sm sm:text-[15px] leading-relaxed text-[#d4d4d8] font-normal">
+            {p.description}
+          </p>
+
+          {/* Stack Pills with dark glass background and light text */}
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {p.stack.map((s) => (
+              <li
+                key={s}
+                className="rounded-lg bg-white/10 px-2.5 py-1 text-[11px] font-medium text-white/90 border border-white/5"
+              >
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Action Buttons in Black & White Theme */}
+        <div className="flex flex-wrap items-center gap-2.5 pt-8 mt-4 border-t border-white/10">
+          {p.live && (
+            <a
+              href={p.live}
+              onClick={() =>
+                trackEvent("project_link_click", {
+                  project: p.title,
+                  link_type: "live_demo",
+                  featured: isFeatured,
+                })
+              }
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-[#ffffff] text-[#000000] px-4 py-2 text-xs font-semibold transition-all hover:bg-neutral-200 hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+            >
+              <span>Live Demo</span>
+              <ArrowUpRight className="size-3.5" />
+            </a>
+          )}
+          {p.github && (
+            <a
+              href={p.github}
+              onClick={() =>
+                trackEvent("project_link_click", {
+                  project: p.title,
+                  link_type: "github",
+                  featured: isFeatured,
+                })
+              }
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-white/20 bg-white/5 text-white px-3.5 py-2 text-xs font-semibold transition-all hover:bg-white/15 hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <Github className="size-3.5" />
+              GitHub
+            </a>
+          )}
+          {p.caseStudy && (
+            <a
+              href={p.caseStudy}
+              onClick={(e) => {
+                trackEvent("project_link_click", { project: p.title, link_type: "case_study" });
+                linkHandler(p.caseStudy)(e);
+              }}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-white/20 bg-white/5 text-white px-3.5 py-2 text-xs font-semibold transition-all hover:bg-white/15 hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <BookOpen className="size-3.5" />
+              Case study
+            </a>
+          )}
+        </div>
       </div>
-      <h3 className="mt-4 text-xl font-semibold leading-snug text-foreground">{p.title}</h3>
-      <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
-      <ul className="mt-5 flex flex-wrap gap-2">
-        {p.stack.map((s) => (
-          <li
-            key={s}
-            className={`rounded-md border ${badgeClass} px-2 py-0.5 text-[11px] font-semibold`}
-          >
-            {s}
-          </li>
-        ))}
-      </ul>
-      <div className="mt-auto flex flex-wrap items-center gap-2 pt-6">
-        {p.github && (
-          <a
-            href={p.github}
-            onClick={() =>
-              trackEvent("project_link_click", {
-                project: p.title,
-                link_type: "github",
-                featured: isFeatured,
-              })
-            }
-            target="_blank"
-            rel="noreferrer"
-            className={`inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-hi/70 px-3 py-1.5 text-xs text-foreground/90 transition-colors ${hoverClass}`}
-          >
-            <Github className="size-3.5" />
-            Link
-          </a>
-        )}
-        {p.live && (
-          <a
-            href={p.live}
-            onClick={() =>
-              trackEvent("project_link_click", {
-                project: p.title,
-                link_type: "live_demo",
-                featured: isFeatured,
-              })
-            }
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-all hover:brightness-110"
-          >
-            <ExternalLink className="size-3.5" />
-            Demo
-          </a>
-        )}
-        {p.caseStudy && (
-          <a
-            href={p.caseStudy}
-            onClick={(e) => {
-              trackEvent("project_link_click", { project: p.title, link_type: "case_study" });
-              linkHandler(p.caseStudy)(e);
-            }}
-            className="inline-flex items-center gap-1.5 rounded-full border border-cyan-glow/40 bg-cyan-glow/10 px-3 py-1.5 text-xs font-medium text-cyan-glow transition-colors hover:border-cyan-glow hover:bg-cyan-glow/20"
-          >
-            <BookOpen className="size-3.5" />
-            Case study
-          </a>
-        )}
-      </div>
-      </div>
-      <div
-        aria-hidden
-        className={`pointer-events-none absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-transparent via-${accentClass}/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100`}
-      />
     </TiltCard>
   );
 }
 
-/**
- * Flex-wrap rather than a grid so a trailing incomplete row centres itself
- * instead of leaving an orphan card hugging the left edge.
- */
 function ProjectGrid({ items, isFeatured }) {
   return (
-    <div className="flex flex-wrap justify-center gap-5">
+    <div className="flex flex-wrap justify-center gap-6 sm:gap-7">
       {items.map((p) => (
         <div
           key={p.title}
-          className="w-full md:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)]"
+          className="w-full md:w-[calc(50%-0.875rem)] lg:w-[calc(33.333%-1.2rem)]"
         >
           <Card p={p} isFeatured={isFeatured} />
         </div>
@@ -157,11 +162,11 @@ function ProjectGrid({ items, isFeatured }) {
 function GroupHeading({ kicker, title }) {
   return (
     <div className="mb-6 flex items-center gap-4">
-      <span className="font-mono-ui text-[11px] uppercase tracking-wider text-cyan-glow/80">
+      <span className="font-mono text-xs uppercase tracking-wider text-[#767676]">
         // {kicker}
       </span>
-      <h3 className="text-lg font-medium text-foreground/90">{title}</h3>
-      <div className="ml-2 h-px flex-1 bg-gradient-to-r from-border to-transparent" />
+      <h3 className="text-base sm:text-lg font-semibold text-[#111111] tracking-tight">{title}</h3>
+      <div className="ml-2 h-px flex-1 bg-[#e2ded7]" />
     </div>
   );
 }
@@ -171,14 +176,14 @@ export function Projects() {
     <Section
       id="projects"
       label="projects"
-      title="Selected work."
-      subtitle="A few things I've designed, built and shipped."
+      title="Selected Work."
+      subtitle="Production full-stack platforms, scalable architectures, and responsive web applications."
     >
-      <GroupHeading kicker="highlighted" title="The work I'd show you first" />
+      <GroupHeading kicker="featured" title="Featured Platforms" />
       <ProjectGrid items={featuredProjects} isFeatured={true} />
 
-      <div className="mt-16">
-        <GroupHeading kicker="more" title="Responsive frontends and side projects" />
+      <div className="mt-16 sm:mt-20">
+        <GroupHeading kicker="more" title="Additional Applications & Tools" />
         <ProjectGrid items={secondaryProjects} isFeatured={false} />
       </div>
     </Section>

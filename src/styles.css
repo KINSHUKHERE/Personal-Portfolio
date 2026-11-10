@@ -2,8 +2,6 @@
 @import "tw-animate-css";
 @source "../src";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -35,51 +33,46 @@
   --color-surface: var(--surface);
   --color-surface-hi: var(--surface-hi);
 
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-archivo: "Archivo", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
 :root {
   --radius: 0.75rem;
 
-  /* Light Theme Variables */
-  --background: #f1f5f9;
-  --foreground: #0f172a;
+  /* Exact Light Theme Design System Tokens (Majd Editorial Style) */
+  --background: #F4F1ED;
+  --foreground: #111111;
 
   --surface: #ffffff;
-  --surface-hi: #cbd5e1;
+  --surface-hi: #eae6e0;
 
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #111111;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
+  --popover-foreground: #111111;
 
-  --primary: #0d9488;
-  --primary-foreground: #ffffff;
-  --cyan-glow: #0d9488;
-  --violet-glow: #4f46e5;
+  --primary: #000000;
+  --primary-foreground: #F4F1ED;
+  --cyan-glow: #111111;
+  --violet-glow: #767676;
 
-  --secondary: #e2e8f0;
-  --secondary-foreground: #0f172a;
+  --secondary: #ede9e2;
+  --secondary-foreground: #111111;
 
-  --muted: #f1f5f9;
-  --muted-foreground: #334155;
+  --muted: #f2eee8;
+  --muted-foreground: #767676;
 
-  --accent: #f1f5f9;
-  --accent-foreground: #0f172a;
+  --accent: #ede9e2;
+  --accent-foreground: #111111;
 
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
-  --border: #cbd5e1;
-  --input: #cbd5e1;
-  --ring: #0d9488;
-
-  --chart-1: #0d9488;
-  --chart-2: #7c3aed;
-  --chart-3: #10b981;
-  --chart-4: #f59e0b;
-  --chart-5: #ef4444;
+  --border: #e2ded7;
+  --input: #e2ded7;
+  --ring: #111111;
 
   --sidebar: var(--surface);
   --sidebar-foreground: var(--foreground);
@@ -91,45 +84,6 @@
   --sidebar-ring: var(--ring);
 
   --grid-color: color-mix(in oklab, black 6%, transparent);
-  --map-filter: invert(15%) hue-rotate(180deg);
-}
-
-.dark {
-  /* Dark Theme Variables */
-  --map-filter: invert(90%) hue-rotate(180deg);
-  --background: oklch(0.14 0.012 264);
-  --foreground: oklch(0.97 0.005 240);
-
-  --surface: oklch(0.18 0.014 264);
-  --surface-hi: oklch(0.22 0.018 264);
-
-  --card: oklch(0.17 0.013 264);
-  --card-foreground: oklch(0.97 0.005 240);
-  --popover: oklch(0.17 0.013 264);
-  --popover-foreground: oklch(0.97 0.005 240);
-
-  --primary: oklch(0.82 0.16 200);          /* neon cyan */
-  --primary-foreground: oklch(0.16 0.014 264);
-  --cyan-glow: oklch(0.82 0.16 200);
-  --violet-glow: oklch(0.72 0.18 295);
-
-  --secondary: oklch(0.24 0.018 264);
-  --secondary-foreground: oklch(0.97 0.005 240);
-
-  --muted: oklch(0.24 0.018 264);
-  --muted-foreground: oklch(0.68 0.018 256);
-
-  --accent: oklch(0.28 0.04 295);
-  --accent-foreground: oklch(0.97 0.005 240);
-
-  --destructive: oklch(0.65 0.22 22);
-  --destructive-foreground: oklch(0.98 0.005 240);
-
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.82 0.16 200);
-
-  --grid-color: color-mix(in oklab, white 4%, transparent);
 }
 
 @layer base {
@@ -143,7 +97,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-display);
+    font-family: var(--font-archivo);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
@@ -155,8 +109,8 @@
     min-height: 100vh;
   }
   ::selection {
-    background-color: color-mix(in oklab, var(--cyan-glow) 35%, transparent);
-    color: var(--foreground);
+    background-color: #111111;
+    color: #F4F1ED;
   }
 }
 
@@ -165,17 +119,16 @@
   font-feature-settings: "ss01", "cv11";
 }
 
+@utility font-archivo {
+  font-family: var(--font-archivo);
+}
+
 @utility text-gradient {
-  background-image: linear-gradient(90deg, var(--cyan-glow), var(--violet-glow));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #111111;
 }
 
 @utility glow-ring {
-  box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--cyan-glow) 35%, transparent),
-    0 0 40px -8px color-mix(in oklab, var(--cyan-glow) 45%, transparent);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 @utility grid-bg {
@@ -185,81 +138,7 @@
   background-size: 56px 56px;
 }
 
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-@utility cursor-blink {
-  animation: blink 1s steps(1) infinite;
-}
-
-@keyframes float-y {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-@utility float-slow {
-  animation: float-y 6s ease-in-out infinite;
-}
-
-@keyframes marquee-x {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.marquee-viewport { width: max-content; }
-.marquee-track {
-  animation: marquee-x 30s linear infinite;
-}
-.marquee-viewport:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-
-@media (hover: none), (prefers-reduced-motion: reduce) {
-  .perspective-stage__inner {
-    transform: none !important;
-  }
-}
-
-@keyframes glow-drift-1 {
-  0%, 100% {
-    transform: translate(-50%, 0) scale(1);
-  }
-  25% {
-    transform: translate(-46%, 4%) scale(1.08);
-  }
-  50% {
-    transform: translate(-54%, -3%) scale(0.95);
-  }
-  75% {
-    transform: translate(-48%, -6%) scale(1.04);
-  }
-}
-
-@keyframes glow-drift-2 {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(-6%, 5%) scale(0.92);
-  }
-  66% {
-    transform: translate(4%, -4%) scale(1.06);
-  }
-}
-
-@utility animate-glow-drift-1 {
-  animation: glow-drift-1 25s ease-in-out infinite;
-}
-
-@utility animate-glow-drift-2 {
-  animation: glow-drift-2 20s ease-in-out infinite;
-}
-
-/* ==========================================================================
-   Theme-Adaptive Custom Scrollbars (Terminal & General)
-   ========================================================================== */
-
-/* WebKit (Chrome, Edge, Safari) */
+/* Scrollbars for light theme */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -276,61 +155,18 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 116, 139, 0.35);
+  background-color: rgba(118, 118, 118, 0.35);
   border-radius: 9999px;
   transition: background-color 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--cyan-glow);
+  background-color: #111111;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.18);
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--cyan-glow);
-}
-
-/* Firefox */
 html,
 body,
 .terminal-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgba(100, 116, 139, 0.35) transparent;
+  scrollbar-color: rgba(118, 118, 118, 0.35) transparent;
 }
-
-.dark html,
-.dark body,
-.dark .terminal-scroll {
-  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
-}
-
-/* Dedicated Terminal scroll styling */
-.terminal-scroll::-webkit-scrollbar {
-  width: 5px;
-}
-
-.terminal-scroll::-webkit-scrollbar-track {
-  background: transparent;
-  margin: 6px 0;
-}
-
-.terminal-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 116, 139, 0.4);
-  border-radius: 9999px;
-}
-
-.terminal-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: var(--cyan-glow);
-}
-
-.dark .terminal-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.dark .terminal-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: var(--cyan-glow);
-}
-

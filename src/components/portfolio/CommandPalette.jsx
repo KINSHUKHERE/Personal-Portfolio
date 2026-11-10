@@ -2,8 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  Search, User, Wrench, FolderGit2, Briefcase, GraduationCap, HelpCircle,
-  Mail, FileText, Github, Linkedin, Sun, Moon, BookOpen, CornerDownLeft,
+  Search, User, FolderGit2, Mail, FileText, Github, Linkedin, BookOpen, CornerDownLeft,
 } from "lucide-react";
 import { profile } from "./data";
 import { trackEvent } from "../../lib/analytics";
@@ -11,13 +10,6 @@ import { trackEvent } from "../../lib/analytics";
 function scrollToId(id) {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
-function toggleTheme() {
-  const root = document.documentElement;
-  const next = root.classList.contains("dark") ? "light" : "dark";
-  root.classList.toggle("dark", next === "dark");
-  localStorage.setItem("theme", next);
 }
 
 export function CommandPalette({ onNavigate }) {
@@ -31,7 +23,6 @@ export function CommandPalette({ onNavigate }) {
     const go = (id) => () => {
       if (window.location.pathname !== "/") {
         onNavigate("/");
-        // Let the home route mount before hunting for the section.
         setTimeout(() => scrollToId(id), 80);
       } else {
         scrollToId(id);
@@ -39,12 +30,9 @@ export function CommandPalette({ onNavigate }) {
     };
 
     return [
+      { group: "Navigate", label: "Hero", icon: User, run: go("top") },
       { group: "Navigate", label: "About", icon: User, run: go("about") },
-      { group: "Navigate", label: "Skills", icon: Wrench, run: go("skills") },
-      { group: "Navigate", label: "Experience", icon: Briefcase, run: go("experience") },
       { group: "Navigate", label: "Projects", icon: FolderGit2, run: go("projects") },
-      { group: "Navigate", label: "Education", icon: GraduationCap, run: go("education") },
-      { group: "Navigate", label: "FAQ", icon: HelpCircle, run: go("faq") },
       { group: "Navigate", label: "Contact", icon: Mail, run: go("contact") },
 
       {
@@ -65,12 +53,6 @@ export function CommandPalette({ onNavigate }) {
         label: "Email me",
         icon: Mail,
         run: () => { window.location.href = `mailto:${profile.email}`; },
-      },
-      {
-        group: "Actions",
-        label: "Toggle theme",
-        icon: document.documentElement.classList.contains("dark") ? Sun : Moon,
-        run: toggleTheme,
       },
 
       {
@@ -97,15 +79,17 @@ export function CommandPalette({ onNavigate }) {
   }, [items, query]);
 
   useEffect(() => {
+    setActive(0);
+  }, [query]);
+
+  useEffect(() => {
     const onKey = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setOpen((o) => {
-          if (!o) trackEvent("command_palette_open");
-          return !o;
-        });
+        setOpen((o) => !o);
+      } else if (e.key === "Escape") {
+        setOpen(false);
       }
-      if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -113,16 +97,12 @@ export function CommandPalette({ onNavigate }) {
 
   useEffect(() => {
     if (open) {
+      setTimeout(() => inputRef.current?.focus(), 50);
+      trackEvent("command_palette_open");
+    } else {
       setQuery("");
-      setActive(0);
-      // Focus after the entry animation starts, or the caret jumps.
-      requestAnimationFrame(() => inputRef.current?.focus());
     }
   }, [open]);
-
-  useEffect(() => {
-    setActive(0);
-  }, [query]);
 
   const select = useCallback(
     (item) => {
@@ -166,7 +146,7 @@ export function CommandPalette({ onNavigate }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
           onClick={() => setOpen(false)}
-          className="fixed inset-0 z-[100] flex items-start justify-center bg-black/60 px-4 pt-[12vh] backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-start justify-center bg-black/40 px-4 pt-[12vh] backdrop-blur-sm font-['Archivo',sans-serif]"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.97, y: -8 }}
@@ -177,10 +157,10 @@ export function CommandPalette({ onNavigate }) {
             role="dialog"
             aria-modal="true"
             aria-label="Command palette"
-            className="w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl"
+            className="w-full max-w-lg overflow-hidden rounded-2xl border border-[#e2ded7] bg-[#ffffff] shadow-2xl"
           >
-            <div className="flex items-center gap-3 border-b border-border px-4">
-              <Search className="size-4 shrink-0 text-muted-foreground" />
+            <div className="flex items-center gap-3 border-b border-[#e2ded7] px-4">
+              <Search className="size-4 shrink-0 text-[#767676]" />
               <input
                 ref={inputRef}
                 value={query}
@@ -188,16 +168,16 @@ export function CommandPalette({ onNavigate }) {
                 onKeyDown={onKeyDown}
                 placeholder="Jump to a section, grab my resume..."
                 aria-label="Search commands"
-                className="font-mono-ui w-full bg-transparent py-4 text-sm text-foreground caret-cyan-glow outline-none placeholder:text-muted-foreground/60"
+                className="w-full bg-transparent py-4 text-sm text-[#111111] caret-black outline-none placeholder:text-[#767676]/60 font-['Archivo',sans-serif]"
               />
-              <kbd className="font-mono-ui shrink-0 rounded border border-border bg-surface-hi/60 px-1.5 py-0.5 text-[10px] text-muted-foreground">
+              <kbd className="shrink-0 rounded border border-[#e2ded7] bg-[#f2eee8] px-1.5 py-0.5 text-[10px] text-[#767676] font-mono">
                 ESC
               </kbd>
             </div>
 
             <div ref={listRef} className="max-h-[52vh] overflow-y-auto p-2">
               {filtered.length === 0 ? (
-                <p className="font-mono-ui px-3 py-6 text-center text-xs text-muted-foreground">
+                <p className="px-3 py-6 text-center text-xs text-[#767676] font-mono">
                   Nothing matches "{query}"
                 </p>
               ) : (
@@ -208,7 +188,7 @@ export function CommandPalette({ onNavigate }) {
                   return (
                     <div key={item.group + item.label}>
                       {showGroup && (
-                        <div className="font-mono-ui px-3 pb-1 pt-3 text-[10px] uppercase tracking-wider text-muted-foreground/70">
+                        <div className="px-3 pb-1 pt-3 text-[10px] uppercase tracking-wider text-[#767676] font-mono">
                           {item.group}
                         </div>
                       )}
@@ -216,15 +196,15 @@ export function CommandPalette({ onNavigate }) {
                         data-index={i}
                         onMouseMove={() => setActive(i)}
                         onClick={() => select(item)}
-                        className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors cursor-pointer ${
+                        className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors cursor-pointer ${
                           i === active
-                            ? "bg-cyan-glow/10 text-cyan-glow"
-                            : "text-foreground/85 hover:bg-surface-hi/40"
+                            ? "bg-[#111111] text-[#F4F1ED]"
+                            : "text-[#111111] hover:bg-[#f2eee8]"
                         }`}
                       >
                         <Icon className="size-4 shrink-0" />
-                        <span className="flex-1">{item.label}</span>
-                        {i === active && <CornerDownLeft className="size-3.5 opacity-60" />}
+                        <span className="flex-1 font-medium">{item.label}</span>
+                        {i === active && <CornerDownLeft className="size-3.5 opacity-70" />}
                       </button>
                     </div>
                   );

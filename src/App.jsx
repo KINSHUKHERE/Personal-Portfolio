@@ -1,29 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { Backdrop } from "./components/portfolio/Backdrop";
 import { Contact } from "./components/portfolio/Contact";
-import { Education } from "./components/portfolio/Education";
-import { Experience } from "./components/portfolio/Experience";
 import { Footer } from "./components/portfolio/Footer";
 import { Hero } from "./components/portfolio/Hero";
-import { Marquee } from "./components/portfolio/Marquee";
-import { Nav } from "./components/portfolio/Nav";
-import { PerspectiveStage } from "./components/portfolio/PerspectiveStage";
 import { Projects } from "./components/portfolio/Projects";
-import { ScrollProgress } from "./components/portfolio/ScrollProgress";
-import { Skills } from "./components/portfolio/Skills";
 import { SmoothScroll } from "./components/portfolio/SmoothScroll";
 import { About } from "./components/portfolio/About";
+import { TopPill } from "./components/portfolio/TopPill";
 import { ErrorPage } from "./components/portfolio/ErrorPage";
-import { Faq } from "./components/portfolio/Faq";
 import { CaseStudyYoCart } from "./components/portfolio/CaseStudyYoCart";
 import { CommandPalette } from "./components/portfolio/CommandPalette";
 import { trackEvent, trackPageview } from "./lib/analytics";
 import { navigate } from "./lib/navigation";
 
-const HOME_TITLE = "Kinshuk Khandelwal - MERN Stack Developer";
+const HOME_TITLE = "Kinshuk Khandelwal - Software Engineer";
 
-// Client-side routes served off index.html (see netlify.toml). Titles live here
-// so a child page can't race the parent's title effect.
 const ROUTES = {
   "/case-study/yocart": {
     title: "YoCart Case Study - Kinshuk Khandelwal",
@@ -44,8 +34,6 @@ export default function App() {
   const route = ROUTES[currentPath.replace(/\/$/, "")] ?? null;
   useDocumentTitle(route ? route.title : HOME_TITLE);
 
-  // The initial page_view is sent by initAnalytics(); this only reports the
-  // client-side path changes that follow (e.g. landing on / leaving the 404).
   const isFirstPath = useRef(true);
   useEffect(() => {
     const isKnown = currentPath === "/" || ROUTES[currentPath.replace(/\/$/, "")];
@@ -104,7 +92,12 @@ export default function App() {
   if (route) {
     return (
       <>
-        <Backdrop />
+        {/* Sticky Top Navbar */}
+        <header className="fixed top-5 sm:top-6 inset-x-0 z-50 flex justify-center pointer-events-none select-none">
+          <div className="pointer-events-auto">
+            <TopPill />
+          </div>
+        </header>
         <CommandPalette onNavigate={navigate} />
         {route.render(goHome)}
         <Footer />
@@ -119,21 +112,18 @@ export default function App() {
   return (
     <>
       <SmoothScroll />
-      <ScrollProgress />
-      <Backdrop />
-      <Nav />
+      {/* Sticky Top Navbar - 32px from top */}
+      <header className="fixed top-7 sm:top-8 inset-x-0 z-50 flex justify-center pointer-events-none select-none">
+        <div className="pointer-events-auto">
+          <TopPill />
+        </div>
+      </header>
+
       <CommandPalette onNavigate={navigate} />
-      <main className="relative min-h-screen">
+      <main className="relative min-h-screen bg-[#F4F1ED] text-[#111111] font-['Archivo',sans-serif]">
         <Hero />
-        <PerspectiveStage max={3}>
-          <About />
-          <Experience />
-        </PerspectiveStage>
-        <Marquee />
-        <Skills />
+        <About />
         <Projects />
-        <Education />
-        <Faq />
         <Contact />
       </main>
       <Footer />
