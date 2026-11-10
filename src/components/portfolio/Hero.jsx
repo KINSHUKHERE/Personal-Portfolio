@@ -152,9 +152,19 @@ export function Hero() {
         {/* Top spacer to ensure clear clearance below the top navbar */}
         <div className="w-full pt-20 md:pt-24" />
 
-        {/* Main Center Stage: SOFTWARE ENGINEER + Star + Lightning Bolt */}
+        {/* Main Center Stage: ASPIRING SOFTWARE ENGINEER + Star + Lightning Bolt */}
         <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center my-auto px-4 sm:px-8">
           <div className="relative flex flex-col items-center justify-center w-full max-w-[1440px] mx-auto">
+            {/* Row 0: ASPIRING */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-sm sm:text-base md:text-lg lg:text-xl font-black uppercase tracking-[0.25em] text-[#767676] mb-1 sm:mb-2 select-none text-center"
+            >
+              ASPIRING
+            </motion.div>
+
             {/* Row 1: SOFTWARE with Star placed comfortably in the left margin */}
             <div className="relative inline-flex items-center justify-center">
               <motion.div
@@ -338,8 +348,11 @@ export function Hero() {
       <div className="flex sm:hidden flex-col justify-between items-center w-full min-h-[100dvh] pt-24 pb-6 px-5 z-10">
         {/* Center Content: Decreased Title size + Static Photo directly underneath */}
         <div className="flex flex-col items-center justify-center my-auto w-full gap-5">
-          {/* Decreased Title Size */}
+          {/* Decreased Title Size with ASPIRING prefix */}
           <div className="flex flex-col items-center justify-center text-center">
+            <span className="text-xs xs:text-sm font-black uppercase tracking-[0.22em] text-[#767676] mb-1 select-none">
+              ASPIRING
+            </span>
             <h1
               className="text-[36px] xs:text-[42px] font-black uppercase text-[#111111] leading-[0.92] tracking-[-0.04em] m-0 select-none"
               style={{ fontWeight: 950 }}

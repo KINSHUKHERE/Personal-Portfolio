@@ -98,11 +98,37 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom Giant Display Name: KINSHUK in exact grey tone (#27272c) showing top ~80% */}
-      <div className="relative w-full overflow-hidden flex justify-center pointer-events-none select-none z-10">
+      {/* Bottom Giant Display Name: KINSHUK */}
+      {/* Mobile: 25% hidden from bottom, full word visible horizontally, increased height */}
+      <div className="flex sm:hidden relative w-full overflow-hidden justify-center items-center pointer-events-none select-none z-10 px-2 pt-2">
+        <svg
+          viewBox="0 0 820 180"
+          className="w-full h-[95px] xs:h-[115px] translate-y-[25%] select-none"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <text
+            x="50%"
+            y="145"
+            textAnchor="middle"
+            fill="#27272c"
+            style={{
+              fontFamily: "var(--font-archivo), Archivo, sans-serif",
+              fontWeight: 950,
+              fontSize: "172px",
+              letterSpacing: "-0.04em",
+            }}
+          >
+            KINSHUK
+          </text>
+        </svg>
+      </div>
+
+      {/* Desktop: Original signature giant cut-off typography - 25% hidden from bottom */}
+      <div className="hidden sm:flex relative w-full overflow-hidden justify-center pointer-events-none select-none z-10">
         <div
           aria-hidden="true"
-          className="w-full text-center font-extrabold uppercase whitespace-nowrap tracking-[-0.04em] text-[19.5vw] leading-[0.74] translate-y-[20%] text-[#27272c] transition-colors"
+          className="w-full text-center font-extrabold uppercase whitespace-nowrap tracking-[-0.04em] text-[19.5vw] leading-[0.74] translate-y-[25%] text-[#27272c] transition-colors"
           style={{
             fontFamily: "var(--font-archivo)",
             letterSpacing: "-0.04em",
