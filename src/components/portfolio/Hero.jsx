@@ -31,7 +31,7 @@ export function Hero() {
     const initialCardBottom = vh - bottomGap;
     const fallbackTargetBottom = vh + aboutTopPadding + h2;
     const deltaY = fallbackTargetBottom - initialCardBottom;
-    const scrollTarget = vh + aboutTopPadding + h2 * 0.4;
+    const scrollTarget = Math.max(vh * 0.85, vh + aboutTopPadding * 0.5);
     return { vw, vh, isMobile, bottomGap, w1, h1, w2, h2, deltaY, scrollTarget };
   });
 
@@ -71,11 +71,11 @@ export function Hero() {
       if (btnEl) {
         const btnRect = btnEl.getBoundingClientRect();
         const btnDocBottom = btnRect.bottom + window.scrollY;
-        // Complete scroll animation when user reaches the Get Started button (comfortable eye-level)
-        scrollTarget = Math.max(vh * 1.05, btnDocBottom - vh * 0.65);
+        // Complete scroll animation right when the Get Started button becomes visible in the viewport
+        scrollTarget = Math.max(vh * 0.85, btnDocBottom - vh * 0.82);
       } else {
         const aboutTopPadding = isMobile ? 128 : vw < 1024 ? 160 : 192;
-        scrollTarget = vh + aboutTopPadding + h2 * 0.4;
+        scrollTarget = Math.max(vh * 0.85, vh + aboutTopPadding * 0.5);
       }
 
       setMetrics({ vw, vh, isMobile, bottomGap, w1, h1, w2, h2, deltaY, scrollTarget });
@@ -103,13 +103,22 @@ export function Hero() {
     return Math.min(Math.max(latest / target, 0), 1);
   });
 
-  // 3D Flip from 0deg to 180deg (switches faces edge-on at 90deg)
-  const rotateY = useTransform(scrollProgress, (p) => p * 180);
-  const rotateX = useTransform(scrollProgress, (p) => Math.sin(p * Math.PI) * 7);
-  const rotateZ = useTransform(scrollProgress, (p) => Math.sin(p * Math.PI) * -3);
+  // 3D Flip: The flip completes earlier (by p = 0.68) so the 2nd image faces forward and is easily visible while traveling down
+  const rotateY = useTransform(scrollProgress, (p) => {
+    const flipP = Math.min(Math.max(p / 0.68, 0), 1);
+    return flipP * 180;
+  });
+  const rotateX = useTransform(scrollProgress, (p) => {
+    const flipP = Math.min(Math.max(p / 0.68, 0), 1);
+    return Math.sin(flipP * Math.PI) * 7;
+  });
+  const rotateZ = useTransform(scrollProgress, (p) => {
+    const flipP = Math.min(Math.max(p / 0.68, 0), 1);
+    return Math.sin(flipP * Math.PI) * -3;
+  });
 
-  // Downward travel during scroll to land perfectly aligned with Get Started button
-  const y = useTransform(scrollProgress, (p) => p * metrics.deltaY);
+  // Downward travel: eases down promptly to keep the flipping animation positioned lower on the screen
+  const y = useTransform(scrollProgress, (p) => Math.pow(p, 0.88) * metrics.deltaY);
 
   // Expand width and height from 1st image aspect ratio to 2nd image aspect ratio
   const width = useTransform(
