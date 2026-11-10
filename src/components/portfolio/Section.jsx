@@ -9,9 +9,9 @@ export function SectionTitle({ children }) {
   return <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">{children}</h2>;
 }
 
-export function Section({ id, label, title, subtitle, children }) {
+export function Section({ id, label, title, subtitle, className = "", children }) {
   return (
-    <section id={id} className="relative mx-auto max-w-7xl scroll-mt-24 px-6 py-24 sm:py-32">
+    <section id={id} className={`relative mx-auto max-w-7xl scroll-mt-24 px-6 py-24 sm:py-32 ${className}`}>
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}

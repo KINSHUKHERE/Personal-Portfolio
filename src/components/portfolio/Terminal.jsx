@@ -56,7 +56,7 @@ function useCommands() {
         `phone    ${profile.phone}`,
         `location ${profile.location}`,
         "",
-        "Or use the contact form below - it actually works.",
+        "Or reach out directly via email or LinkedIn below.",
       ],
 
       socials: () => [
@@ -72,7 +72,7 @@ function useCommands() {
 
       // --- easter eggs ---
       sudo: () => ["Nice try. You don't have permission to do that. :)"],
-      "sudo hire me": () => ["Permission granted. Scroll down to the contact form."],
+      "sudo hire me": () => ["Permission granted. Scroll down to reach out."],
       ls: () => ["about/  skills/  projects/  experience/  education/  contact/"],
       pwd: () => ["/home/kinshuk/portfolio"],
       date: () => [new Date().toString()],
