@@ -8,7 +8,7 @@ export function Skills() {
       id="skills"
       label="skills"
       title="The toolkit."
-      subtitle="Languages, frameworks, and tools I build with."
+      subtitle="Languages, frameworks, and developer tools I build with daily."
     >
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {skills.map((s, index) => (

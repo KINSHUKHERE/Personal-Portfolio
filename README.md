@@ -7,7 +7,7 @@
 [![Vite](https://img.shields.io/badge/Vite-7.0-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
-The official personal developer portfolio of **Kinshuk Khandelwal** — Backend Developer (Node.js) specializing in Node.js, Express, MongoDB, and secure RESTful architectures. Final-year Computer Science student graduating in 2027.
+The official personal developer portfolio of **Kinshuk Khandelwal** — Backend and Full-Stack Developer specializing in Node.js, Express, MongoDB, and secure RESTful architectures. Final-year Computer Science student graduating in 2027.
 
 🔗 **Live Portfolio:** [https://kinshukkhandelwal.qzz.io](https://kinshukkhandelwal.qzz.io)
 
@@ -17,7 +17,7 @@ The official personal developer portfolio of **Kinshuk Khandelwal** — Backend 
 
 * **Primary Stack:** Node.js, Express.js, MongoDB (Mongoose), React.js, Tailwind CSS
 * **Backend Security:** HttpOnly JWT cookies, Google OAuth, RBAC middleware, rate limiting, Razorpay HMAC-SHA256 signature verification
-* **Checkout Reliability:** Atomic stock updates in MongoDB preventing overselling under concurrent load
+* **Concurrency & Systems:** Atomic compare-and-decrement checkouts in MongoDB preventing overselling under concurrent load
 * **Languages & Core:** JavaScript, Java (Spring Boot & 70+ DSA problems solved), Python, SQL
 
 ---
@@ -28,15 +28,15 @@ The official personal developer portfolio of **Kinshuk Khandelwal** — Backend 
 * **Architecture:** Multi-role marketplace separating customer storefront, isolated vendor namespace (`/vendor/*`), and Super Admin dashboard (`/admin/*`).
 * **Security & APIs:** 15+ REST resource groups secured via HttpOnly JWT authentication, Google OAuth, and role-based access control.
 * **Payment Integrity:** Razorpay payments verified server-side with HMAC-SHA256 signature recomputation and database amount checks.
-* **Atomic Checkout:** Atomic compare-and-decrement stock updates preventing overselling, with rollback mechanics for multi-item orders.
-* **Live Demo:** [https://yocart.onrender.com/](https://yocart.onrender.com/) *(free hosting, first load may take about a minute)*
+* **Concurrency-Safe Checkout:** Atomic compare-and-decrement stock updates preventing overselling, with rollback mechanics for multi-item orders.
+* **Live Demo:** [https://yocart.onrender.com/](https://yocart.onrender.com/)
 
 ### 2. [BookHub — Java Spring Boot Application](https://github.com/KINSHUKHERE/BookHubApp)
-* **Architecture:** Book management web application built with Java Spring Boot, Spring Data JPA, and Thymeleaf.
-* **Persistence:** MySQL database persistence with full CRUD operations for book records.
+* **Architecture:** Backend-driven catalog and member management application built with Java Spring Boot.
+* **APIs:** RESTful endpoints for catalog discovery, inventory tracking, and persistent MySQL storage.
 
-### 3. [Expense Tracker — Full-Stack Finance Tracker](https://github.com/KINSHUKHERE/ExpenseTrackerMongoDB)
-* **Architecture:** Full-stack financial tracker built with Node.js, Express, MongoDB (Mongoose), and React for managing income and expense entries.
+### 3. [Expense Tracker — MongoDB Aggregation](https://github.com/KINSHUKHERE/ExpenseTrackerMongoDB)
+* **Architecture:** Full-stack financial dashboard for managing income, expense categories, and persistent database calculations.
 
 ---
 
@@ -44,8 +44,8 @@ The official personal developer portfolio of **Kinshuk Khandelwal** — Backend 
 
 * **70+ DSA Problems Solved in Java** across LeetCode, GeeksforGeeks, and HackerRank.
 * **15+ REST API Resource Groups** engineered for YoCart.
-* **Atomic Checkout** preventing overselling with stock rollback mechanics.
-* **2 Internships** (Software Developer Intern at Zentek Infosoft & Frontend Developer Intern at ShadowFox).
+* **3 User Roles with RBAC** (Customer, Vendor, Super Admin).
+* **2 Production Internships** (Software Developer Intern at Zentek Infosoft & Frontend Developer Intern at ShadowFox).
 * **11 Public Repositories** on [GitHub](https://github.com/KINSHUKHERE?tab=repositories).
 
 ---

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { ArrowLeft, Github, ExternalLink, ShieldCheck, CreditCard, BarChart3, Database, RefreshCw, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft, Github, ExternalLink, ShieldCheck, CreditCard, BarChart3, Database, RefreshCw, Layers, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { trackEvent } from "../../lib/analytics";
 
 const META = [
-  { label: "Role", value: "Sole Developer" },
-  { label: "Context", value: "Personal Project" },
-  { label: "Timeline", value: "90 days" },
+  { label: "Role", value: "Full-Stack Developer" },
+  { label: "Context", value: "Zentek Infosoft Internship" },
+  { label: "Timeline", value: "May - Aug 2026 (90 days)" },
   { label: "Type", value: "Multi-role MERN marketplace" },
 ];
 
@@ -26,7 +26,7 @@ const SURFACES = [
   },
   {
     name: "Super Admin dashboard (/admin/*)",
-    body: "A centralized control panel overseeing the marketplace: users, vendor status, product management, and business analytics.",
+    body: "A centralized control panel overseeing the entire marketplace: users, vendor approvals, dispute management, and business intelligence analytics.",
   },
 ];
 
@@ -48,8 +48,8 @@ const DECISIONS = [
   },
   {
     icon: BarChart3,
-    title: "Visual analytics with Recharts",
-    body: "Sales trends, category metrics, and inventory counts are computed server-side from orders and products, and rendered via responsive Recharts visualizations on the admin and vendor panels.",
+    title: "Analytics pipeline with MongoDB aggregation",
+    body: "Sales trends, category distributions, inventory health, and top-product rankings are calculated dynamically using MongoDB aggregation pipelines and rendered via Recharts, avoiding slow client-side filtering.",
   },
 ];
 
@@ -88,8 +88,8 @@ export function CaseStudyYoCart({ onBack }) {
             YoCart
           </h1>
           <p className="mt-4 text-base sm:text-lg leading-relaxed text-neutral-300">
-            A multi-role marketplace with vendor-isolated data featuring three distinct surfaces — a customer
-            storefront, an isolated vendor panel and a Super Admin dashboard. Built as a core full-stack project.
+            A multi-role marketplace with vendor-isolated data featuring three distinct surfaces - a customer
+            storefront, an isolated vendor panel and a Super Admin dashboard. Engineered as a core full-stack production project during my Software Developer Internship at Zentek Infosoft.
           </p>
 
           <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
@@ -138,31 +138,9 @@ export function CaseStudyYoCart({ onBack }) {
           </div>
 
           <p className="mt-4 font-mono text-[11px] text-neutral-400">
-            First load may take about a minute (free hosting). The demo is hosted on a free Render instance that spins down during inactivity.
+            Note: The demo is hosted on a free Render instance which spins down during inactivity; cold start requests may take up to 45 seconds.
           </p>
         </motion.header>
-
-        <hr className="my-14 border-white/10" />
-
-        {/* Screenshots Placeholder Block */}
-        <section>
-          <Kicker>visual preview</Kicker>
-          <h2 className="text-2xl font-bold tracking-tight text-white">
-            Interface Previews
-          </h2>
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="aspect-video rounded-2xl border border-dashed border-white/20 bg-white/[0.02] flex flex-col items-center justify-center p-6 text-center">
-              <ImageIcon className="size-6 text-neutral-500 mb-2" />
-              <span className="font-mono text-xs text-neutral-300 font-semibold">Storefront & Checkout UI</span>
-              <span className="text-[11px] text-neutral-500 mt-1">[Screenshot placeholder - to be added]</span>
-            </div>
-            <div className="aspect-video rounded-2xl border border-dashed border-white/20 bg-white/[0.02] flex flex-col items-center justify-center p-6 text-center">
-              <ImageIcon className="size-6 text-neutral-500 mb-2" />
-              <span className="font-mono text-xs text-neutral-300 font-semibold">Admin Analytics & Vendor Portal</span>
-              <span className="text-[11px] text-neutral-500 mt-1">[Screenshot placeholder - to be added]</span>
-            </div>
-          </div>
-        </section>
 
         <hr className="my-14 border-white/10" />
 
@@ -207,15 +185,15 @@ export function CaseStudyYoCart({ onBack }) {
                 <div className="grid grid-cols-3 gap-2 text-center text-[11px]">
                   <span className="p-1.5 rounded bg-black/60 border border-white/10">Atomic Checkout Engine</span>
                   <span className="p-1.5 rounded bg-black/60 border border-white/10">Razorpay HMAC-SHA256</span>
-                  <span className="p-1.5 rounded bg-black/60 border border-white/10">Sales Analytics Calculation</span>
+                  <span className="p-1.5 rounded bg-black/60 border border-white/10">Aggregation Analytics</span>
                 </div>
               </div>
 
-              <div className="text-center text-neutral-500 text-sm">↓ Mongoose Queries & Updates</div>
+              <div className="text-center text-neutral-500 text-sm">↓ Atomic Queries & Aggregations</div>
 
               {/* Layer 4: Storage */}
               <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-center font-bold text-white">
-                MongoDB Cluster (Vendor Documents · Products · Variants · Orders · Customers)
+                MongoDB Cluster (Isolated Vendor Documents · Products · Orders · Customers)
               </div>
             </div>
           </div>
@@ -270,7 +248,7 @@ export function CaseStudyYoCart({ onBack }) {
                 <span>The Solution: Atomic Compare-and-Decrement</span>
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-neutral-300">
-                Stock is reduced in MongoDB via atomic compare-and-decrement operations (<code className="bg-black/60 px-1.5 py-0.5 rounded text-emerald-300">$inc: &#123; quantity: -item.quantity &#125;</code> conditioned on <code className="bg-black/60 px-1.5 py-0.5 rounded text-emerald-300">&#123; quantity: &#123; $gte: item.quantity &#125; &#125;</code>). The database driver executes this as a single atomic CPU operation, guaranteeing that only one request can succeed.
+                Stock is reduced in MongoDB via atomic compare-and-decrement operations (<code className="bg-black/60 px-1.5 py-0.5 rounded text-emerald-300">$inc: &#123; stock: -quantity &#125;</code> conditioned on <code className="bg-black/60 px-1.5 py-0.5 rounded text-emerald-300">&#123; stock: &#123; $gte: quantity &#125; &#125;</code>). The database driver executes this as a single atomic CPU operation, guaranteeing that only one request can succeed.
               </p>
             </div>
 
@@ -295,7 +273,7 @@ export function CaseStudyYoCart({ onBack }) {
             Key Architecture & Security Decisions
           </h2>
           <p className="mt-4 leading-relaxed text-neutral-300 text-sm sm:text-base">
-            Deliberate design choices made to enforce production-style security and reliability:
+            Deliberate design choices made to enforce production-grade security and reliability:
           </p>
 
           <div className="mt-8 space-y-6">
@@ -327,23 +305,23 @@ export function CaseStudyYoCart({ onBack }) {
 
           <div className="mt-6 space-y-4">
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-              <h3 className="text-sm font-bold text-white">1. MongoDB Transactions for Multi-Item Checkout Rollback</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-neutral-300">
-                Use multi-document MongoDB transactions (<code className="bg-black/60 px-1 py-0.5 rounded text-neutral-300">session.withTransaction</code>) for multi-item checkout rollback instead of manual undo queries, guaranteeing ACID guarantees across replica sets.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-              <h3 className="text-sm font-bold text-white">2. Automated Integration & Concurrency Tests</h3>
+              <h3 className="text-sm font-bold text-white">1. Automated Integration & Concurrency Tests</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-neutral-300">
                 Add end-to-end integration test suites using Jest and Supertest to automatically verify payment webhook verification, checkout race conditions, and RBAC boundary enforcement on continuous integration.
               </p>
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-              <h3 className="text-sm font-bold text-white">3. Redis Caching Layer</h3>
+              <h3 className="text-sm font-bold text-white">2. Redis Caching Layer</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-neutral-300">
                 Implement a Redis cache in front of frequently queried public catalog endpoints with tag-based invalidation when vendors update inventory, reducing direct database read load.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+              <h3 className="text-sm font-bold text-white">3. Real-Time WebSockets & Containerized Cloud Deployment</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-neutral-300">
+                Replace client-side HTTP polling for admin order notifications with persistent WebSockets or Server-Sent Events (SSE), and containerize the service with Docker for deployment on managed infrastructure.
               </p>
             </div>
           </div>
