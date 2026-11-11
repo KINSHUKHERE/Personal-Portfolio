@@ -1,105 +1,89 @@
-# 🌌 Kinshuk Khandelwal's 3D Developer Portfolio
+# ⚡ Kinshuk Khandelwal | Backend Developer & Portfolio
 
 [![React](https://img.shields.io/badge/React-19.0-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
-[![Three.js](https://img.shields.io/badge/Three.js-0.184-black?style=flat-square&logo=three.js)](https://threejs.org)
-[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.0-38BDF8?style=flat-square&logo=tailwind-css)](https://tailwindcss.com)
+[![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://mongodb.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.0-38BDF8?style=flat-square&logo=tailwind-css)](https://tailwindcss.com)
 [![Vite](https://img.shields.io/badge/Vite-7.0-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
-A high-performance, responsive 3D developer portfolio designed to showcase projects, skills, and work experience using a hybrid 3D/2D user interface. Features smooth physics-based graphics, cursor-reactive elements, and state-of-the-art web design patterns.
+The official personal developer portfolio of **Kinshuk Khandelwal** — Backend and Full-Stack Developer specializing in Node.js, Express, MongoDB, and secure RESTful architectures. Final-year Computer Science student graduating in 2027.
 
-🔗 **Live Link:** [kinshukkhandelwal.qzz.io](https://kinshukkhandelwal.qzz.io)
-
----
-
-## ✨ Features & Visual Highlights
-
-### 🌀 1. High-Fidelity 3D Interactive Backdrop
-* **Double Concentric Octahedrons:** Features floating 3D wireframe octahedron shells with rotating inner solid cores that float dynamically using React Three Fiber (R3F) and `@react-three/drei`.
-* **Rotational Drag Interaction:** Users can click, hold (PointerDown), and drag on any of the three floating diamonds to rotate them dynamically in 3D around their X and Y axes. When released, they retain their new rotation and float naturally.
-* **Interactive Constellation & Spiderweb:** An interactive star field draws links connecting nodes. Moving your cursor draws cyan/teal spiderweb lines from your pointer to nearby stars, repelling particles on hover.
-* **Theme-Adaptive Particle Density:** Automatically switches star density on theme toggle (up to **240 particles** in Dark Mode, scaled back to **120 particles** in Light Mode to maintain visual balance).
-
-### 🎨 2. Theme-Adaptive Styling & Contrast Fixes
-* **Living Ambient Glows:** Backdrop glows slowly float, scale, and drift over a 20–25s cycle using GPU-accelerated keyframe CSS animations.
-* **Consistent Header Contrast:** Fully responsive navbar links, icons, and logo (`kinshuk.dev`) that adapt to active light/dark themes instantly, preventing low contrast at the top of the page.
-* **Centered Hero Content:** availability badge, gradient title, recruiter CTA buttons, and social links aligned in a clean flex layout.
-
-### 💼 3. Curated Project Showcase
-* **YoCart (MERN Stack):** Enterprise-ready MERN e-commerce ecosystem featuring a customer storefront, an isolated vendor panel (`/vendor/*`), and a glassmorphic Super Admin dashboard. Powered by a database-driven festive theme engine, smart option swatch validation, Stripe-style checkouts, and Recharts SaaS analytics.
-* **Tanjore Coffee (HTML/CSS/JS):** Beautiful, fully responsive coffee brand landing page with premium assets, smooth hover states, and clean layouts.
-* **Todo Website (Vanilla JS):** A fast, lightweight checklist application for tracking developer tasks.
-
-### 🛠️ 4. Technical Optimizations & SEO Essentials
-* **120 FPS Render Loops:** Hoisted DOM queries and calculations out of ThreeJS and Canvas animation loops, cutting $O(N^2)$ checks down to a single check per frame.
-* **Secure PDF Downloads:** Replaced Google Drive redirects for resume downloads with a secure, same-origin local file download (`/public/Kinshuk_Khandelwal_Resume.pdf`) matching Google Search Console safety guidelines.
-* **Crawler-Ready Technical SEO:** Features a canonical `sitemap.xml` listing all pages, a configured `robots.txt` file, structured HTML5 semantic headings (single `<h1>` title), and crawlable navigation anchor links.
-* **Theme Toggle Error Pages:** Custom offline and 404 views styled with swinging SVG lanterns that adapt dynamically to the active color theme.
+🔗 **Live Portfolio:** [https://kinshukkhandelwal.qzz.io](https://kinshukkhandelwal.qzz.io)
 
 ---
 
-## 🛠️ Tech Stack
+## 🎯 Profile & Focus
 
-* **Core Framework:** React 19 (Hooks, Context)
-* **3D Rendering:** Three.js, `@react-three/fiber`, `@react-three/drei`
-* **Animations:** GSAP, Framer Motion, Lenis (Smooth Scroll)
-* **Styles:** Tailwind CSS v4, Vanilla CSS
-* **Build System:** Vite
-* **Email API:** EmailJS Browser API
+* **Primary Stack:** Node.js, Express.js, MongoDB (Mongoose), React.js, Tailwind CSS
+* **Backend Security:** HttpOnly JWT cookies, Google OAuth, RBAC middleware, rate limiting, Razorpay HMAC-SHA256 signature verification
+* **Concurrency & Systems:** Atomic compare-and-decrement checkouts in MongoDB preventing overselling under concurrent load
+* **Languages & Core:** JavaScript, Java (Spring Boot & 70+ DSA problems solved), Python, SQL
 
 ---
 
-## 🚀 Local Installation & Setup
+## 💼 Featured Engineering Projects
 
-Get a copy of this project running on your local machine by following these steps:
+### 1. [YoCart — Backend-focused MERN Marketplace](https://github.com/KINSHUKHERE/Ecommerce-Website-MERN)
+* **Architecture:** Multi-role marketplace separating customer storefront, isolated vendor namespace (`/vendor/*`), and Super Admin dashboard (`/admin/*`).
+* **Security & APIs:** 15+ REST resource groups secured via HttpOnly JWT authentication, Google OAuth, and role-based access control.
+* **Payment Integrity:** Razorpay payments verified server-side with HMAC-SHA256 signature recomputation and database amount checks.
+* **Concurrency-Safe Checkout:** Atomic compare-and-decrement stock updates preventing overselling, with rollback mechanics for multi-item orders.
+* **Live Demo:** [https://yocart.onrender.com/](https://yocart.onrender.com/)
+
+### 2. [BookHub — Java Spring Boot Application](https://github.com/KINSHUKHERE/BookHubApp)
+* **Architecture:** Backend-driven catalog and member management application built with Java Spring Boot.
+* **APIs:** RESTful endpoints for catalog discovery, inventory tracking, and persistent MySQL storage.
+
+### 3. [Expense Tracker — MongoDB Aggregation](https://github.com/KINSHUKHERE/ExpenseTrackerMongoDB)
+* **Architecture:** Full-stack financial dashboard for managing income, expense categories, and persistent database calculations.
+
+---
+
+## 🚀 Key Achievements & Stats
+
+* **70+ DSA Problems Solved in Java** across LeetCode, GeeksforGeeks, and HackerRank.
+* **15+ REST API Resource Groups** engineered for YoCart.
+* **3 User Roles with RBAC** (Customer, Vendor, Super Admin).
+* **2 Production Internships** (Software Developer Intern at Zentek Infosoft & Frontend Developer Intern at ShadowFox).
+* **11 Public Repositories** on [GitHub](https://github.com/KINSHUKHERE?tab=repositories).
+
+---
+
+## 🛠️ Local Development & Setup
 
 ### Prerequisites
-
-Make sure you have [Node.js](https://nodejs.org/) installed (v18 or higher recommended).
+* [Node.js](https://nodejs.org/) (v18 or higher)
+* [npm](https://www.npmjs.com/)
 
 ### Installation
 
-1. **Clone the Repository:**
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/KINSHUKHERE/Personal-Portfolio.git
    cd Personal-Portfolio
    ```
 
-2. **Install Dependencies:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Set Up Environment Variables:**
-   Create a `.env` file in the project root:
-   ```env
-   VITE_EMAILJS_SERVICE_ID=your_emailjs_service_id
-   VITE_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
-   VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
-   ```
-
-4. **Run in Development Mode:**
+3. **Start development server:**
    ```bash
    npm run dev
    ```
-   Open your browser and navigate to `http://localhost:5173`.
+   Navigate to `http://localhost:5173` in your browser.
 
-5. **Build for Production:**
+4. **Build for production:**
    ```bash
    npm run build
    ```
 
 ---
 
-## ☁️ Deployment Environment Configuration
+## 📬 Contact & Links
 
-Since the `.env` file is excluded from version control via `.gitignore`, you need to set up environment variables manually in your deployment provider (e.g., Vercel, Netlify, or Render):
-
-1. Add `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_PUBLIC_KEY` as environment variables in your provider's dashboard.
-2. Trigger a **new build/redeploy** to inject these keys into the compiled production bundle.
-
----
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for details.
+* **Email:** [herekinshuk@gmail.com](mailto:herekinshuk@gmail.com)
+* **LinkedIn:** [linkedin.com/in/kinshuk-khandelwal-43024b290](https://www.linkedin.com/in/kinshuk-khandelwal-43024b290/)
+* **GitHub:** [github.com/KINSHUKHERE](https://github.com/KINSHUKHERE)

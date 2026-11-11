@@ -155,14 +155,15 @@ export function Hero() {
         {/* Main Center Stage: ASPIRING SOFTWARE ENGINEER + Star + Lightning Bolt */}
         <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center my-auto px-4 sm:px-8">
           <div className="relative flex flex-col items-center justify-center w-full max-w-[1440px] mx-auto">
-            {/* Row 0: ASPIRING */}
+            {/* Row 0: BACKEND DEVELOPER badge */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-sm sm:text-base md:text-lg lg:text-xl font-black uppercase tracking-[0.25em] text-[#767676] mb-1 sm:mb-2 select-none text-center"
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-black/15 bg-black/5 text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.22em] text-[#111111] mb-2 sm:mb-3 select-none text-center"
             >
-              ASPIRING
+              <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              BACKEND DEVELOPER
             </motion.div>
 
             {/* Row 1: SOFTWARE with Star placed comfortably in the left margin */}
@@ -246,11 +247,16 @@ export function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35 }}
-            className="flex items-end gap-3 sm:gap-4 pointer-events-auto"
+            className="flex items-end gap-3 sm:gap-6 pointer-events-auto"
           >
-            <span className="hidden md:inline-block text-[#767676] text-xs sm:text-sm font-semibold tracking-wider font-mono uppercase mb-2 select-none">
-              /CREATING SINCE 2023
-            </span>
+            <div className="hidden md:flex flex-col items-start gap-1 mb-1 select-none">
+              <span className="text-[#111111] text-xs sm:text-sm font-mono font-bold tracking-tight">
+                Node.js · MongoDB · API Security
+              </span>
+              <span className="text-[#767676] text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-wider">
+                Final-year CSE · Graduating 2027
+              </span>
+            </div>
 
             <div className="flex flex-col items-end gap-1.5 sm:gap-2">
               <a
@@ -350,8 +356,9 @@ export function Hero() {
         <div className="flex flex-col items-center justify-center my-auto w-full gap-5">
           {/* Decreased Title Size with ASPIRING prefix */}
           <div className="flex flex-col items-center justify-center text-center">
-            <span className="text-xs xs:text-sm font-black uppercase tracking-[0.22em] text-[#767676] mb-1 select-none">
-              ASPIRING
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-black/15 bg-black/5 text-[11px] xs:text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#111111] mb-2 select-none">
+              <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              BACKEND DEVELOPER
             </span>
             <h1
               className="text-[36px] xs:text-[42px] font-black uppercase text-[#111111] leading-[0.92] tracking-[-0.04em] m-0 select-none"
@@ -365,6 +372,14 @@ export function Hero() {
             >
               ENGINEER
             </h1>
+            <div className="flex flex-col items-center gap-0.5 mt-2 select-none">
+              <span className="text-[#111111] text-[12px] xs:text-xs font-mono font-bold tracking-tight">
+                Node.js · MongoDB · API Security
+              </span>
+              <span className="text-[#767676] text-[10px] xs:text-[11px] font-mono font-semibold uppercase tracking-wider">
+                Final-year CSE · Graduating 2027
+              </span>
+            </div>
           </div>
 
           {/* Mobile Photo Card: Shows B&W initially, automatically 3D-flips to Color Red after 2s */}
