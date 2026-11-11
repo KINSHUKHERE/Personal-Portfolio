@@ -4,14 +4,14 @@ export const profile = {
   role: "Backend Developer (Node.js)",
   location: "Jaipur, Rajasthan",
   email: "herekinshuk@gmail.com",
-  resumeUrl: "https://raw.githubusercontent.com/KINSHUKHERE/Personal-Portfolio/main/public/Kinshuk_Khandelwal_Resume.pdf",
+  resumeUrl: "/Kinshuk_Khandelwal_Resume.pdf",
   socials: {
     github: "https://github.com/KINSHUKHERE",
     linkedin: "https://www.linkedin.com/in/kinshuk-khandelwal-43024b290/",
     mail: "mailto:herekinshuk@gmail.com",
   },
   summary:
-    "Final-year Computer Science student in Jaipur, graduating in 2027. Building backend systems and full-stack web applications with Node.js, Express, MongoDB and React. Former Software Developer Intern at Zentek Infosoft with a focus on secure REST APIs (JWT, Google OAuth, RBAC), payment integration, and concurrency-safe data handling.",
+    "Final-year Computer Science student in Jaipur, graduating in 2027. Building backend systems and full-stack web applications with Node.js, Express, MongoDB and React. Former Software Developer Intern at Zentek Infosoft with a focus on secure REST APIs (JWT, Google OAuth, RBAC), payment integration, and atomic stock updates.",
   tagline: "Node.js · MongoDB · API Security",
   subtagline: "Final-year CSE · Graduating 2027",
 };
@@ -19,7 +19,7 @@ export const profile = {
 export const stats = [
   { label: "DSA Problems", value: 70, decimals: 0, suffix: "+", sub: "Solved in Java" },
   { label: "REST API Groups", value: 15, decimals: 0, suffix: "+", sub: "YoCart Resource Groups" },
-  { label: "User Roles", value: 3, decimals: 0, suffix: "", sub: "YoCart RBAC" },
+  { label: "Atomic Checkout", value: "Atomic", suffix: "", sub: "YoCart Engine" },
   { label: "Internships", value: 2, decimals: 0, suffix: "", sub: "Zentek & ShadowFox" },
 ];
 
@@ -41,7 +41,6 @@ export const experience = [
       "Built full-stack web apps with React.js, Node.js, Express.js, MongoDB and MySQL.",
       "Built REST APIs with JWT authentication, Google OAuth, role-based access and protected routes.",
       "Worked on debugging, feature development, Git workflows and deployment.",
-      "Built YoCart's analytics dashboard (sales trends, category metrics, inventory) with Recharts.",
     ],
   },
   {
@@ -72,8 +71,8 @@ export const featuredProjects = [
     title: "BookHub",
     tag: "Java Spring Boot",
     description:
-      "A backend-driven book management application built with Java Spring Boot. Exposes RESTful endpoints for catalog discovery, member tracking, and inventory operations with secure persistence.",
-    stack: ["Java", "Spring Boot", "REST APIs", "MySQL", "HTML5", "CSS3"],
+      "A book management web application built with Java, Spring Boot, Spring Data JPA, and MySQL. Implements CRUD operations to view, add, edit, and delete books with Thymeleaf UI templates and REST endpoints.",
+    stack: ["Java", "Spring Boot", "Spring Data JPA", "MySQL", "Thymeleaf"],
     github: "https://github.com/KINSHUKHERE/BookHubApp",
     live: "",
   },
@@ -81,7 +80,7 @@ export const featuredProjects = [
     title: "Expense Tracker",
     tag: "Full-stack - MongoDB",
     description:
-      "A full-stack financial tracker with a dynamic dashboard to manage income and expenses, complete with category breakdowns and persistent storage.",
+      "A full-stack financial tracker to manage income and expenses with persistent storage in MongoDB and category breakdowns.",
     stack: ["Node.js", "Express", "MongoDB", "React.js", "Tailwind CSS"],
     github: "https://github.com/KINSHUKHERE/ExpenseTrackerMongoDB",
     live: "",
@@ -90,8 +89,8 @@ export const featuredProjects = [
     title: "Thana-Thaya (Food Ordering)",
     tag: "Responsive Frontend",
     description:
-      "A responsive food-ordering website with interactive menu browsing and a persistent cart via LocalStorage, with dynamic quantity controls and smooth animations.",
-    stack: ["HTML5", "Tailwind CSS", "JavaScript", "LocalStorage"],
+      "Responsive food-ordering website with interactive menu, cart functionality, and layouts for desktop and mobile. Used Google Forms for order collection and a simulated payment workflow.",
+    stack: ["HTML5", "Tailwind CSS", "JavaScript", "LocalStorage", "Google Forms"],
     github: "https://github.com/KINSHUKHERE/Food-website",
     live: "",
   },

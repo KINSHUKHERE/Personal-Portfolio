@@ -194,11 +194,11 @@ export function Hero() {
                 className="text-[clamp(66px,11.8vw,196px)] font-black uppercase text-[#111111] leading-[0.88] tracking-[-0.045em] m-0 select-none text-center"
                 style={{ fontWeight: 950 }}
               >
-                SOFTWARE
+                BACKEND
               </motion.h1>
             </div>
 
-            {/* Row 2: ENGINEER with Lightning Bolt in the right margin */}
+            {/* Row 2: DEVELOPER with Lightning Bolt in the right margin */}
             <div className="relative inline-flex items-center justify-center">
               <motion.h1
                 initial={{ opacity: 0, y: 25 }}
@@ -207,7 +207,7 @@ export function Hero() {
                 className="text-[clamp(66px,11.8vw,196px)] font-black uppercase text-[#111111] leading-[0.88] tracking-[-0.045em] m-0 select-none text-center"
                 style={{ fontWeight: 950 }}
               >
-                ENGINEER
+                DEVELOPER
               </motion.h1>
 
               <motion.div
@@ -364,13 +364,13 @@ export function Hero() {
               className="text-[36px] xs:text-[42px] font-black uppercase text-[#111111] leading-[0.92] tracking-[-0.04em] m-0 select-none"
               style={{ fontWeight: 950 }}
             >
-              SOFTWARE
+              BACKEND
             </h1>
             <h1
               className="text-[36px] xs:text-[42px] font-black uppercase text-[#111111] leading-[0.92] tracking-[-0.04em] m-0 select-none"
               style={{ fontWeight: 950 }}
             >
-              ENGINEER
+              DEVELOPER
             </h1>
             <div className="flex flex-col items-center gap-0.5 mt-2 select-none">
               <span className="text-[#111111] text-[12px] xs:text-xs font-mono font-bold tracking-tight">

@@ -73,7 +73,7 @@ export function Experience() {
       id="experience"
       label="experience"
       title="Where I've worked."
-      subtitle="Production internships and hands-on software development."
+      subtitle="Internships and hands-on projects."
     >
       <div ref={wrapRef} className="relative mx-auto max-w-5xl">
         {/* Animated Vertical Line */}

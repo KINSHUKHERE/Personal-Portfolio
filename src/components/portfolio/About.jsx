@@ -115,13 +115,13 @@ export function About() {
             </span>
           </div>
 
-          {/* Stat 3: 3 User Roles */}
+          {/* Stat 3: Atomic Checkout */}
           <div className="flex flex-col items-center text-center">
-            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none text-center">
-              3
+            <span className="text-lg xs:text-xl sm:text-3xl lg:text-[36px] font-black tracking-tight text-[#111111] leading-none text-center">
+              Atomic
             </span>
             <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight text-center">
-              User Roles (YoCart)
+              Checkout (YoCart)
             </span>
           </div>
 
