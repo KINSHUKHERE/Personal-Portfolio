@@ -29,9 +29,9 @@ export function Footer() {
           {/* Left Column: Bold Headline */}
           <div className="md:col-span-5 lg:col-span-6">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#ffffff] tracking-[-0.03em] leading-[1.05] max-w-md">
-              Scaling<br />
-              Start-ups<br />
-              for Growth.
+              Building<br />
+              Scalable Web<br />
+              Systems.
             </h2>
           </div>
 

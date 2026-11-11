@@ -38,8 +38,8 @@ export function About() {
             Hey!
           </h2>
 
-          <p className="mt-8 lg:mt-auto text-base sm:text-[17px] lg:text-[18px] leading-[1.38] text-[#111111] font-semibold max-w-[280px] sm:max-w-[310px]">
-            I’m Kinshuk, a builder based in {profile.location}, currently engineering full-stack MERN platforms, high-throughput backend APIs, and modern digital experiences.
+          <p className="mt-8 lg:mt-auto text-base sm:text-[17px] lg:text-[18px] leading-[1.38] text-[#111111] font-semibold max-w-[280px] sm:max-w-[320px]">
+            I’m Kinshuk, a final-year Computer Science student based in {profile.location}, specializing in backend engineering, scalable REST APIs, and full-stack MERN platforms.
           </p>
         </motion.div>
 
@@ -60,12 +60,12 @@ export function About() {
           className="flex-1 w-full lg:max-w-[420px] xl:max-w-[460px] flex flex-col justify-end items-start self-stretch min-h-[300px] lg:min-h-[520px]"
         >
           <div className="w-full space-y-4">
-            <p className="text-[14px] sm:text-[15px] leading-[1.48] text-[#111111] font-normal max-w-[340px] sm:max-w-[360px]">
-              I’m a software developer with a strong focus on building modern, scalable, and conversion-driven web experiences.
+            <p className="text-[14px] sm:text-[15px] leading-[1.48] text-[#111111] font-normal max-w-[340px] sm:max-w-[380px]">
+              Most recently a Software Developer Intern at Zentek Infosoft, I design and build production-style applications with a heavy focus on API security, JWT/OAuth auth, RBAC, and resilient MongoDB schemas.
             </p>
 
-            <p className="text-[14px] sm:text-[15px] leading-[1.48] text-[#111111] font-normal max-w-[340px] sm:max-w-[360px]">
-              Over the years, I’ve created and shipped multiple full-stack products, MERN e-commerce architectures, and secure REST APIs—helping platforms scale and launch faster.
+            <p className="text-[14px] sm:text-[15px] leading-[1.48] text-[#111111] font-normal max-w-[340px] sm:max-w-[380px]">
+              From architecting YoCart with concurrency-safe checkouts and Razorpay integration to solving 70+ DSA challenges in Java, I build software that is fast, secure, and production-ready.
             </p>
 
             <div className="pt-2">
