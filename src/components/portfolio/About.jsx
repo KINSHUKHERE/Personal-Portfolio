@@ -32,14 +32,14 @@ export function About() {
           className="flex-1 w-full lg:max-w-[360px] xl:max-w-[400px] flex flex-col justify-between items-start self-stretch min-h-[300px] lg:min-h-[520px]"
         >
           <h2
-            className="text-5xl sm:text-7xl lg:text-[84px] font-black tracking-[-0.04em] text-[#111111] leading-[0.98] m-0"
+            className="text-7xl sm:text-8xl lg:text-[100px] font-black tracking-[-0.04em] text-[#111111] leading-none m-0"
             style={{ fontWeight: 950 }}
           >
-            Hey, I'm Kinshuk.
+            Hey!
           </h2>
 
-          <p className="mt-8 lg:mt-auto text-base sm:text-[17px] lg:text-[18px] leading-[1.38] text-[#111111] font-semibold max-w-[290px] sm:max-w-[340px]">
-            I'm a final-year Computer Science student in Jaipur. I build backend systems and full-stack web apps with Node.js, Express, MongoDB and React.
+          <p className="mt-8 lg:mt-auto text-base sm:text-[17px] lg:text-[18px] leading-[1.38] text-[#111111] font-semibold max-w-[280px] sm:max-w-[320px]">
+            I’m Kinshuk, a final-year Computer Science student based in {profile.location}, specializing in backend engineering, scalable REST APIs, and full-stack MERN platforms.
           </p>
         </motion.div>
 
@@ -61,11 +61,11 @@ export function About() {
         >
           <div className="w-full space-y-4">
             <p className="text-[14px] sm:text-[15px] leading-[1.48] text-[#111111] font-normal max-w-[340px] sm:max-w-[380px]">
-              I recently finished a Software Developer internship at Zentek Infosoft. I built REST APIs with JWT authentication, Google OAuth and role-based access.
+              Most recently a Software Developer Intern at Zentek Infosoft, I design and build production-style applications with a heavy focus on API security, JWT/OAuth auth, RBAC, and resilient MongoDB schemas.
             </p>
 
             <p className="text-[14px] sm:text-[15px] leading-[1.48] text-[#111111] font-normal max-w-[340px] sm:max-w-[380px]">
-              My main project is YoCart, a marketplace with customer, vendor and admin roles. It verifies payments on the server and stops overselling during checkout.
+              From architecting YoCart with concurrency-safe checkouts and Razorpay integration to solving 70+ DSA challenges in Java, I build software that is fast, secure, and production-ready.
             </p>
 
             <div className="pt-2">
@@ -95,42 +95,42 @@ export function About() {
         className="relative z-10 w-full max-w-[1480px] mx-auto mt-12 sm:mt-16 lg:mt-20 pt-8 sm:pt-10 border-t border-black/10"
       >
         <div className="grid grid-cols-4 gap-2 xs:gap-4 sm:gap-8 lg:gap-12">
-          {/* Stat 1: 70+ DSA Solved */}
-          <div className="flex flex-col items-center text-center">
-            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none text-center">
+          {/* Stat 1: CGPA */}
+          <div className="flex flex-col">
+            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
+              7.96
+            </span>
+            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight">
+              CGPA
+            </span>
+          </div>
+
+          {/* Stat 2: GitHub repos */}
+          <div className="flex flex-col">
+            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
+              16+
+            </span>
+            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight">
+              GitHub Repos
+            </span>
+          </div>
+
+          {/* Stat 3: DSA problems solved */}
+          <div className="flex flex-col">
+            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
               70+
             </span>
-            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight text-center">
-              DSA Solved in Java
+            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight">
+              DSA Solved
             </span>
           </div>
 
-          {/* Stat 2: 15+ REST API Groups */}
-          <div className="flex flex-col items-center text-center">
-            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none text-center">
-              15+
-            </span>
-            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight text-center">
-              REST API Groups (YoCart)
-            </span>
-          </div>
-
-          {/* Stat 3: 3 User Roles */}
-          <div className="flex flex-col items-center text-center">
-            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none text-center">
-              3
-            </span>
-            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight text-center">
-              User Roles (YoCart)
-            </span>
-          </div>
-
-          {/* Stat 4: 2 Internships */}
-          <div className="flex flex-col items-center text-center">
-            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none text-center">
+          {/* Stat 4: Internships */}
+          <div className="flex flex-col">
+            <span className="text-xl xs:text-2xl sm:text-4xl lg:text-[44px] font-black tracking-tight text-[#111111] leading-none">
               2
             </span>
-            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight text-center">
+            <span className="text-[9px] xs:text-[11px] sm:text-sm font-mono uppercase text-[#767676] mt-1.5 sm:mt-2 tracking-tight sm:tracking-wider font-semibold leading-tight">
               Internships
             </span>
           </div>

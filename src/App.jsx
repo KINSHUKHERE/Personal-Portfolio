@@ -16,7 +16,7 @@ import { CommandPalette } from "./components/portfolio/CommandPalette";
 import { trackEvent, trackPageview } from "./lib/analytics";
 import { navigate } from "./lib/navigation";
 
-const HOME_TITLE = "Kinshuk Khandelwal | Backend Developer (Node.js)";
+const HOME_TITLE = "Kinshuk Khandelwal - Software Engineer";
 
 const ROUTES = {
   "/case-study/yocart": {

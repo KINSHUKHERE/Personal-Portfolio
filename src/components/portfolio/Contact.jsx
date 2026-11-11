@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Github, Linkedin, Mail, Check, Send } from "lucide-react";
+import { Github, Linkedin, Instagram, Mail, Check, Send } from "lucide-react";
 import { profile } from "./data";
 import { trackEvent, trackOutbound } from "../../lib/analytics";
 
@@ -44,7 +44,7 @@ export function Contact() {
 
             {/* Subtitle */}
             <p className="mt-5 sm:mt-6 text-base sm:text-lg leading-relaxed text-[#767676] max-w-md">
-              Open to fresher Backend and SDE roles and internships.
+              Open to internships, freelance projects, and full-stack roles. Fill out the form or reach out directly.
             </p>
           </div>
 
@@ -70,6 +70,17 @@ export function Contact() {
               className="flex items-center justify-center w-11 h-11 rounded-xl bg-black/5 hover:bg-black/10 border border-black/10 text-[#111111] transition-all hover:scale-105 active:scale-95 shadow-sm"
             >
               <Linkedin className="size-4" />
+            </a>
+
+            <a
+              href={profile.socials.instagram}
+              onClick={() => trackOutbound("Instagram", profile.socials.instagram, { location: "contact" })}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              className="flex items-center justify-center w-11 h-11 rounded-xl bg-black/5 hover:bg-black/10 border border-black/10 text-[#111111] transition-all hover:scale-105 active:scale-95 shadow-sm"
+            >
+              <Instagram className="size-4" />
             </a>
 
             <a

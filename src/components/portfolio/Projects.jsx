@@ -150,11 +150,23 @@ function ProjectGrid({ items, isFeatured }) {
       {items.map((p) => (
         <div
           key={p.title}
-          className="w-full md:w-[calc(50%-0.875rem)]"
+          className="w-full md:w-[calc(50%-0.875rem)] lg:w-[calc(33.333%-1.2rem)]"
         >
           <Card p={p} isFeatured={isFeatured} />
         </div>
       ))}
+    </div>
+  );
+}
+
+function GroupHeading({ kicker, title }) {
+  return (
+    <div className="mb-6 flex items-center gap-4">
+      <span className="font-mono text-xs uppercase tracking-wider text-[#767676]">
+        // {kicker}
+      </span>
+      <h3 className="text-base sm:text-lg font-semibold text-[#111111] tracking-tight">{title}</h3>
+      <div className="ml-2 h-px flex-1 bg-[#e2ded7]" />
     </div>
   );
 }
@@ -165,22 +177,14 @@ export function Projects() {
       id="projects"
       label="projects"
       title="Selected Work."
-      subtitle="Backend systems, RESTful architectures, and full-stack web platforms."
+      subtitle="Production full-stack platforms, scalable architectures, and responsive web applications."
     >
+      <GroupHeading kicker="featured" title="Featured Platforms" />
       <ProjectGrid items={featuredProjects} isFeatured={true} />
 
-      <div className="mt-12 sm:mt-16 flex justify-center">
-        <a
-          href="https://github.com/KINSHUKHERE?tab=repositories"
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => trackEvent("project_link_click", { project: "all", link_type: "github_all" })}
-          className="inline-flex items-center gap-2.5 rounded-2xl border border-black/15 bg-[#ffffff] px-6 py-3.5 text-sm font-semibold text-[#111111] shadow-sm transition-all hover:bg-neutral-100 hover:scale-105 active:scale-95 cursor-pointer"
-        >
-          <Github className="size-4" />
-          <span>More projects on GitHub (11 public repos)</span>
-          <ArrowUpRight className="size-4 text-[#767676]" />
-        </a>
+      <div className="mt-16 sm:mt-20">
+        <GroupHeading kicker="more" title="Additional Applications & Tools" />
+        <ProjectGrid items={secondaryProjects} isFeatured={false} />
       </div>
     </Section>
   );

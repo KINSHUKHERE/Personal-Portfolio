@@ -6,23 +6,23 @@ import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
 const faqData = [
   {
     q: "Are you open to immediate internships or full-time opportunities?",
-    a: "I graduate in 2027. I'm looking for fresher Backend or SDE roles, and internships."
-  },
-  {
-    q: "Where are you open to working?",
-    a: "Bangalore, Hyderabad, or remote."
+    a: "Yes! I am a final-year B.Tech CSE student (graduating in 2027) who recently completed a Software Developer Internship at Zentek Infosoft. I am immediately available and actively looking for full-stack, backend, or frontend developer roles."
   },
   {
     q: "What is your primary technology stack?",
-    a: "Node.js, Express, MongoDB and React. I use Java for DSA and built a Spring Boot project (BookHub)."
+    a: "My core expertise is the MERN stack (MongoDB, Express.js, React, Node.js). I also develop high-performance REST APIs in Java and automation scripts in Python."
   },
   {
-    q: "What is your database experience?",
-    a: "I design MongoDB schemas and use aggregation pipelines for YoCart's analytics."
+    q: "How do you handle remote collaboration and communication?",
+    a: "I am highly comfortable working remotely. I follow strict Git workflows, write clean commit histories, document APIs thoroughly via Postman, and communicate progress daily using Slack, Discord, or Loom."
   },
   {
-    q: "How do you handle collaboration and communication?",
-    a: "I follow strict Git workflows, write clean commit histories, document REST APIs thoroughly via Postman, and collaborate effectively in remote team settings."
+    q: "Do you have database design and optimization experience?",
+    a: "Yes. I design schemas and write optimized queries for MongoDB. I focus on reducing query latency, structuring clean indexing, and designing resilient database models."
+  },
+  {
+    q: "Are you open to relocating or working in a hybrid setup?",
+    a: "Yes! I am open to relocating to major tech hubs across India (including Bangalore, Gurgaon, Pune, Noida, Hyderabad) for full-time opportunities, as well as working in hybrid or remote environments."
   }
 ];
 
